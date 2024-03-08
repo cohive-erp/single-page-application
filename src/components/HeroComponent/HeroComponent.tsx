@@ -10,14 +10,16 @@ function HeroSection() {
             <img
               src='./heroImage.svg'
               alt='Gerencie melhor sua empresa com o sistema de gestão da Cohive'
-              className='' />
+              width={400}
+              className='mx-auto'
+            />
             <Paragraph size='h3'>
               Organize mais melhorando o <span className='text-purple-500'>sistema de gestão</span> da sua empresa.
             </Paragraph>
             <div className='inline-flex gap-4 justify-center'>
               <a href='/'>
                 <img
-                  src='./appleDownload.svg'
+                  src='./appStoreImage.png'
                   alt='Faça o download na App Store'
                   width={150}
                   className='rounded-md'
@@ -25,7 +27,7 @@ function HeroSection() {
               </a>
               <a href='/'>
                 <img
-                  src='./googleDownload.svg'
+                  src='./googlePlayImage.png'
                   alt='Faça o download na Google Store'
                   width={150}
                   className='rounded-md'
