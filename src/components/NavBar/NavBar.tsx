@@ -5,8 +5,8 @@ import Button from '../Button/Button'
 
 function NavBar() {
   return (
-    <div className='navbar w-full items-center inline-flex gap-4'>
-      <div className='navbar-start items-center'>
+    <div className='navbar w-full items-center inline-flex gap-4 px-8'>
+      <div className='navbar-start w-2/5 items-center'>
         <a href='/'>
           <LogoCohive />
         </a>
