@@ -8,7 +8,7 @@ function NavBar() {
     <div className='navbar w-full items-center inline-flex gap-4 px-8'>
       <div className='navbar-start w-2/5 items-center'>
         <a href='/'>
-          <LogoCohive />
+          <LogoCohive width={200} height={84} />
         </a>
       </div>
 
