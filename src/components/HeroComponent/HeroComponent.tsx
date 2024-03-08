@@ -29,7 +29,7 @@ function HeroSection() {
                 <img
                   src='./googlePlayImage.png'
                   alt='Faça o download na Google Store'
-                  width={150}
+                  width={130}
                   className='rounded-md'
                 />
               </a>
