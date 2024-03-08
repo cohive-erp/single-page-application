@@ -1,6 +1,6 @@
 import React from 'react'
 import LogoCohive from '../LogoCohive/LogoCohive'
-import NavBarAnchor from './NavBarAnchor'
+import NavBarAnchor from '../NavBarAnchor/NavBarAnchor'
 import Button from '../Button/Button'
 
 function NavBar() {
