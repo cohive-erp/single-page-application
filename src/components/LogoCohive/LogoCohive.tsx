@@ -2,6 +2,8 @@ import React from 'react'
 
 type LogoCohiveProps = {
   color?: 'purple' | 'white' | 'black'
+  width?: number
+  height?: number
 }
 
 const logoColors = {
@@ -11,14 +13,14 @@ const logoColors = {
 }
 
 function LogoCohive(props: LogoCohiveProps) {
-  const { color } = props
+  const { color, width, height } = props
 
   return (
     <img
       src={logoColors[color ?? 'purple']}
       alt='Logo da Cohive'
-      width={200}
-      height={84}
+      width={width}
+      height={height}
     />
   )
 }
