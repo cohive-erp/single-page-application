@@ -5,7 +5,7 @@ function SectionOne() {
   return (
     <div className='flex basis-full'>
       <div className='hero min-h-screen flex flex-row justify-evenly items-center'>
-        <div className='flex basis-5/12'>
+        <div className='flex basis-4/12'>
           <img
             src='./sectionOneImage.svg'
             alt='Gerencie melhor sua empresa com o sistema de gestão da Cohive'
@@ -14,7 +14,7 @@ function SectionOne() {
           />
         </div>
 
-        <div className='flex flex-col gap-6 basis-5/12'>
+        <div className='flex flex-col gap-6 basis-4/12'>
           <Paragraph size='title'>
             Oportunidade que <span className='text-purple-500'>pequenas empresas</span> buscam para melhorar o controle dos seus produtos.
           </Paragraph>
