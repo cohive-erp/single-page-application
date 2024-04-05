@@ -23,7 +23,7 @@ function StepOne() {
                 </label>
                 <label className='input input-bordered text-[#9A9696] flex items-center gap-2'>
                     <KeyIcon fontSize='small' />
-                    <input type='password' className='grow text-black' placeholder='Confirmar senha' />
+                    <input type='password' className='grow text-black' placeholder='Senha' />
                 </label>
                 <ReCAPTCHA
                     sitekey='apikey'
@@ -31,7 +31,7 @@ function StepOne() {
                 />
                 <div className='card-actions justify-between'>
                     <Button content='Voltar' color='secondary' onClick={() => console.log()} />
-                    <Button content='Cadastrar' onClick={() => console.log()} />
+                    <Button content='Avançar' onClick={() => console.log()} />
                 </div>
             </div>
         </div>
