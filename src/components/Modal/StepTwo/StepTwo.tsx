@@ -33,8 +33,8 @@ function StepTwo() {
                     <input type='text' className='grow' placeholder='CNPJ' />
                 </label>
                 <div className='card-actions justify-center '>
-                    <Button content='Voltar' color='secondary' href='/' />
-                    <Button content='Cadastrar' href='/' />
+                    <Button content='Voltar' color='secondary' onClick={() => console.log()} />
+                    <Button content='Cadastrar' onClick={() => console.log()} />
                 </div>
             </div>
         </div>
