@@ -40,8 +40,8 @@ function StepOne() {
                     <KeyIcon fontSize='small' />
                     <input type='password' className='grow text-black' placeholder='Senha' />
                 </label>
-                <div className='card-actions justify-center'>
-                    <Button content='Avançar' href='/' />
+                <div className='card-actions justify-end'>
+                    <Button content='Avançar' onClick={() => console.log()} />
                 </div>
             </div>
         </div>

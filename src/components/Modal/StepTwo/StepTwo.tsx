@@ -32,7 +32,7 @@ function StepTwo() {
                     <BusinessIcon fontSize='small' />
                     <input type='text' className='grow' placeholder='CNPJ' />
                 </label>
-                <div className='card-actions justify-center '>
+                <div className='card-actions justify-between'>
                     <Button content='Voltar' color='secondary' onClick={() => console.log()} />
                     <Button content='Cadastrar' onClick={() => console.log()} />
                 </div>
