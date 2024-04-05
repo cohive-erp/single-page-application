@@ -4,7 +4,6 @@ import Paragraph from '../../Paragraph/Paragraph'
 import Step from '../Step/Step'
 import BadgeIcon from '@mui/icons-material/Badge'
 import CallIcon from '@mui/icons-material/Call'
-import AbcIcon from '@mui/icons-material/Abc'
 
 function StepTwo() {
     const [dados, setDados] = useState({
@@ -22,7 +21,6 @@ function StepTwo() {
                 <Paragraph size='h3'>Dados pessoais</Paragraph>
                 <div className='flex flex-row w-full justify-between'>
                     <label className='input input-bordered text-[#9A9696] flex w-[49%] items-center gap-2'>
-                        <BadgeIcon fontSize='small' />
                         <input type='text' className='grow text-black' placeholder='Nome' />
                     </label>
                     <label className='input input-bordered text-[#9A9696] flex w-[49%] items-center gap-2'>
@@ -30,7 +28,7 @@ function StepTwo() {
                     </label>
                 </div>
                 <label className='input input-bordered text-[#9A9696] flex items-center gap-2'>
-                    <AbcIcon fontSize='small' />
+                    <BadgeIcon fontSize='small' />
                     <input type='text' className='grow text-black' placeholder='CPF' />
                 </label>
                 <label className='input input-bordered text-[#9A9696] flex items-center gap-2'>

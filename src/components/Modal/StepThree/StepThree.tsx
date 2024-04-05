@@ -2,8 +2,8 @@ import React, { useState, useRef } from 'react'
 import Button from '../../Button/Button'
 import Paragraph from '../../Paragraph/Paragraph'
 import Step from '../Step/Step'
-import KeyIcon from '@mui/icons-material/Key'
-import MailOutlineIcon from '@mui/icons-material/MailOutline'
+import StoreIcon from '@mui/icons-material/Store'
+import WorkIcon from '@mui/icons-material/Work'
 
 function StepThree() {
     const [dados, setDados] = useState({
@@ -18,12 +18,12 @@ function StepThree() {
                 <Step step={3} />
                 <Paragraph size='h3'>Dados da loja</Paragraph>
                 <label className='input input-bordered text-[#9A9696] flex items-center gap-2'>
-                    <MailOutlineIcon fontSize='small' />
+                    <StoreIcon fontSize='small' />
                     <input type='text' className='grow text-black' placeholder='Nome da loja' />
                 </label>
                 <div className='flex flex-row w-full justify-between'>
                     <label className='input input-bordered text-[#9A9696] flex items-center gap-2 w-[49%]'>
-                        <KeyIcon fontSize='small' />
+                        <WorkIcon fontSize='small' />
                         <input type='number' className='grow text-black' placeholder='CNPJ' />
                     </label>
                     <select className='select select-bordered w-[49%] text-[#9A9696]'>
