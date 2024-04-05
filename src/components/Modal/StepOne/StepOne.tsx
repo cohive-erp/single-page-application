@@ -29,8 +29,12 @@ function StepOne() {
                     sitekey='apikey'
                     ref={useRef(null)}
                 />
+                <label className='cursor-pointer flex items-center gap-2'>
+                    <input type='checkbox' defaultChecked className='checkbox checkbox-sm' />
+                    <Paragraph size='h7'>Declaro ter lido e aceito os termos de serviço e as políticas</Paragraph>
+                </label>
                 <div className='card-actions justify-between'>
-                    <Button content='Voltar' color='secondary' onClick={() => console.log()} />
+                    <Button content='Cancelar' color='secondary' onClick={() => console.log()} />
                     <Button content='Avançar' onClick={() => console.log()} />
                 </div>
             </div>
