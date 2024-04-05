@@ -18,7 +18,7 @@ function StepTwo() {
     return (
         <div className='card w-[60%] h-[70%] bg-base-100 shadow-xl'>
             <div className='card-body justify-between gap-4'>
-                <Step />
+                <Step step={2} />
                 <Paragraph size='h3'>Dados pessoais</Paragraph>
                 <div className='flex flex-row w-full justify-between'>
                     <label className='input input-bordered text-[#9A9696] flex w-[49%] items-center gap-2'>

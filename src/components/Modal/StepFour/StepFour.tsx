@@ -16,7 +16,7 @@ function StepFour() {
     return (
         <div className='card w-[60%] h-[80%] bg-base-100 shadow-xl font-poppins'>
             <div className='card-body justify-between gap-6'>
-                <Step />
+                <Step step={4} />
                 <Paragraph size='h3'>Localização da loja</Paragraph>
                 <label className='input input-bordered text-[#9A9696] flex items-center gap-2'>
                     <input type='text' className='grow text-black' placeholder='CEP' />

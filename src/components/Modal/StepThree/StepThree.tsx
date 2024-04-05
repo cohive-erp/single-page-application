@@ -15,7 +15,7 @@ function StepThree() {
     return (
         <div className='card w-[60%] h-[80%] bg-base-100 shadow-xl font-poppins'>
             <div className='card-body gap-4'>
-                <Step />
+                <Step step={3} />
                 <Paragraph size='h3'>Dados da loja</Paragraph>
                 <label className='input input-bordered text-[#9A9696] flex items-center gap-2'>
                     <MailOutlineIcon fontSize='small' />
