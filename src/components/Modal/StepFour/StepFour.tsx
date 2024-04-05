@@ -1,37 +1,45 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import Button from '../../Button/Button'
 import Paragraph from '../../Paragraph/Paragraph'
 import Step from '../Step/Step'
-import KeyIcon from '@mui/icons-material/Key'
-import ReCAPTCHA from 'react-google-recaptcha'
-import MailOutlineIcon from '@mui/icons-material/MailOutline'
+import PlaceIcon from '@mui/icons-material/Place'
+import LocationCityIcon from '@mui/icons-material/LocationCity'
 
 function StepFour() {
     const [dados, setDados] = useState({
-        senha: '',
-        confirmarSenha: ''
+        cep: '',
+        endereco: '',
+        cidade: '',
+        estado: ''
     })
-
     return (
         <div className='card w-[60%] h-[80%] bg-base-100 shadow-xl font-poppins'>
-            <div className='card-body justify-between gap-4'>
+            <div className='card-body justify-between gap-6'>
                 <Step />
-                <Paragraph size='h3'>Inicie seu cadastro</Paragraph>
+                <Paragraph size='h3'>Localização da loja</Paragraph>
                 <label className='input input-bordered text-[#9A9696] flex items-center gap-2'>
-                    <MailOutlineIcon fontSize='small' />
-                    <input type='email' className='grow text-black' placeholder='Email' />
+                    <input type='text' className='grow text-black' placeholder='CEP' />
                 </label>
                 <label className='input input-bordered text-[#9A9696] flex items-center gap-2'>
-                    <KeyIcon fontSize='small' />
-                    <input type='password' className='grow text-black' placeholder='Confirmar senha' />
+                    <PlaceIcon fontSize='small' />
+                    <input type='text' className='grow text-black' placeholder='Endereço' />
                 </label>
-                <ReCAPTCHA
-                    sitekey='apikey'
-                    ref={useRef(null)}
-                />
+
+                <div className='flex flex-row w-full justify-between'>
+                    <label className='input input-bordered text-[#9A9696] flex items-center gap-2 w-[49%]'>
+                        <LocationCityIcon fontSize='small' />
+                        <input type='text' className='grow text-black' placeholder='Cidade' />
+                    </label>
+                    <select className='select select-info w-[49%]'>
+                        <option disabled selected>Selecione o estado</option>
+                        <option>São Paulo</option>
+                        <option>Rio de Janeiro</option>
+                    </select>
+                </div>
+
                 <div className='card-actions justify-between'>
                     <Button content='Voltar' color='secondary' onClick={() => console.log()} />
-                    <Button content='Cadastrar' onClick={() => console.log()} />
+                    <Button content='Avançar' onClick={() => console.log()} />
                 </div>
             </div>
         </div>
