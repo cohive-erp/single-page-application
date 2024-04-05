@@ -4,6 +4,7 @@ import Paragraph from '../../Paragraph/Paragraph'
 import BusinessIcon from '@mui/icons-material/Business'
 import SignpostIcon from '@mui/icons-material/Signpost'
 import PlaceIcon from '@mui/icons-material/Place'
+import Step from '../Step/Step'
 
 function StepTwo() {
     const [dados, setDados] = useState({
@@ -14,8 +15,9 @@ function StepTwo() {
         senha: ''
     })
     return (
-        <div className='card w-[60%] h-[65%] bg-base-100 shadow-xl font-poppins'>
+        <div className='card w-[60%] h-[80%] bg-base-100 shadow-xl font-poppins'>
             <div className='card-body justify-between'>
+                <Step />
                 <Paragraph size='h3'>Dados da loja</Paragraph>
                 <label className='input input-bordered text-[#9A9696] flex items-center gap-2'>
                     <input type='text' className='grow' placeholder='CEP' />
@@ -34,7 +36,7 @@ function StepTwo() {
                 </label>
                 <div className='card-actions justify-between'>
                     <Button content='Voltar' color='secondary' onClick={() => console.log()} />
-                    <Button content='Cadastrar' onClick={() => console.log()} />
+                    <Button content='Avançar' onClick={() => console.log()} />
                 </div>
             </div>
         </div>
