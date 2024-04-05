@@ -7,11 +7,8 @@ import ReCAPTCHA from 'react-google-recaptcha'
 
 function StepThree() {
     const [dados, setDados] = useState({
-        nome: '',
-        sobrenome: '',
-        numCel: '',
-        email: '',
-        senha: ''
+        senha: '',
+        confirmarSenha: ''
     })
 
     return (
@@ -27,10 +24,10 @@ function StepThree() {
                     <KeyIcon fontSize='small' />
                     <input type='password' className='grow text-black' placeholder='Confirmar senha' />
                 </label>
-                {/* <ReCAPTCHA
+                <ReCAPTCHA
                     sitekey=''
                     ref={useRef(null)}
-                /> */}
+                />
                 <div className='card-actions justify-between'>
                     <Button content='Voltar' color='secondary' onClick={() => console.log()} />
                     <Button content='Avançar' onClick={() => console.log()} />

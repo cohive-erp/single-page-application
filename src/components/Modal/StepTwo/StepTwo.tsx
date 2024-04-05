@@ -8,11 +8,10 @@ import Step from '../Step/Step'
 
 function StepTwo() {
     const [dados, setDados] = useState({
-        nome: '',
-        sobrenome: '',
-        numCel: '',
-        email: '',
-        senha: ''
+        cep: '',
+        endereco: '',
+        bairro: '',
+        cnpj: ''
     })
     return (
         <div className='card w-[60%] h-[80%] bg-base-100 shadow-xl font-poppins'>
