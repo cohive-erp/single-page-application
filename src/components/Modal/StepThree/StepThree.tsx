@@ -25,12 +25,12 @@ function StepThree() {
                     <input type='password' className='grow text-black' placeholder='Confirmar senha' />
                 </label>
                 <ReCAPTCHA
-                    sitekey=''
+                    sitekey='apikey'
                     ref={useRef(null)}
                 />
                 <div className='card-actions justify-between'>
                     <Button content='Voltar' color='secondary' onClick={() => console.log()} />
-                    <Button content='Avançar' onClick={() => console.log()} />
+                    <Button content='Cadastrar' onClick={() => console.log()} />
                 </div>
             </div>
         </div>

@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import Button from '../../Button/Button'
+import PlaceIcon from '@mui/icons-material/Place'
 import Paragraph from '../../Paragraph/Paragraph'
 import BusinessIcon from '@mui/icons-material/Business'
 import SignpostIcon from '@mui/icons-material/Signpost'
-import PlaceIcon from '@mui/icons-material/Place'
 import Step from '../Step/Step'
 
 function StepTwo() {
@@ -19,19 +19,19 @@ function StepTwo() {
                 <Step />
                 <Paragraph size='h3'>Dados da loja</Paragraph>
                 <label className='input input-bordered text-[#9A9696] flex items-center gap-2'>
-                    <input type='text' className='grow' placeholder='CEP' />
+                    <input type='text' className='grow text-black' placeholder='CEP' />
                 </label>
                 <label className='input input-bordered text-[#9A9696] flex items-center gap-2'>
                     <PlaceIcon fontSize='small' />
-                    <input type='text' className='grow' placeholder='Endereço' />
+                    <input type='text' className='grow text-black' placeholder='Endereço' />
                 </label>
                 <label className='input input-bordered text-[#9A9696] flex items-center gap-2'>
                     <SignpostIcon fontSize='small' />
-                    <input type='text' className='grow' placeholder='Bairro' />
+                    <input type='text' className='grow text-black' placeholder='Bairro' />
                 </label>
                 <label className='input input-bordered text-[#9A9696] flex items-center gap-2'>
                     <BusinessIcon fontSize='small' />
-                    <input type='text' className='grow' placeholder='CNPJ' />
+                    <input type='text' className='grow text-black' placeholder='CNPJ' />
                 </label>
                 <div className='card-actions justify-between'>
                     <Button content='Voltar' color='secondary' onClick={() => console.log()} />
