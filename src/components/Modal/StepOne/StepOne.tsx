@@ -3,8 +3,8 @@ import Button from '../../Button/Button'
 import Paragraph from '../../Paragraph/Paragraph'
 import Step from '../Step/Step'
 import BadgeIcon from '@mui/icons-material/Badge'
-import MailOutlineIcon from '@mui/icons-material/MailOutline'
 import CallIcon from '@mui/icons-material/Call'
+import AbcIcon from '@mui/icons-material/Abc'
 
 function StepOne() {
     const [dados, setDados] = useState({
@@ -30,8 +30,8 @@ function StepOne() {
                     </label>
                 </div>
                 <label className='input input-bordered text-[#9A9696] flex items-center gap-2'>
-                    <MailOutlineIcon fontSize='small' />
-                    <input type='text' className='grow text-black' placeholder='Email' />
+                    <AbcIcon fontSize='small' />
+                    <input type='text' className='grow text-black' placeholder='CPF' />
                 </label>
                 <label className='input input-bordered text-[#9A9696] flex items-center gap-2'>
                     <CallIcon fontSize='small' />
