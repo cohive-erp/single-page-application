@@ -1,13 +1,13 @@
 import React from 'react'
-import StepOne from './StepOne'
+import StepFour from './StepFour'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  title: 'Components/StepOne'
+  title: 'Components/StepFour'
 }
 
 export const Example = () => {
   return (
-    <StepOne />
+    <StepFour />
   )
 }
