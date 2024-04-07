@@ -5,6 +5,7 @@ export type ButtonProps = {
   content: string
   href?: string
   color?: 'primary' | 'secondary' | 'tertiary' | 'black' | 'white'
+  onClick?: () => void
 }
 
 const mapToColor = {
