@@ -4,6 +4,7 @@ import Paragraph from '../../Paragraph/Paragraph'
 import Step from '../Step/Step'
 import PlaceIcon from '@mui/icons-material/Place'
 import LocationCityIcon from '@mui/icons-material/LocationCity'
+import FormInput from '../../FormInput/FormInput'
 
 function StepFour() {
     const [dados, setDados] = useState({
@@ -18,18 +19,10 @@ function StepFour() {
             <div className='card-body justify-between gap-6'>
                 <Step step={4} />
                 <Paragraph size='h3'>Localização da loja</Paragraph>
-                <label className='input input-bordered text-[#9A9696] flex items-center gap-2'>
-                    <input type='text' className='grow text-black' placeholder='CEP' />
-                </label>
-                <label className='input input-bordered text-[#9A9696] flex items-center gap-2'>
-                    <PlaceIcon fontSize='small' />
-                    <input type='text' className='grow text-black' placeholder='Endereço' />
-                </label>
+                <FormInput placeholder='CEP' />
+                <FormInput icon={<PlaceIcon fontSize='small' />} placeholder='Endereço' />
                 <div className='flex flex-row w-full justify-between'>
-                    <label className='input input-bordered text-[#9A9696] flex items-center gap-2 w-[49%]'>
-                        <LocationCityIcon fontSize='small' />
-                        <input type='text' className='grow text-black' placeholder='Cidade' />
-                    </label>
+                    <FormInput icon={<LocationCityIcon fontSize='small' />} placeholder='Cidade' className='w-[49%]' />
                     <select className='select select-bordered w-[49%] text-[#9A9696]'>
                         <option disabled selected>Selecione o estado</option>
                         <option className='text-black'>São Paulo</option>
