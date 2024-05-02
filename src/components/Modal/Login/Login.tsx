@@ -1,18 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import Button from '../../Button/Button'
 import Paragraph from '../../Paragraph/Paragraph'
-import Step from '../Step/Step'
-import PlaceIcon from '@mui/icons-material/Place'
-import LocationCityIcon from '@mui/icons-material/LocationCity'
 
 function Login() {
-    const [dados, setDados] = useState({
-        cep: '',
-        endereco: '',
-        cidade: '',
-        estado: ''
-    })
-
     return (
         <div className='card w-[60%] h-[60%] bg-base-100 shadow-xl font-poppins'>
             <div className='card-body justify-center'>
