@@ -8,6 +8,6 @@ export default {
 
 export const Example = () => {
   return (
-    <Avatar initial='r'/>
+    <Avatar name='Rafael' />
   )
 }
