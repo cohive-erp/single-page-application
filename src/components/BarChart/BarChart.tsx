@@ -1,33 +1,42 @@
 import React from 'react'
-import Card from '@tremor/react/dist/components/layout-elements/Card/Card'
 import BarChart from '@tremor/react/dist/components/chart-elements/BarChart/BarChart'
 import Paragraph from '../Paragraph/Paragraph'
+import NoData from '../NoData/NoData'
+import BarChartSkeleton from './BarChartSkeleton'
 
 type BarChartProps = {
   data: {
     month: string
-    vendido: number
+    Vendido: number
     'Em estoque': number
   }[]
   section: string
-  variant: string[]
 }
 
 function BarChartComponent(props: BarChartProps) {
-  const { data, section, variant } = props
+  const { data, section } = props
+  console.log(data)
 
   return (
-    <Card className='sm:mx-auto sm:max-w-2xl'>
-      <Paragraph size='h2'>Relatório de {section}</Paragraph>
-      <BarChart
-        data={data}
-        index='date'
-        categories={[variant[0], variant[1]]}
-        colors={['purple', 'violet-300']}
-        yAxisWidth={45}
-        className='mt-6 hidden h-60 sm:block'
-      />
-    </Card>
+    <div className='card w-full h-[400px] bg-base-100 shadow-xl'>
+      <div className='card-body'>
+        <Paragraph size='h2'>Relatório de {section}</Paragraph>
+        {data && data.length > 1 &&
+          <BarChart
+            showAnimation
+            showLegend={false}
+            barCategoryGap={2}
+            data={data}
+            index='month'
+            categories={['Vendido', 'Em estoque']}
+            colors={['purple', 'violet-300']}
+            yAxisWidth={45}
+            className='mt-6 hidden h-60 sm:block'
+          />}
+        {/* {data.error ?? data.length < 2 && <NoData />} */}
+        {/* {data.loading && <BarChartSkeleton section={section} />} */}
+      </div>
+    </div>
   )
 }
 
