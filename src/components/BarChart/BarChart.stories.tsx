@@ -91,3 +91,15 @@ export const Loading = () => {
     <BarChartSkeleton section='Produtos' />
   )
 }
+
+export const MultiCharts = () => {
+  return (
+      <div className='flex flex-col gap-4'>
+        <BarChartComponent data={data} section='Produtos' />
+        <div className='flex flex-row gap-4'>
+          <BarChartComponent data={data} section='Produtos' />
+          <BarChartComponent data={data} section='Produtos' />
+        </div>
+      </div>
+  )
+}
