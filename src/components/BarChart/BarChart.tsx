@@ -3,6 +3,7 @@ import BarChart from '@tremor/react/dist/components/chart-elements/BarChart/BarC
 import Paragraph from '../Paragraph/Paragraph'
 import NoData from '../NoData/NoData'
 import BarChartSkeleton from './BarChartSkeleton'
+import CustomTooltip from '../CustomTooltip/CustomTooltip'
 
 type BarChartProps = {
   data: {
@@ -15,7 +16,6 @@ type BarChartProps = {
 
 function BarChartComponent(props: BarChartProps) {
   const { data, section } = props
-  console.log(data)
 
   return (
     <div className='card w-full h-[400px] bg-base-100 shadow-xl'>
@@ -25,6 +25,7 @@ function BarChartComponent(props: BarChartProps) {
           <BarChart
             showAnimation
             showLegend={false}
+            customTooltip={CustomTooltip}
             barCategoryGap={2}
             data={data}
             index='month'
