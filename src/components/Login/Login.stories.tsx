@@ -8,6 +8,8 @@ export default {
 
 export const Example = () => {
   return (
-    <Login />
+    <div className='w-[50%] flex justify-center items-center'>
+      <Login />
+    </div>
   )
 }
