@@ -19,10 +19,13 @@ function Login() {
         <KeyIcon fontSize='small' />
         <input type='password' className='grow text-black' placeholder='Senha' />
       </label>
-      <div className='flex flex-col items-center'>
-        <Button content='Entrar' className='w-full' onClick={() => console.log()} />
-        <Paragraph size='h6'>ou</Paragraph>
-        <Button content='Entrar com o Google' color='white' className='w-full' onClick={() => console.log()} />
+      <div className='flex flex-col gap-2'>
+        <div className='flex flex-col items-center'>
+          <Button content='Entrar' className='w-full' onClick={() => console.log()} />
+          <Paragraph size='h6'>ou</Paragraph>
+          <Button content='Entrar com o Google' color='white' className='w-full' onClick={() => console.log()} />
+        </div>
+        <Paragraph size='h6'><a className='text-purple-500 underline' href='/'>Já tenho uma conta</a></Paragraph>
       </div>
     </div>
   )
