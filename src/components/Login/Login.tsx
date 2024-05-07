@@ -25,7 +25,11 @@ function Login() {
           <Paragraph size='h6'>ou</Paragraph>
           <Button content='Entrar com o Google' color='white' className='w-full' onClick={() => console.log()} />
         </div>
-        <Paragraph size='h6'><a className='text-purple-500 underline' href='/'>Já tenho uma conta</a></Paragraph>
+
+        <div className='flex flex-row justify-between'>
+        <Paragraph size='h6'><a className='text-purple-500 underline' href='/'>Ainda não tenho conta</a></Paragraph>
+        <Paragraph size='h6'><a className='text-purple-500 underline' href='/'>Esqueci minha senha</a></Paragraph>
+        </div>
       </div>
     </div>
   )
