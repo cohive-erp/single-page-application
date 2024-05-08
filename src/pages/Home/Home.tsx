@@ -9,9 +9,9 @@ function Home() {
   return (
     <div className='bg-slate-200'>
       <NavBar />
-        <HeroComponent />
-        <SectionOne />
-        <SectionTwo />
+      <HeroComponent />
+      <SectionOne />
+      <SectionTwo />
       <Footer />
     </div>
   )

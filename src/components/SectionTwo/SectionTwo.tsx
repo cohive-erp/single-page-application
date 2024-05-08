@@ -5,7 +5,7 @@ import Button from '../Button/Button.tsx'
 function SectionTwo() {
   return (
     <div className='flex basis-full'>
-      <div className='hero min-h-screen flex flex-row justify-evenly items-center'>
+      <div className='hero flex flex-row justify-evenly items-center'>
         <div className='flex flex-col gap-6 basis-4/12'>
           <div>
             <Paragraph size='title'>

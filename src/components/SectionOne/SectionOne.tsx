@@ -4,7 +4,7 @@ import Paragraph from '../Paragraph/Paragraph.tsx'
 function SectionOne() {
   return (
     <div className='flex basis-full'>
-      <div className='hero min-h-screen flex flex-row justify-evenly items-center'>
+      <div className='hero flex flex-row justify-evenly items-center'>
         <div className='flex basis-4/12'>
           <img
             src='./sectionOneImage.svg'
