@@ -1,7 +1,7 @@
 import React from 'react'
-import LogoCohive from '../LogoCohive/LogoCohive'
-import NavBarAnchor from '../NavBarAnchor/NavBarAnchor'
-import Button from '../Button/Button'
+import LogoCohive from '../LogoCohive/LogoCohive.tsx'
+import NavBarAnchor from '../NavBarAnchor/NavBarAnchor.tsx'
+import Button from '../Button/Button.tsx'
 
 function NavBar() {
   return (
@@ -30,8 +30,8 @@ function NavBar() {
       </div>
 
       <div className='navbar-end gap-4'>
-          <Button content='Experimente o teste grátis' href='/' />
-          <Button content='Entrar' href='/' color='black'/>
+          <Button content='Experimente o teste grátis' href='/signup' />
+          <Button content='Entrar' href='/login' color='black'/>
       </div>
     </div>
   )

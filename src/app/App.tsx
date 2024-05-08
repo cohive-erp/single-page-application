@@ -1,15 +1,11 @@
 import './global.css'
 import React from 'react'
-import NavBar from '../components/NavBar/NavBar'
-import Footer from '../components/Footer/Footer'
-import HeroComponent from '../components/HeroComponent/HeroComponent'
+import Rotas from './routes.tsx'
 
 function App() {
   return (
     <>
-      <NavBar />
-        <HeroComponent />
-      <Footer />
+      <Rotas />
     </>
   )
 }

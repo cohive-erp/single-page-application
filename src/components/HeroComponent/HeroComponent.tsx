@@ -1,9 +1,9 @@
 import React from 'react'
-import Paragraph from '../Paragraph/Paragraph'
+import Paragraph from '../Paragraph/Paragraph.tsx'
 
 function HeroSection() {
   return (
-    <div className='hero min-h-screen bg-base-200'>
+    <div id='inicio' className='hero mb-10 bg-slate-200'>
       <div className='hero-content text-center'>
         <div className='max-w-md flex flex-col gap-y-2'>
           <img
