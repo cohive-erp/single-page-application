@@ -19,7 +19,7 @@ function SectionOne() {
             Oportunidade que <span className='text-purple-500'>pequenas empresas</span> buscam para melhorar o controle dos seus produtos.
           </Paragraph>
 
-          <Paragraph size='content'>
+          <Paragraph size='content-regular'>
           Entendemos o quão difícil é investir em um sistema que te ajuda a organizar melhor seus produtos sendo uma pequena empresa, é por isso que pensamos em <strong>você</strong>.
           </Paragraph>
         </div>

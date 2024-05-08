@@ -1,7 +1,7 @@
 import React from 'react'
 
 type ParagraphProps = {
-  size: 'h1' | 'h2' | 'h3' | 'h3-regular' | 'h4' | 'h5' | 'h6' | 'h6-regular' | 'h6-thin' | 'title' | 'content'
+  size: 'h1' | 'h2' | 'h3' | 'h3-regular' | 'h4' | 'h5' | 'h6' | 'h6-regular' | 'h6-thin' | 'title' | 'content' | 'content-regular'
   children: React.ReactNode,
 }
 
@@ -19,7 +19,8 @@ export default function Paragraph(props: ParagraphProps) {
     'h6-regular': 'font-poppins text-black text-[14px] font-regular',
     'h6-thin': 'font-poppins text-black text-[14px] font-thin',
     title: 'font-poppins text-black text-[30px] font-bold',
-    content: 'font-poppins text-black text-[16px] font-thin'
+    content: 'font-poppins text-black text-[16px] font-thin',
+    'content-regular': 'font-poppins text-black text-[18px] font-regular'
   }
 
   return (

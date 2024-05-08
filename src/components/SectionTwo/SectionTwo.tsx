@@ -1,6 +1,7 @@
 import React from 'react'
 import Paragraph from '../Paragraph/Paragraph.tsx'
 import Button from '../Button/Button.tsx'
+import { TypeAnimation } from 'react-type-animation'
 
 function SectionTwo() {
   return (
@@ -12,11 +13,16 @@ function SectionTwo() {
               Evite complexidade.
             </Paragraph>
             <Paragraph size='title'>
-              Melhore o controle do seu estoque de maneira <span className='text-purple-500'>rápida</span>. <span className='text-purple-500'>prática</span>. <span className='text-purple-500'>útil</span>.
+              Melhore o controle do seu estoque de maneira <span className='text-purple-500'><TypeAnimation
+                cursor={true}
+                repeat={Infinity}
+                wrapper='span'
+                sequence={['rápida', 1000, 'prática', 1000, 'útil', 1000]}
+                className='text-purple-500'/></span>.
             </Paragraph>
           </div>
 
-          <Paragraph size='content'>
+          <Paragraph size='content-regular'>
             Utilize nosso sistema para ampliar seu negócio sem depender de sistemas complexos que mais te complicam do que te ajudam!
           </Paragraph>
 
