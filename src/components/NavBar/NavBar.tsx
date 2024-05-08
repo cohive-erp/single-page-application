@@ -1,7 +1,7 @@
 import React from 'react'
-import LogoCohive from '../LogoCohive/LogoCohive'
-import NavBarAnchor from '../NavBarAnchor/NavBarAnchor'
-import Button from '../Button/Button'
+import LogoCohive from '../LogoCohive/LogoCohive.tsx'
+import NavBarAnchor from '../NavBarAnchor/NavBarAnchor.tsx'
+import Button from '../Button/Button.tsx'
 
 function NavBar() {
   return (
