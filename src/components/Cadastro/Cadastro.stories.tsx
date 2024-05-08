@@ -1,15 +1,15 @@
 import React from 'react'
-import CadastroFour from './CadastroFour'
+import Cadastro from './Cadastro'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  title: 'Components/CadastroFour'
+  title: 'Components/Cadastro'
 }
 
 export const Example = () => {
   return (
     <div className='flex justify-center items-center'>
-      <CadastroFour />
+      <Cadastro />
     </div>
   )
 }
