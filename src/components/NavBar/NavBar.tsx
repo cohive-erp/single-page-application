@@ -30,8 +30,8 @@ function NavBar() {
       </div>
 
       <div className='navbar-end gap-4'>
-          <Button content='Experimente o teste grátis' href='/' />
-          <Button content='Entrar' href='/' color='black'/>
+          <Button content='Experimente o teste grátis' href='/signup' />
+          <Button content='Entrar' href='/login' color='black'/>
       </div>
     </div>
   )
