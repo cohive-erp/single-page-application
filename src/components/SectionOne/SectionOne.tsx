@@ -1,5 +1,5 @@
 import React from 'react'
-import Paragraph from '../Paragraph/Paragraph'
+import Paragraph from '../Paragraph/Paragraph.tsx'
 
 function SectionOne() {
   return (
