@@ -13,12 +13,12 @@ function SectionTwo() {
               Evite complexidade.
             </Paragraph>
             <Paragraph size='title'>
-              Melhore o controle do seu estoque de maneira <span className='text-purple-500'><TypeAnimation
+              Melhore o controle do seu estoque de maneira <TypeAnimation
                 cursor={true}
                 repeat={Infinity}
                 wrapper='span'
                 sequence={['rápida', 1000, 'prática', 1000, 'útil', 1000]}
-                className='text-purple-500'/></span>.
+                className='text-purple-500'/>.
             </Paragraph>
           </div>
 
