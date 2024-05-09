@@ -6,37 +6,63 @@ import CallIcon from '@mui/icons-material/Call'
 import PersonIcon from '@mui/icons-material/Person'
 import Paragraph from '../Paragraph/Paragraph.tsx'
 import Button from '../Button/Button.tsx'
+import { CreateUserCommand } from '../../lib/types/CreateUserCommand.ts'
+import createUser from '../../lib/services/createUser.ts'
+import { useNavigate } from 'react-router-dom'
 
 function Cadastro() {
-    const [dados, setDados] = useState({
-        email: '',
-        senha: ''
-    })
+    const navigate = useNavigate()
+    const [nome, setNome] = useState<string>('')
+    const [telefone, setTelefone] = useState<string>('')
+    const [email, setEmail] = useState<string>('')
+    const [senha, setSenha] = useState<string>('')
+
+    const handleInputChange = (event, setStateFunction) => {
+        setStateFunction(event.target.value)
+    }
+
+    const handleCreate = async () => {
+        const data: CreateUserCommand = {
+            nome,
+            numeroCelular: telefone,
+            email,
+            senha
+        }
+
+        await createUser(data)
+        .then(() => {
+            sessionStorage.setItem('valores', JSON.stringify(data))
+            navigate('/login')
+        })
+        .catch((e) => {
+            console.log(e)
+        })
+    }
 
     return (
         <div className='flex flex-col font-poppins justify-between gap-4'>
             <Paragraph size='h1'>Crie sua conta</Paragraph>
-            <div className='flex flex-col gap-6'>
+            <form className='flex flex-col gap-6'>
                 <label className='input bg-white border-black input-bordered text-[#9A9696] flex items-center gap-2'>
                     <PersonIcon fontSize='small' />
-                    <input type='text' className='grow text-black' placeholder='Nome completo' />
+                    <input type='text' value={nome} onChange={(e) => handleInputChange(e, setNome)} className='grow text-black' placeholder='Nome completo' />
                 </label>
 
                 <label className='input bg-white border-black input-bordered text-[#9A9696] flex items-center gap-2'>
                     <CallIcon fontSize='small' />
-                    <input type='text' className='grow text-black' placeholder='Telefone' />
+                    <input type='text' value={telefone} onChange={(e) => handleInputChange(e, setTelefone)} className='grow text-black' placeholder='Telefone' />
                 </label>
 
                 <label className='input bg-white border-black input-bordered text-[#9A9696] flex items-center gap-2'>
                     <MailOutlineIcon fontSize='small' />
-                    <input type='email' className='grow text-black' placeholder='Email' />
+                    <input type='email' value={email} onChange={(e) => handleInputChange(e, setEmail)} className='grow text-black' placeholder='Email' />
                 </label>
 
                 <label className='input bg-white border-black input-bordered text-[#9A9696] flex items-center gap-2'>
                     <KeyIcon fontSize='small' />
-                    <input type='password' className='grow text-black' placeholder='Senha' />
+                    <input type='password' value={senha} onChange={(e) => handleInputChange(e, setSenha)} className='grow text-black' placeholder='Senha' />
                 </label>
-            </div>
+            </form>
 
             <label className='cursor-pointer flex items-center gap-2'>
                 <input type='checkbox' defaultChecked={false} className='checkbox checkbox-sm bg-white border-black' />
@@ -50,9 +76,7 @@ function Cadastro() {
                 />
             </div>
             <div className='flex flex-col items-center'>
-                <Button content='Cadastrar' className='w-full' onClick={() => console.log()} />
-                <Paragraph size='h6'>ou</Paragraph>
-                <Button content='Conectar-se com o Google' color='white' className='w-full' onClick={() => console.log()} />
+                <Button content='Cadastrar' className='w-full' onClick={handleCreate} />
             </div>
         </div>
     )

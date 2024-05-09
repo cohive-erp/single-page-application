@@ -19,15 +19,28 @@ const mapVariantToColor = {
 
 function Button(props: ButtonProps) {
   return (
-    <a
-      href={props.href}
-      className={clsx(
-        'btn',
-        props.className,
-        mapVariantToColor[props.color ?? 'primary']
-      )}>
-      {props.content}
-    </a>
+    <>
+      {props.href ?
+        <a
+          href={props.href}
+          className={clsx(
+            'btn',
+            props.className,
+            mapVariantToColor[props.color ?? 'primary']
+          )}>
+          {props.content}
+        </a>
+        :
+        <button
+          onClick={props.onClick}
+          className={clsx(
+            'btn',
+            props.className,
+            mapVariantToColor[props.color ?? 'primary']
+          )}>
+          {props.content}
+        </button>}
+    </>
   )
 }
 
