@@ -4,6 +4,7 @@ import Footer from '../../components/Footer/Footer.tsx'
 import HeroComponent from '../../components/HeroComponent/HeroComponent.tsx'
 import SectionOne from '../../components/SectionOne/SectionOne.tsx'
 import SectionTwo from '../../components/SectionTwo/SectionTwo.tsx'
+import SectionFive from '../../components/SectionFive/SectionFive.tsx'
 
 function Home() {
   return (
@@ -12,6 +13,7 @@ function Home() {
       <HeroComponent />
       <SectionOne />
       <SectionTwo />
+      <SectionFive />
       <Footer />
     </div>
   )
