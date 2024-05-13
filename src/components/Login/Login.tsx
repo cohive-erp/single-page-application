@@ -6,6 +6,7 @@ import Button from '../Button/Button.tsx'
 import { AuthUserCommand } from '../../lib/types/AuthUserCommand.ts'
 import authenticateUser from '../../lib/services/authenticateUser.ts'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 function Login() {
   const navigate = useNavigate()
@@ -22,9 +23,11 @@ function Login() {
     await authenticateUser(data)
       .then(() => {
         navigate('/dashboard')
+        toast.success('Login realizado com sucesso!')
       })
       .catch((e) => {
-        console.log(e)
+        toast.error(`Erro ao tentar se logar!
+        Erro: ${e}`)
       })
   }
 
