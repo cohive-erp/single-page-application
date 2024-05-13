@@ -9,6 +9,7 @@ import Button from '../Button/Button.tsx'
 import { CreateUserCommand } from '../../lib/types/CreateUserCommand.ts'
 import createUser from '../../lib/services/createUser.ts'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 function Cadastro() {
     const navigate = useNavigate()
@@ -30,13 +31,15 @@ function Cadastro() {
         }
 
         await createUser(data)
-        .then(() => {
-            sessionStorage.setItem('valores', JSON.stringify(data))
-            navigate('/login')
-        })
-        .catch((e) => {
-            console.log(e)
-        })
+            .then(() => {
+                sessionStorage.setItem('valores', JSON.stringify(data))
+                navigate('/login')
+                toast.success('Cadastro realizado com sucesso!')
+            })
+            .catch((e) => {
+                toast.error(`Erro ao tentar se cadastrar!
+            Erro: ${e}`)
+            })
     }
 
     return (

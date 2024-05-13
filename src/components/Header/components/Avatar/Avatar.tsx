@@ -2,6 +2,7 @@ import React from 'react'
 import PersonIcon from '@mui/icons-material/Person'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 type AvatarProps = {
     name: string
@@ -16,6 +17,7 @@ function Avatar(props: AvatarProps) {
     const handleLogout = async () => {
         sessionStorage.clear()
         navigate('/login')
+        toast.success('Desconectado com sucesso!')
     }
 
     return (
