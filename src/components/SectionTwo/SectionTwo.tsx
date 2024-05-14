@@ -26,7 +26,7 @@ function SectionTwo() {
             Utilize nosso sistema para ampliar seu negócio sem depender de sistemas complexos que mais te complicam do que te ajudam!
           </Paragraph>
 
-          <Button content='Saiba mais' href='/' />
+          <Button content='Saiba mais' href='/signup' />
         </div>
 
         <div className='flex basis-4/12'>
