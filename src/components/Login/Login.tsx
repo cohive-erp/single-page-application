@@ -26,8 +26,8 @@ function Login() {
         toast.success('Login realizado com sucesso!')
       })
       .catch((e) => {
-        toast.error(`Erro ao tentar se logar!
-        Erro: ${e}`)
+        toast.error('Erro ao tentar se logar!')
+        console.error('Erro ao tentar se logar', e)
       })
   }
 

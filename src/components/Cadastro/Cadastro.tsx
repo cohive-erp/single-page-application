@@ -37,8 +37,8 @@ function Cadastro() {
                 toast.success('Cadastro realizado com sucesso!')
             })
             .catch((e) => {
-                toast.error(`Erro ao tentar se cadastrar!
-            Erro: ${e}`)
+                toast.error('Erro ao tentar se cadastrar!')
+                console.error('Erro ao tentar se cadastrar', e)
             })
     }
 
