@@ -1,4 +1,5 @@
 import React from 'react'
+import Button from '../Button/Button.tsx'
 
 function Footer() {
   return (
@@ -9,13 +10,6 @@ function Footer() {
         <a href='/#sobre' className='link link-hover'>Sobre</a>
         <a href='/#funcionalidade' className='link link-hover'>Funcionalidade</a>
         <a href='/#contato' className='link link-hover'>Contato</a>
-      </nav>
-      <nav className='text-white'>
-        <h6 className='footer-title'>Download</h6>
-        <a href='/#' className='link link-hover'>Mac</a>
-        <a href='/#' className='link link-hover'>Windows</a>
-        <a href='/#' className='link link-hover'>iPhone</a>
-        <a href='/#' className='link link-hover'>Android</a>
       </nav>
       <nav className='text-white'>
         <h6 className='footer-title'>Legal</h6>
@@ -29,6 +23,18 @@ function Footer() {
         <a href='/#' className='link link-hover'>Twitter</a>
         <a href='/#' className='link link-hover'>Facebook</a>
       </nav>
+      <form>
+        <h6 className='footer-title'>Newsletter</h6>
+        <fieldset className='form-control w-80'>
+          <label className='label'>
+            <span className='label-text'>Digite seu endereço de email</span>
+          </label>
+          <div className='join'>
+            <input type='text' placeholder='username@site.com' className='input input-bordered join-item' />
+            <Button content='Inscrever-se' className='btn join-item' />
+          </div>
+        </fieldset>
+      </form>
     </footer>
   )
 }
