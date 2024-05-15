@@ -4,7 +4,7 @@ import Button from '../Button/Button.tsx'
 
 function NewHeroSection() {
   return (
-    <div className='hero h-[80vh]' style={{ backgroundImage: 'url(https://libertis-solutions.com/wp-content/uploads/2023/04/Pros-y-contras-de-tener-un-stock-de-seguridad.jpg)' }}>
+    <div id='inicio' className='hero h-[80vh]' style={{ backgroundImage: 'url(https://libertis-solutions.com/wp-content/uploads/2023/04/Pros-y-contras-de-tener-un-stock-de-seguridad.jpg)' }}>
       <div className='hero-overlay bg-purple-800 bg-opacity-30'></div>
       <div className='hero-content text-neutral-content'>
         <div className='flex flex-col gap-6 w-full justify-start'>
