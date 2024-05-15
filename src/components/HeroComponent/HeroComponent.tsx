@@ -13,7 +13,7 @@ function HeroSection() {
             className='mx-auto'
           />
           <Paragraph size='h3'>
-            Organize mais melhorando o <span className='text-purple-500'>sistema de gestão</span> da sua empresa.
+            Organize mais melhorando o <span className='text-purple-500 italic'>sistema de gestão</span> da sua empresa.
           </Paragraph>
           <div className='inline-flex gap-4 justify-center'>
             <a href='/'>
