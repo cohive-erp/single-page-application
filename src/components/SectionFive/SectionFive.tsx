@@ -6,7 +6,7 @@ function SectionFive() {
   return (
     <div className='flex basis-full'>
       <div className='hero h-[80vh] flex flex-col justify-center gap-12'>
-        <Paragraph size='title'>O plano ideal que caber no seu orçamento:</Paragraph>
+        <Paragraph size='title'>O plano ideal para caber no seu orçamento:</Paragraph>
         <div className='flex flex-row gap-6 justify-center items-center'>
           <PriceCard
             title='Gratuíto'
