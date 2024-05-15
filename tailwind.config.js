@@ -14,6 +14,9 @@ module.exports = {
     transparent: 'transparent',
     current: 'currentColor',
     extend: {
+      dropShadow: {
+        'text': '0px 2px 4px #262626',
+      },
       extend: {
         colors: {
           // light mode

@@ -43,8 +43,8 @@ function PriceCard(props: PriceCardProps) {
       </div>
 
       <div className='card-actions justify-center'>
-        {isDestaque && <Button content='Saiba mais' className='border-none w-[80%] rounded-2xl' />}
-        {!isDestaque && <Button content='Saiba mais' color='white' className='border-2 border-purple-400 text-purple-400 w-[80%] rounded-2xl hover:border-purple-400 hover:bg-purple-100' />}
+        {isDestaque && <Button content='Saiba mais' href='/signup' className='border-none w-[80%] rounded-2xl' />}
+        {!isDestaque && <Button content='Saiba mais' href='/signup' color='white' className='border-2 border-purple-400 text-purple-400 w-[80%] rounded-2xl hover:border-purple-400 hover:bg-purple-100' />}
       </div>
     </div>
   )

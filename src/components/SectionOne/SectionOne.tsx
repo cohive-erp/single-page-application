@@ -3,7 +3,7 @@ import Paragraph from '../Paragraph/Paragraph.tsx'
 
 function SectionOne() {
   return (
-    <div id='sobre' className='flex basis-full'>
+    <div id='sobre' className='h-[75vh] flex basis-full'>
       <div className='hero flex flex-row justify-evenly items-center'>
         <div className='flex basis-4/12'>
           <img
