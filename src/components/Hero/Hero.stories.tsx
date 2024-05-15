@@ -3,7 +3,7 @@ import NewHeroSection from './Hero'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  title: 'Components/Hero'
+  title: 'Components/NewHero'
 }
 
 export const Example = () => {
