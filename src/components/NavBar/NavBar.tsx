@@ -5,7 +5,7 @@ import Button from '../Button/Button.tsx'
 
 function NavBar() {
   return (
-    <div className='navbar w-full items-center inline-flex gap-4 px-8 shadow-sm'>
+    <div className='navbar w-full items-center bg-slate-200 bg-opacity-90 backdrop-blur-sm inline-flex gap-4 px-8 shadow-sm fixed z-50'>
       <div className='navbar-start w-2/5 items-center'>
         <a href='/'>
           <LogoCohive width={200} height={84} />
@@ -21,10 +21,10 @@ function NavBar() {
             <NavBarAnchor section='sobre' />
           </li>
           <li>
-            <NavBarAnchor section='funcionalidade' />
+            <NavBarAnchor section='download' />
           </li>
           <li>
-            <NavBarAnchor section='contato' />
+            <NavBarAnchor section='planos' />
           </li>
         </ul>
       </div>

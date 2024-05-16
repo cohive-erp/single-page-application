@@ -1,7 +1,7 @@
 import React from 'react'
 
 export type NavBarAnchorProps = {
-  section: 'inicio' | 'sobre' | 'funcionalidade' | 'contato'
+  section: 'inicio' | 'sobre' | 'download' | 'planos'
 }
 
 export default function NavBarAnchor(props: NavBarAnchorProps) {
