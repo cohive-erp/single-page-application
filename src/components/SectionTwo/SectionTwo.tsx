@@ -5,7 +5,7 @@ import { TypeAnimation } from 'react-type-animation'
 
 function SectionTwo() {
   return (
-    <div className='flex basis-full h-[75vh]'>
+    <div className='flex basis-full h-[70vh]'>
       <div className='hero flex flex-row justify-evenly items-center'>
         <div className='flex flex-col gap-6 basis-4/12'>
           <div>
@@ -26,7 +26,7 @@ function SectionTwo() {
             Utilize nosso sistema para ampliar seu negócio sem depender de sistemas complexos que mais te complicam do que te ajudam!
           </Paragraph>
 
-          <Button content='Saiba mais' href='/signup' />
+          <Button content='Saiba mais' className='w-[50%]' href='/signup' />
         </div>
 
         <div className='flex basis-4/12'>

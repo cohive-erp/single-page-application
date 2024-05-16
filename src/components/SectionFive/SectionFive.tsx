@@ -12,21 +12,21 @@ function SectionFive() {
             title='Gratuíto'
             subtitle='Negócios de bairro'
             price='0'
-            vantagem={['Vantagem 1', 'Vantagem 2', 'Vantagem 3']} />
+            vantagem={['1 usuário', '20 MB de dados', 'gestão de estoque']} />
 
           <PriceCard
             isDestaque
             title='Micro Empresário'
             subtitle='Pequeno negócio'
             price='49.90'
-            vantagem={['Vantagem 1', 'Vantagem 2', 'Vantagem 3']}
+            vantagem={['2 usuários', '100MB de dados', 'sugestão de reposição']}
             className='border-4 border-purple-400' />
 
           <PriceCard
             title='Escalonamento'
             subtitle='Mais de um estabelecimento'
             price='120'
-            vantagem={['Vantagem 1', 'Vantagem 2', 'Vantagem 3']} />
+            vantagem={['15 usuário', '800MB de dados', 'assistente virtual da Cohive']} />
         </div>
       </div>
     </div>
