@@ -19,14 +19,14 @@ function SectionFive() {
             title='Micro Empresário'
             subtitle='Pequeno negócio'
             price='49.90'
-            vantagem={['2 usuários', '100MB de dados', 'sugestão de reposição']}
+            vantagem={['2 usuários', '100 MB de dados', 'sugestão de reposição']}
             className='border-4 border-purple-400' />
 
           <PriceCard
             title='Escalonamento'
             subtitle='Mais de um estabelecimento'
             price='120'
-            vantagem={['15 usuário', '800MB de dados', 'assistente virtual da Cohive']} />
+            vantagem={['15 usuários', '800 MB de dados', 'análises por assistente virtual']} />
         </div>
       </div>
     </div>
