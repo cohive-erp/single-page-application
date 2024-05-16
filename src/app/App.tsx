@@ -9,7 +9,7 @@ function App() {
   return (
     <>
       <Helmet>
-        <link rel='icon' type='image/png' href='./logoCohive.svg' sizes='16x16' />
+        <link rel='icon' type='image/png' href='./favicon.svg' sizes='16x16' />
         <title>Cohive: Organize mais melhorando o sistema de gestão da sua empresa.</title>
       </Helmet>
       <Rotas />

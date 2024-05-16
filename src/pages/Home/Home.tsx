@@ -3,9 +3,11 @@ import NavBar from '../../components/NavBar/NavBar.tsx'
 import Footer from '../../components/Footer/Footer.tsx'
 import SectionOne from '../../components/SectionOne/SectionOne.tsx'
 import SectionTwo from '../../components/SectionTwo/SectionTwo.tsx'
+import SectionThree from '../../components/SectionThree/SectionThree.tsx'
+import SectionFour from '../../components/SectionFour/SectionFour.tsx'
 import SectionFive from '../../components/SectionFive/SectionFive.tsx'
 import { Helmet } from 'react-helmet'
-import NewHeroSection from '../../components/Hero/Hero.tsx'
+import Hero from '../../components/HeroComponent/HeroComponent.tsx'
 
 function Home() {
   return (
@@ -14,9 +16,11 @@ function Home() {
         <title>Início | Cohive</title>
       </Helmet>
       <NavBar />
-      <NewHeroSection />
+      <Hero />
       <SectionOne />
       <SectionTwo />
+      <SectionThree />
+      <SectionFour />
       <SectionFive />
       <Footer />
     </div>

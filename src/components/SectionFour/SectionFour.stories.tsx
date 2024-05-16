@@ -1,13 +1,13 @@
 import React from 'react'
-import NewHeroSection from './Hero'
+import SectionFour from './SectionFour'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  title: 'Components/NewHero'
+  title: 'Components/SectionFour'
 }
 
 export const Example = () => {
   return (
-    <NewHeroSection />
+    <SectionFour />
   )
 }
