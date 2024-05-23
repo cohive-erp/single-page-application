@@ -1,6 +1,6 @@
 import React from 'react'
 import Paragraph from '../Paragraph/Paragraph.tsx'
-import PriceCard from '../PriceCard/PrinceCard.tsx'
+import PriceCard from '../PriceCard/PriceCard.tsx'
 
 function SectionFive() {
   return (
