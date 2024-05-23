@@ -1,5 +1,4 @@
 import React, { useState, useRef } from 'react'
-import ReCAPTCHA from 'react-google-recaptcha'
 import KeyIcon from '@mui/icons-material/Key'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
 import CallIcon from '@mui/icons-material/Call'
@@ -69,19 +68,13 @@ function Cadastro() {
             </form>
 
             <label className='cursor-pointer flex items-center gap-2'>
-                <input type='checkbox' defaultChecked={false} className='checkbox checkbox-sm bg-white border-black' />
-                <Paragraph size='h6-regular'>Declaro ter lido e aceito os termos de uso e as políticas.</Paragraph>
+                <input type='checkbox' defaultChecked={false} className='checkbox checkbox-sm bg-white checked:bg-black border-black' />
+                <Paragraph size='h6-regular'>Declaro ter lido e aceito os <a href='/termos  ' className='font-bold underline'>termos de uso</a> e as <a href='/privacidade' className='font-bold underline'>políticas</a>.</Paragraph>
             </label>
 
-            <div className='flex w-full'>
-                <ReCAPTCHA
-                    sitekey='apikey'
-                    ref={useRef(null)}
-                />
-            </div>
             <div className='flex flex-col items-center'>
                 <Button content='Cadastrar' className='w-full' onClick={handleCreate} />
-                <Paragraph size='h6' className='text-[#757575]'>ou</Paragraph>
+                <Paragraph size='h6' className='text-gray-400'>ou</Paragraph>
                 <GoogleButton />
             </div>
         </div>
