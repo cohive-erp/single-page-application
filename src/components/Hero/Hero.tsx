@@ -12,7 +12,7 @@ function NewHeroSection() {
           </Paragraph>
 
           <div className='flex flex-col gap-2'>
-            <Button content='Conhecer planos' className='w-[40%] ' href='/#planos' />
+            <Button content='Conhecer planos 📝' className='w-[40%] ' href='/#planos' />
             <Paragraph size='h6-thin' className='text-start'>Download para Androide iOS.</Paragraph>
           </div>
         </div>
