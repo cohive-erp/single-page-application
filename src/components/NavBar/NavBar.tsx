@@ -21,10 +21,10 @@ function NavBar() {
             <NavBarAnchor section='sobre' />
           </li>
           <li>
-            <NavBarAnchor section='funcionalidade' />
+            <NavBarAnchor section='download' />
           </li>
           <li>
-            <NavBarAnchor section='contato' />
+            <NavBarAnchor section='planos' />
           </li>
         </ul>
       </div>

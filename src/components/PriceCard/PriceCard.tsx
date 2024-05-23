@@ -35,7 +35,7 @@ function PriceCard(props: PriceCardProps) {
       <div className='card-body gap-2'>
         <div className='flex flex-col gap-1'>
           <Paragraph size='h2'>{title}</Paragraph>
-          <Paragraph size='subtitle' className='text-[#757575]'>{subtitle}</Paragraph>
+          <Paragraph size='subtitle' className='text-gray-400'>{subtitle}</Paragraph>
           <Paragraph size='h3'>
             R$ <Paragraph tag='span' size='title'>{price}</Paragraph>
           </Paragraph>

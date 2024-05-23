@@ -1,11 +1,9 @@
 import React from 'react'
 import Paragraph from '../Paragraph/Paragraph.tsx'
-import Button from '../Button/Button.tsx'
-import { TypeAnimation } from 'react-type-animation'
 
 function SectionFour() {
   return (
-    <div className='flex basis-full h-[70vh]'>
+    <div id='download' className='flex basis-full h-[70vh]'>
       <div className='hero flex flex-row justify-evenly items-center'>
         <div className='flex flex-col gap-6 basis-4/12'>
           <div>

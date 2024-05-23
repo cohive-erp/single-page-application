@@ -7,6 +7,7 @@ import { AuthUserCommand } from '../../lib/types/AuthUserCommand.ts'
 import authenticateUser from '../../lib/services/authenticateUser.ts'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import GoogleButton from '../Button/GoogleButton.tsx'
 
 function Login() {
   const navigate = useNavigate()
@@ -48,13 +49,13 @@ function Login() {
       <div className='flex flex-col gap-2'>
         <div className='flex flex-col items-center'>
           <Button content='Entrar' className='w-full' onClick={handleAuthenticate} />
-          <Paragraph size='h6'>ou</Paragraph>
-          <Button content='Entrar com o Google' color='white' className='w-full' onClick={handleAuthenticate} />
+          <Paragraph size='h6' className='text-gray-400'>ou</Paragraph>
+          <GoogleButton isLogin />
         </div>
 
         <div className='flex flex-row justify-between'>
-          <Paragraph size='h6'><a className='text-purple-500 underline' href='/signup'>Ainda não tenho conta</a></Paragraph>
-          <Paragraph size='h6'><a className='text-purple-500 underline' href='/redefinir-senha'>Esqueci minha senha</a></Paragraph>
+          <Paragraph size='h6'><a className='text-purple-400 hover:text-purple-500 underline' href='/signup'>Ainda não tenho conta</a></Paragraph>
+          <Paragraph size='h6'><a className='text-purple-400 hover:text-purple-500 underline' href='/redefinir-senha'>Esqueci minha senha</a></Paragraph>
         </div>
       </div>
     </div>

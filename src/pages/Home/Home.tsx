@@ -7,7 +7,7 @@ import SectionThree from '../../components/SectionThree/SectionThree.tsx'
 import SectionFour from '../../components/SectionFour/SectionFour.tsx'
 import SectionFive from '../../components/SectionFive/SectionFive.tsx'
 import { Helmet } from 'react-helmet'
-import Hero from '../../components/HeroComponent/HeroComponent.tsx'
+import Hero from '../../components/Hero/Hero.tsx'
 
 function Home() {
   return (
