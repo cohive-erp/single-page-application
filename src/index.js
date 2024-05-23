@@ -1,13 +1,10 @@
+import App from './app/App.tsx'
 import React from 'react'
-
-export type RootLayoutProps = { children: React.ReactNode }
-
-export default function RootLayout({ children }: RootLayoutProps) {
-  return (
-    <html lang='pt-br'>
-      <body className='bg-white'>
-          {children}
-      </body>
-    </html>
-  )
-}
+import ReactDOM from 'react-dom/client'
+const root =
+  ReactDOM.createRoot(document.getElementById('root'))
+root.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>
+)

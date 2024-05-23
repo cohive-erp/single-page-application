@@ -1,10 +1,10 @@
 import React from 'react'
-import Paragraph from '../Paragraph/Paragraph'
+import Paragraph from '../Paragraph/Paragraph.tsx'
 
 function SectionOne() {
   return (
-    <div className='flex basis-full'>
-      <div className='hero min-h-screen flex flex-row justify-evenly items-center'>
+    <div id='sobre' className='h-[75vh] flex basis-full'>
+      <div className='hero flex flex-row justify-evenly items-center'>
         <div className='flex basis-4/12'>
           <img
             src='./sectionOneImage.svg'
@@ -19,7 +19,7 @@ function SectionOne() {
             Oportunidade que <span className='text-purple-500'>pequenas empresas</span> buscam para melhorar o controle dos seus produtos.
           </Paragraph>
 
-          <Paragraph size='content'>
+          <Paragraph size='content-regular'>
           Entendemos o quão difícil é investir em um sistema que te ajuda a organizar melhor seus produtos sendo uma pequena empresa, é por isso que pensamos em <strong>você</strong>.
           </Paragraph>
         </div>

@@ -1,9 +1,9 @@
 import React from 'react'
-import Paragraph from '../Paragraph/Paragraph'
+import Paragraph from '../Paragraph/Paragraph.tsx'
 
 function HeroSection() {
   return (
-    <div className='hero min-h-screen bg-base-200'>
+    <div id='inicio' className='hero mb-10 bg-slate-200'>
       <div className='hero-content text-center'>
         <div className='max-w-md flex flex-col gap-y-2'>
           <img
@@ -13,7 +13,7 @@ function HeroSection() {
             className='mx-auto'
           />
           <Paragraph size='h3'>
-            Organize mais melhorando o <span className='text-purple-500'>sistema de gestão</span> da sua empresa.
+            Organize mais melhorando o <span className='text-purple-500 italic'>sistema de gestão</span> da sua empresa.
           </Paragraph>
           <div className='inline-flex gap-4 justify-center'>
             <a href='/'>

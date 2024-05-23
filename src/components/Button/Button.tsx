@@ -11,23 +11,36 @@ export type ButtonProps = {
 
 const mapVariantToColor = {
   primary: 'bg-purple-500 text-white hover:bg-purple-400',
-  secondary: 'bg-[#B1B1B1] text-white',
-  tertiary: 'bg-white text-gray-950',
-  black: 'bg-black text-white',
-  white: 'bg-white text-black'
+  secondary: 'bg-[#B1B1B1] text-white hover:bg-white',
+  tertiary: 'bg-white text-gray-950 hover:bg-[#B1B1B1]',
+  black: 'bg-black text-white hover:bg-[#B1B1B1]',
+  white: 'bg-white text-black hover:bg-[#B1B1B1]'
 }
 
 function Button(props: ButtonProps) {
   return (
-    <a
-      href={props.href}
-      className={clsx(
-        'btn',
-        props.className,
-        mapVariantToColor[props.color ?? 'primary']
-      )}>
-      {props.content}
-    </a>
+    <>
+      {props.href ?
+        <a
+          href={props.href}
+          className={clsx(
+            'btn',
+            props.className,
+            mapVariantToColor[props.color ?? 'primary']
+          )}>
+          {props.content}
+        </a>
+        :
+        <button
+          onClick={props.onClick}
+          className={clsx(
+            'btn',
+            props.className,
+            mapVariantToColor[props.color ?? 'primary']
+          )}>
+          {props.content}
+        </button>}
+    </>
   )
 }
 

@@ -1,6 +1,8 @@
 import React from 'react'
 import PersonIcon from '@mui/icons-material/Person'
 import LogoutIcon from '@mui/icons-material/Logout'
+import { useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 type AvatarProps = {
     name: string
@@ -8,8 +10,16 @@ type AvatarProps = {
 
 function Avatar(props: AvatarProps) {
     const { name } = props
+    const navigate = useNavigate()
 
     const initial = name.slice(0, 1)
+
+    const handleLogout = async () => {
+        sessionStorage.clear()
+        navigate('/login')
+        toast.success('Desconectado com sucesso!')
+    }
+
     return (
         <div className='dropdown dropdown-bottom dropdown-end'>
             <div className='avatar placeholder' tabIndex={0} role='button'>
@@ -25,7 +35,7 @@ function Avatar(props: AvatarProps) {
                     </button>
                 </li>
                 <li>
-                    <button>
+                    <button onClick={handleLogout}>
                         <LogoutIcon fontSize='small' />
                         Logout
                     </button>

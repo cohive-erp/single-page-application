@@ -1,15 +1,19 @@
 import './global.css'
 import React from 'react'
-import NavBar from '../components/NavBar/NavBar'
-import Footer from '../components/Footer/Footer'
-import HeroComponent from '../components/HeroComponent/HeroComponent'
+import Rotas from './routes.tsx'
+import { Helmet } from 'react-helmet'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 function App() {
   return (
     <>
-      <NavBar />
-        <HeroComponent />
-      <Footer />
+      <Helmet>
+        <link rel='icon' type='image/png' href='./favicon.svg' sizes='16x16' />
+        <title>Cohive: Organize mais melhorando o sistema de gestão da sua empresa.</title>
+      </Helmet>
+      <Rotas />
+      <ToastContainer />
     </>
   )
 }
