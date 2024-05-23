@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from '../../Button/Button'
 
-function ApagarProduto() {
+function SairModal() {
     return (
         <>
             <button className='btn' onClick={() => document.getElementById('my_modal_1')?.showModal()}>open modal</button>
@@ -22,4 +22,4 @@ function ApagarProduto() {
     )
 }
 
-export default ApagarProduto
+export default SairModal
