@@ -1,9 +1,9 @@
 import React from 'react'
 import BarChart from '@tremor/react/dist/components/chart-elements/BarChart/BarChart'
-import Paragraph from '../Paragraph/Paragraph'
-import NoData from '../NoData/NoData'
-import BarChartSkeleton from './BarChartSkeleton'
-import CustomTooltip from '../CustomTooltip/CustomTooltip'
+import Paragraph from '../Paragraph/Paragraph.tsx'
+import NoData from '../NoData/NoData.tsx'
+import BarChartSkeleton from './BarChartSkeleton.tsx'
+import CustomTooltip from '../CustomTooltip/CustomTooltip.tsx'
 
 type BarChartProps = {
   data: {
@@ -17,8 +17,10 @@ type BarChartProps = {
 function BarChartComponent(props: BarChartProps) {
   const { data, section } = props
 
+
+
   return (
-    <div className='card w-full h-[400px] bg-base-100 shadow-xl'>
+    <div className='card w-full h-[400px] bg-slate-100 shadow-xl'>
       <div className='card-body'>
         <Paragraph size='h2'>Relatório de {section}</Paragraph>
         {data && data.length > 1 &&
