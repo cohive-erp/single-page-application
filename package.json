@@ -24,6 +24,7 @@
     "react-helmet": "^6.1.0",
     "react-router-dom": "^6.23.0",
     "react-scripts": "5.0.1",
+    "react-text-mask": "^5.5.0",
     "react-toastify": "^10.0.5",
     "react-type-animation": "^3.2.0",
     "ts-node": "^10.9.2",
