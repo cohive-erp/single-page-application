@@ -11,7 +11,7 @@ function RedefinirSenhaPage() {
         <title>Redefinir senha | Cohive</title>
       </Helmet>
       <NavBar />
-      <div className='w-[50%] h-full flex justify-center items-center pr-32 pl-32 pt-44 pb-44'>
+      <div className='w-[50%] h-full flex justify-center items-center pr-32 pl-32 pt-[8%] pb-[8%]'>
         <RedefinirSenha />
       </div>
       <Footer />

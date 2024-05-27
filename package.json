@@ -29,7 +29,8 @@
     "ts-node": "^10.9.2",
     "tsc": "^2.0.4",
     "typescript": "^5.4.2",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "yup": "^1.4.0"
   },
   "scripts": {
     "dev": "react-scripts start",
