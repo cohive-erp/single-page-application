@@ -1,5 +1,7 @@
 import React from 'react'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
+import LockIcon from '@mui/icons-material/Lock'
+import KeyIcon from '@mui/icons-material/Key'
 import Paragraph from '../Paragraph/Paragraph.tsx'
 import Button from '../Button/Button.tsx'
 import { useState } from 'react'
@@ -79,32 +81,39 @@ function RedefinirSenha() {
             }
             {step === 2 &&
                 <>
-                    <div className='flex flex-col justify-center items-center gap-2'>
-                        <Paragraph size='h1'>Redefinição de senha</Paragraph>
-                        <Paragraph size='h3-regular'>Digite o token que foi enviado no email {email}</Paragraph>
+                    <div className='flex flex-col justify-center items-center gap-2 text-wrap'>
+                        <Paragraph size='h1'>Confire sua caixa de entrada</Paragraph>
+                        <Paragraph size='h3-regular'>Digite o token que está na sua caixa de entrada</Paragraph>
                     </div>
                     <label className='input bg-white border-black input-bordered text-[#9A9696] flex items-center gap-2'>
-                        <MailOutlineIcon fontSize='small' />
+                        <LockIcon fontSize='small' />
                         <input type='text' className='grow text-black' placeholder='Token de verificação' onChange={(e) => handleInputChange(e, setToken)} />
                     </label>
-                    <Button content='Enviar' className='w-full' onClick={handleValidateToken} />
+                    <div className='flex flex-col gap-2'>
+                        <Button content='Enviar' className='w-full' onClick={handleValidateToken} />
+                        <Button content='Voltar' className='w-full' color='secondary' onClick={() => setStep(1)} />
+                    </div>
                 </>
             }
-            {step === 2 &&
+            {step === 3 &&
                 <>
                     <div className='flex flex-col justify-center items-center gap-2'>
-                        <Paragraph size='h1'>Redefinição de senha</Paragraph>
-                        <Paragraph size='h3-regular'>Digite sua nova senha</Paragraph>
+                        <Paragraph size='h1'>Digite e confirme sua nova senha</Paragraph>
                     </div>
-                    <label className='input bg-white border-black input-bordered text-[#9A9696] flex items-center gap-2'>
-                        <MailOutlineIcon fontSize='small' />
-                        <input type='password' className='grow text-black' placeholder='Nova senha' onChange={(e) => handleInputChange(e, setSenha)} />
-                    </label>
-                    <label className='input bg-white border-black input-bordered text-[#9A9696] flex items-center gap-2'>
-                        <MailOutlineIcon fontSize='small' />
-                        <input type='password' className='grow text-black' placeholder='Confirmar nova senha' onChange={(e) => handleInputChange(e, setConfirmarSenha)} />
-                    </label>
-                    <Button content='Alterar senha' className='w-full' onClick={handleChangePassword} />
+                    <div className='flex flex-col gap-2'>
+                        <label className='input bg-white border-black input-bordered text-[#9A9696] flex items-center gap-2'>
+                            <KeyIcon fontSize='small' />
+                            <input type='password' className='grow text-black' placeholder='Nova senha' onChange={(e) => handleInputChange(e, setSenha)} />
+                        </label>
+                        <label className='input bg-white border-black input-bordered text-[#9A9696] flex items-center gap-2'>
+                            <KeyIcon fontSize='small' />
+                            <input className='grow text-black' placeholder='Confirmar nova senha' onChange={(e) => handleInputChange(e, setConfirmarSenha)} />
+                        </label>
+                    </div>
+                    <div className='flex flex-col gap-2'>
+                        <Button content='Alterar senha' className='w-full' onClick={handleChangePassword} />
+                        <Button content='Voltar' className='w-full' color='secondary' onClick={() => setStep(2)} />
+                    </div>
                 </>
             }
         </div>
