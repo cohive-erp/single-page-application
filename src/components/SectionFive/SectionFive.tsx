@@ -6,7 +6,7 @@ function SectionFive() {
   return (
     <div id='planos' className='flex basis-full'>
       <div className='hero h-[90vh] flex flex-col justify-center gap-12'>
-        <Paragraph size='title'>O plano ideal para caber no seu orçamento:</Paragraph>
+        <Paragraph size='title'>Escolha o plano ideal para o seu negócio:</Paragraph>
         <div className='flex flex-row gap-6 justify-center items-center'>
           <PriceCard
             title='Gratuíto'
@@ -18,7 +18,7 @@ function SectionFive() {
             isDestaque
             title='Micro Empresário'
             subtitle='Pequeno negócio'
-            price='49.90'
+            price='49,90'
             vantagem={['2 usuários', '100 MB de dados', 'sugestão de reposição']}
             className='border-4 border-purple-400' />
 
