@@ -5,16 +5,15 @@ export type ButtonProps = {
   content: string
   href?: string,
   className?: string
-  color?: 'primary' | 'secondary' | 'tertiary' | 'black' | 'white'
+  color?: 'primary' | 'secondary' | 'black' | 'white'
   onClick?: () => void
 }
 
 const mapVariantToColor = {
   primary: 'bg-purple-500 text-white hover:bg-purple-400',
-  secondary: 'bg-[#B1B1B1] text-white hover:bg-white',
-  tertiary: 'bg-white text-gray-950 hover:bg-[#B1B1B1]',
-  black: 'bg-black text-white hover:bg-[#B1B1B1]',
-  white: 'bg-white text-black hover:bg-[#B1B1B1]'
+  secondary: 'bg-gray-400 text-white hover:bg-gray-300',
+  white: 'bg-white text-gray-950 hover:bg-gray-200',
+  black: 'bg-black text-white hover:bg-gray-600'
 }
 
 function Button(props: ButtonProps) {

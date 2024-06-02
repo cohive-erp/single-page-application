@@ -1,6 +1,6 @@
 import React from 'react'
-import Button from '../../Button/Button'
-import Paragraph from '../../Paragraph/Paragraph'
+import Button from '../../Button/Button.tsx'
+import Paragraph from '../../Paragraph/Paragraph.tsx'
 
 function EditarProduto() {
     return (

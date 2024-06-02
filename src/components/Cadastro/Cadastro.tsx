@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState } from 'react'
 import KeyIcon from '@mui/icons-material/Key'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
 import CallIcon from '@mui/icons-material/Call'
@@ -10,6 +10,7 @@ import createUser from '../../lib/services/createUser.ts'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import GoogleButton from '../Button/GoogleButton.tsx'
+import MaskedInput from 'react-text-mask'
 
 function Cadastro() {
     const navigate = useNavigate()
@@ -53,7 +54,15 @@ function Cadastro() {
 
                 <label className='input bg-white border-black input-bordered text-[#9A9696] flex items-center gap-2'>
                     <CallIcon fontSize='small' />
-                    <input type='text' value={telefone} onChange={(e) => handleInputChange(e, setTelefone)} className='grow text-black' placeholder='Telefone' />
+                    <MaskedInput
+                        mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                        placeholder='Telefone'
+                        guide={false}
+                        value={telefone}
+                        onChange={(e) => handleInputChange(e, setTelefone)}
+                        className='grow text-black'
+                        render={(ref, props) => <input ref={ref} {...props} />}
+                    />
                 </label>
 
                 <label className='input bg-white border-black input-bordered text-[#9A9696] flex items-center gap-2'>

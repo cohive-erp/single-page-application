@@ -13,7 +13,7 @@ function NewHeroSection() {
 
           <div className='flex flex-col gap-2'>
             <Button content='Conhecer planos 📝' className='w-[40%] ' href='/#planos' />
-            <Paragraph size='h6-thin' className='text-start'>Download para Androide iOS.</Paragraph>
+            <Paragraph size='h6-thin' className='text-start'>Download para Android e iOS.</Paragraph>
           </div>
         </div>
         <img src='/homeImage.svg' alt='' width={700} />
