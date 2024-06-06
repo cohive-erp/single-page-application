@@ -8,7 +8,7 @@ function TableHead(props: TableHeadProps) {
   const { heads } = props
 
   return (
-    <thead>
+    <thead className='text-black'>
       <tr>
         <th></th>
         {heads && heads.map((head) => (
