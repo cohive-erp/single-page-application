@@ -15,16 +15,16 @@ function NavBar() {
       <div className='navbar-center hidden lg:flex'>
         <ul className='gap-12 menu-horizontal px-1'>
           <li>
-            <NavBarAnchor section='inicio' />
+            <NavBarAnchor section='Inicio' />
           </li>
           <li>
-            <NavBarAnchor section='sobre' />
+            <NavBarAnchor section='Sobre' />
           </li>
           <li>
-            <NavBarAnchor section='download' />
+            <NavBarAnchor section='Download' />
           </li>
           <li>
-            <NavBarAnchor section='planos' />
+            <NavBarAnchor section='Planos' />
           </li>
         </ul>
       </div>
