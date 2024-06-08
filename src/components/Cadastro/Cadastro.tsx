@@ -9,7 +9,6 @@ import { CreateUserCommand } from '../../lib/types/CreateUserCommand.ts'
 import createUser from '../../lib/services/createUser.ts'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import GoogleButton from '../Button/GoogleButton.tsx'
 import MaskedInput from 'react-text-mask'
 
 function Cadastro() {
@@ -83,8 +82,6 @@ function Cadastro() {
 
             <div className='flex flex-col items-center'>
                 <Button content='Cadastrar' className='w-full' onClick={handleCreate} />
-                <Paragraph size='h6' className='text-gray-400'>ou</Paragraph>
-                <GoogleButton />
             </div>
         </div>
     )

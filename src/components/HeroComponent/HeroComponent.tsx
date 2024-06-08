@@ -3,7 +3,7 @@ import Paragraph from '../Paragraph/Paragraph.tsx'
 
 function HeroSection() {
   return (
-    <div id='inicio' className='hero mb-10 bg-slate-200'>
+    <div id='Inicio' className='hero mb-10 bg-slate-200'>
       <div className='hero-content text-center'>
         <div className='max-w-md flex flex-col gap-y-2'>
           <img

@@ -4,7 +4,7 @@ import Button from '../Button/Button.tsx'
 
 function SectionThree() {
   return (
-    <div id='sobre' className='h-[70vh] flex basis-full'>
+    <div id='Sobre' className='h-[70vh] flex basis-full'>
       <div className='hero flex flex-row justify-evenly items-center'>
         <div className='flex basis-4/12'>
           <img

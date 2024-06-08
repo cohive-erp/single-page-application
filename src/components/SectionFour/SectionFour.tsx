@@ -3,7 +3,7 @@ import Paragraph from '../Paragraph/Paragraph.tsx'
 
 function SectionFour() {
   return (
-    <div id='download' className='flex basis-full h-[70vh]'>
+    <div id='Download' className='flex basis-full h-[70vh]'>
       <div className='hero flex flex-row justify-evenly items-center'>
         <div className='flex flex-col gap-6 basis-4/12'>
           <div>
