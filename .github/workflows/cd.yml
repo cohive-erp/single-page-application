@@ -10,7 +10,8 @@ on:
       - main
 
 jobs:
-  build_ci:
+  run_ci_and_build:
+    name: Run CI and Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -28,7 +29,7 @@ jobs:
         run: npm run build
 
   build_and_deploy_job:
-    needs: build_ci
+    needs: run_ci_and_build
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
     name: Build and Deploy Job
@@ -50,6 +51,19 @@ jobs:
           api_location: "" # Api source code path - optional
           output_location: "build" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
+
+  generate_release:
+    name: Generate Release
+    needs: build_and_deploy_job
+    steps:
+        id: tag_version
+      - name: Bump version and push tag
+        uses: mathieudutour/github-tag-action@v5.6
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: patch
+          initial_version: '1.0.0' # Sets the initial version if no tags exist
+          release_branches: main  # Ensures tags are only pushed on the main branch
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
