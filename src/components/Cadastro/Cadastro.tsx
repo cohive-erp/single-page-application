@@ -9,7 +9,6 @@ import { CreateUserCommand } from '../../lib/types/CreateUserCommand.ts'
 import createUser from '../../lib/services/createUser.ts'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import GoogleButton from '../Button/GoogleButton.tsx'
 import MaskedInput from 'react-text-mask'
 
 function Cadastro() {
