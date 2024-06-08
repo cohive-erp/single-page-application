@@ -52,18 +52,18 @@ jobs:
           output_location: "build" # Built app content directory - optional
           ###### End of Repository/Build Configurations ######
 
-  generate_release:
-    name: Generate Release
-    needs: build_and_deploy_job
-    steps:
-        id: tag_version
-      - name: Bump version and push tag
-        uses: mathieudutour/github-tag-action@v5.6
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          default_bump: patch
-          initial_version: '1.0.0' # Sets the initial version if no tags exist
-          release_branches: main  # Ensures tags are only pushed on the main branch
+  # generate_release:
+  #   name: Generate Release
+  #   needs: build_and_deploy_job
+  #   steps:
+  #       id: tag_version
+  #     - name: Bump version and push tag
+  #       uses: mathieudutour/github-tag-action@v5.6
+  #       with:
+  #         github_token: ${{ secrets.GITHUB_TOKEN }}
+  #         default_bump: patch
+  #         initial_version: '1.0.0' # Sets the initial version if no tags exist
+  #         release_branches: main  # Ensures tags are only pushed on the main branch
 
   close_pull_request_job:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
