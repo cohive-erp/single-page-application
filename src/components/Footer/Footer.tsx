@@ -6,10 +6,10 @@ function Footer() {
     <footer className='footer p-10 bg-gray-950 text-base-content'>
       <nav className='text-white'>
         <h6 className='footer-title'>coHive 🐝</h6>
-        <a href='/#inicio' className='link link-hover'>Início</a>
-        <a href='/#sobre' className='link link-hover'>Sobre</a>
-        <a href='/#download' className='link link-hover'>Download</a>
-        <a href='/#planos' className='link link-hover'>Planos</a>
+        <a href='/#Inicio' className='link link-hover'>Início</a>
+        <a href='/#Sobre' className='link link-hover'>Sobre</a>
+        <a href='/#Download' className='link link-hover'>Download</a>
+        <a href='/#Planos' className='link link-hover'>Planos</a>
       </nav>
       <nav className='text-white'>
         <h6 className='footer-title'>Legal</h6>
