@@ -49,8 +49,6 @@ function Login() {
       <div className='flex flex-col gap-2'>
         <div className='flex flex-col items-center'>
           <Button content='Entrar' className='w-full' onClick={handleAuthenticate} />
-          <Paragraph size='h6' className='text-gray-400'>ou</Paragraph>
-          <GoogleButton isLogin />
         </div>
 
         <div className='flex flex-row justify-between'>

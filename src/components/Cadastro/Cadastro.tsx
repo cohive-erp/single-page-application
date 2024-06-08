@@ -83,8 +83,6 @@ function Cadastro() {
 
             <div className='flex flex-col items-center'>
                 <Button content='Cadastrar' className='w-full' onClick={handleCreate} />
-                <Paragraph size='h6' className='text-gray-400'>ou</Paragraph>
-                <GoogleButton />
             </div>
         </div>
     )
