@@ -8,7 +8,7 @@ function SignUp() {
   return (
     <div className='bg-slate-200 flex flex-col justify-center items-center'>
       <Helmet>
-        <title>Cadastro | Cohive</title>
+        <title>Cadastro | Sistema ERP: Gestão rápida, prática e útil | Cohive</title>
       </Helmet>
       <NavBar />
       <div className='w-[50%] h-full flex justify-center items-center pt-8 pb-16 p-32'>

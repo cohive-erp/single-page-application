@@ -8,7 +8,7 @@ function LoginPage() {
   return (
     <div className='bg-slate-200 flex flex-col justify-center items-center'>
       <Helmet>
-        <title>Login | Cohive</title>
+        <title>Login | Sistema ERP: Gestão rápida, prática e útil | Cohive</title>
       </Helmet>
       <NavBar />
       <div className='w-[50%] h-full flex justify-center items-center pt-12 p-32'>
