@@ -13,6 +13,7 @@ function GoogleButton(props: { isLogin?: boolean }) {
         alt='Fazer login com o Google'
         title='Fazer login com o Google'
         referrerPolicy='no-referrer'
+        loading='lazy'
         width={24}
       />
 

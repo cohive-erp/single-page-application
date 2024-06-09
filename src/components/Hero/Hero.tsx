@@ -16,7 +16,7 @@ function NewHeroSection() {
             <Paragraph size='h6-thin' className='text-start'>Download para Android e iOS.</Paragraph>
           </div>
         </div>
-        <img src='/homeImage.svg' alt='' width={700} />
+        <img src='/homeImage.svg' alt='Página com Painel de visão geral das vendas e produtos.' loading='lazy' width={700} />
       </div>
     </div>
   )

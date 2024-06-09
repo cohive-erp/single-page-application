@@ -22,6 +22,7 @@ function SectionFour() {
               <img
                 src='./appStoreImage.png'
                 alt='Faça o download na App Store'
+                loading='lazy'
                 width={150}
                 className='rounded-md'
               />
@@ -30,6 +31,7 @@ function SectionFour() {
               <img
                 src='./googlePlayImage.png'
                 alt='Faça o download na Google Store'
+                loading='lazy'
                 width={135}
                 className='rounded-md'
               />
@@ -41,6 +43,7 @@ function SectionFour() {
           <img
             src='./sectionFourImage.svg'
             alt='Ilustração mulher olhando para o dashboard no celular'
+            loading='lazy'
             width={469}
             className='mx-auto'
           />
