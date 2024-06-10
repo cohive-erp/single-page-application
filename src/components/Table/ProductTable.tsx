@@ -10,6 +10,8 @@ import TableRow from '@mui/material/TableRow'
 import TablePagination from '@mui/material/TablePagination'
 import ProductTableHead from './components/ProductTableHead/ProductTableHead.tsx'
 import Paragraph from '../Paragraph/Paragraph.tsx'
+import Search from '../Search/Search.tsx'
+import LoadingButton from '../Button/LoadingButton.tsx'
 
 type ProductTableProps = {
   tableResult: TableResult
@@ -31,6 +33,28 @@ function ProductTable(props: ProductTableProps) {
 
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
+      <div className='flex justify-between w-full px-4 mb-6'>
+        <Paragraph size='h2'>📦 Produtos</Paragraph>
+        <div className='flex flex-row gap-4 w-[70%] justify-end'>
+          <Button content='Novo produto' className='w-[35%]' />
+
+          {true && (
+            <>
+              <Button content='Obter dados' className='w-[35%]' />
+              <Search className='w-[30%]' />
+            </>
+          )}
+
+          {false && (
+            <>
+              <Button content='Obter dados' className='w-[35%] btn-disabled' />
+              <Search className='w-[30%] input-disabled' />
+            </>
+          )}
+
+          {false && <LoadingButton content='Gerando...' className='w-[35%]' />}
+        </div>
+      </div>
       <TableContainer>
         <Table stickyHeader aria-label='sticky table'>
           <ProductTableHead />
