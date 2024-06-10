@@ -72,10 +72,10 @@ function ProductTable(props: ProductTableProps) {
                   {row.categoria}
                 </TableCell>
                 <TableCell align='right'>
-                  {row.quantidade}
+                  {row.valor.toFixed(2).replace('.', ',')}
                 </TableCell>
                 <TableCell align='right'>
-                  {row.valor.toFixed(2).replace('.', ',')}
+                  {row.quantidade}
                 </TableCell>
                 <TableCell sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }} align='right'>
                   <Button content='Apagar' color='secondary' />
