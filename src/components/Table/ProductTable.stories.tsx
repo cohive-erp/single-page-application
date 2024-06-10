@@ -1,13 +1,12 @@
 import React from 'react'
-import Table from './Table'
+import ProductTable from './ProductTable'
 
 // eslint-disable-next-line import/no-anonymous-default-export
 export default {
-  title: 'Components/Table'
+  title: 'Components/ProductTable'
 }
 
 const data = {
-  head: ['Nome', 'Categoria', 'Valor (R$)', 'Quantidade', 'Ações'],
   rows: [
     {
       id: 1,
@@ -62,18 +61,17 @@ const data = {
 }
 
 const noData = {
-  head: ['Nome', 'Categoria', 'Valor (R$)', 'Quantidade', 'Ações'],
   rows: []
 }
 
 export const Example = () => {
   return (
-    <Table tableResult={data} />
+    <ProductTable tableResult={data} />
   )
 }
 
 export const NoDataExample = () => {
   return (
-    <Table tableResult={noData} />
+    <ProductTable tableResult={noData} />
   )
 }
