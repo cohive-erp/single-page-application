@@ -17,7 +17,7 @@ function App() {
         <meta name='robots' content='' />
         <meta name='revisit-after' content='1 day' />
         <meta name='language' content='pt-br' />
-        <meta charset='utf-8' />
+        <meta charSet='utf-8' />
       </Helmet>
       <Rotas />
       <ToastContainer />

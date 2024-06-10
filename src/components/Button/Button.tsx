@@ -2,7 +2,7 @@ import React from 'react'
 import clsx from 'clsx'
 
 export type ButtonProps = {
-  content: string
+  content: string | any
   href?: string,
   className?: string
   color?: 'primary' | 'secondary' | 'black' | 'white'
