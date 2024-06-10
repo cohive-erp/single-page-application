@@ -18,7 +18,8 @@ function LogoCohive(props: LogoCohiveProps) {
   return (
     <img
       src={logoColors[color ?? 'purple']}
-      alt='Logo da Cohive'
+      alt='Logo Cohive'
+      loading='lazy'
       width={width}
       height={height}
     />

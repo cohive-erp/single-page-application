@@ -4,7 +4,7 @@ import PriceCard from '../PriceCard/PriceCard.tsx'
 
 function SectionFive() {
   return (
-    <div id='planos' className='flex basis-full'>
+    <div id='Planos' className='flex basis-full'>
       <div className='hero h-[90vh] flex flex-col justify-center gap-12'>
         <Paragraph size='title'>Escolha o plano ideal para o seu negócio:</Paragraph>
         <div className='flex flex-row gap-6 justify-center items-center'>

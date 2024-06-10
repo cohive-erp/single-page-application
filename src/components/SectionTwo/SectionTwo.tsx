@@ -32,7 +32,8 @@ function SectionTwo() {
         <div className='flex basis-4/12'>
           <img
             src='./sectionTwoImage.svg'
-            alt='Gerencie melhor sua empresa com o sistema de gestão da Cohive'
+            alt='Ilustração de uma mulher gerenciando um estoque'
+            loading='lazy'
             width={469}
             className='mx-auto'
           />

@@ -4,12 +4,13 @@ import Button from '../Button/Button.tsx'
 
 function SectionThree() {
   return (
-    <div id='sobre' className='h-[70vh] flex basis-full'>
+    <div id='Sobre' className='h-[70vh] flex basis-full'>
       <div className='hero flex flex-row justify-evenly items-center'>
         <div className='flex basis-4/12'>
           <img
             src='./sectionThreeImage.svg'
-            alt='Gerencie melhor sua empresa com o sistema de gestão da Cohive'
+            alt='Ilustração de um homem utilizando ferramentas que contém no seu smartphone'
+            loading='lazy'
             width={500}
             className='mx-auto'
           />

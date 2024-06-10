@@ -8,7 +8,8 @@ function SectionOne() {
         <div className='flex basis-4/12'>
           <img
             src='./sectionOneImage.svg'
-            alt='Gerencie melhor sua empresa com o sistema de gestão da Cohive'
+            alt='Ilustração de uma mulher fazendo gestão empresárial'
+            loading='lazy'
             width={500}
             className='mx-auto'
           />
