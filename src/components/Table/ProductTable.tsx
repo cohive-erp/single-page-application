@@ -34,7 +34,7 @@ function ProductTable(props: ProductTableProps) {
   return (
     <Paper sx={{ width: '100%', overflow: 'hidden' }}>
       <div className='flex justify-between w-full px-4 mb-6'>
-        <Paragraph size='h2'>📦 Produtos</Paragraph>
+        <Paragraph size='h1'>📦 Produtos</Paragraph>
         <div className='flex flex-row gap-4 w-[70%] justify-end'>
           <Button content='Novo produto' className='w-[35%]' />
 
