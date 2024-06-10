@@ -38,14 +38,12 @@ function ProductTable(props: ProductTableProps) {
         <div className='flex flex-row gap-4 w-[70%] justify-end'>
           <Button content='Novo produto' className='w-[35%]' />
 
-          {true && (
+          {tableResult.rows.length > 0 ? (
             <>
               <Button content='Obter dados' className='w-[35%]' />
               <Search className='w-[30%]' />
             </>
-          )}
-
-          {false && (
+          ) : (
             <>
               <Button content='Obter dados' className='w-[35%] btn-disabled' />
               <Search className='w-[30%] input-disabled' />
@@ -56,7 +54,7 @@ function ProductTable(props: ProductTableProps) {
         </div>
       </div>
       <TableContainer>
-        <Table stickyHeader aria-label='sticky table'>
+        <Table stickyHeader>
           <ProductTableHead />
           <TableBody>
             {tableResult.rows.length > 0 && tableResult.rows.map((row) => (
