@@ -1,7 +1,11 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import Paragraph from '../Paragraph/Paragraph.tsx'
+import { useNavigate } from 'react-router-dom'
 
 function HeroSection() {
+  const navigate = useNavigate()
+
   return (
     <div id='Inicio' className='hero mb-10 bg-slate-200'>
       <div className='hero-content text-center'>
@@ -17,7 +21,7 @@ function HeroSection() {
             Organize mais melhorando o <span className='text-purple-500 italic'>sistema de gestão</span> da sua empresa.
           </Paragraph>
           <div className='inline-flex gap-4 justify-center'>
-            <a href='/'>
+            <a onClick={() => navigate('/')}>
               <img
                 src='./appStoreImage.png'
                 alt='Faça o download na App Store'
@@ -26,7 +30,7 @@ function HeroSection() {
                 className='rounded-md'
               />
             </a>
-            <a href='/'>
+            <a onClick={() => navigate('/')}>
               <img
                 src='./googlePlayImage.png'
                 alt='Faça o download na Google Store'

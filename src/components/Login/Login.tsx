@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
 import KeyIcon from '@mui/icons-material/Key'
@@ -51,8 +52,8 @@ function Login() {
         </div>
 
         <div className='flex flex-row justify-between'>
-          <Paragraph size='h6'><a className='text-purple-400 hover:text-purple-500 underline' href='/signup'>Ainda não tenho conta</a></Paragraph>
-          <Paragraph size='h6'><a className='text-purple-400 hover:text-purple-500 underline' href='/redefinir-senha'>Esqueci minha senha</a></Paragraph>
+          <Paragraph size='h6'><a className='text-purple-400 hover:text-purple-500 underline' onClick={() => navigate('/signup')}>Ainda não tenho conta</a></Paragraph>
+          <Paragraph size='h6'><a className='text-purple-400 hover:text-purple-500 underline' onClick={() => navigate('/redefinir-senha')}>Esqueci minha senha</a></Paragraph>
         </div>
       </div>
     </div>

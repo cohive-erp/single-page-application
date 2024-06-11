@@ -1,7 +1,11 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import Paragraph from '../Paragraph/Paragraph.tsx'
+import { useNavigate } from 'react-router-dom'
 
 function SectionFour() {
+  const navigate = useNavigate()
+
   return (
     <div id='Download' className='flex basis-full h-[70vh]'>
       <div className='hero flex flex-row justify-evenly items-center'>
@@ -18,7 +22,7 @@ function SectionFour() {
           </Paragraph>
 
           <div className='inline-flex gap-4 justify-start'>
-            <a href='/'>
+            <a onClick={() => navigate('/')}>
               <img
                 src='./appStoreImage.png'
                 alt='Faça o download na App Store'
@@ -27,7 +31,7 @@ function SectionFour() {
                 className='rounded-md'
               />
             </a>
-            <a href='/'>
+            <a onClick={() => navigate('/')}>
               <img
                 src='./googlePlayImage.png'
                 alt='Faça o download na Google Store'

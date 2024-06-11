@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react'
 import KeyIcon from '@mui/icons-material/Key'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
@@ -77,7 +78,7 @@ function Cadastro() {
 
             <label className='cursor-pointer flex items-center gap-2'>
                 <input type='checkbox' defaultChecked={false} className='checkbox checkbox-sm bg-white checked:bg-black border-black' />
-                <Paragraph size='h6-regular'>Declaro ter lido e aceito os <a href='/termos  ' className='font-bold underline'>termos de uso</a> e as <a href='/privacidade' className='font-bold underline'>políticas</a>.</Paragraph>
+                <Paragraph size='h6-regular'>Declaro ter lido e aceito os <a onClick={() => navigate('/termos')} className='font-bold underline'>termos de uso</a> e as <a onClick={() => navigate('/privacidade')} className='font-bold underline'>políticas</a>.</Paragraph>
             </label>
 
             <div className='flex flex-col items-center'>
