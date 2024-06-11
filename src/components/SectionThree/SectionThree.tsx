@@ -1,8 +1,11 @@
 import React from 'react'
 import Paragraph from '../Paragraph/Paragraph.tsx'
 import Button from '../Button/Button.tsx'
+import { useNavigate } from 'react-router-dom'
 
 function SectionThree() {
+  const navigate = useNavigate()
+
   return (
     <div id='Sobre' className='h-[70vh] flex basis-full'>
       <div className='hero flex flex-row justify-evenly items-center'>
@@ -30,7 +33,7 @@ function SectionThree() {
             </Paragraph>
           </div>
 
-          <Button content='Experimente grátis' className='w-[50%]' href='/signup' />
+          <Button content='Experimente grátis' className='w-[50%]' onClick={() => navigate('/signup')} />
         </div>
       </div>
     </div>

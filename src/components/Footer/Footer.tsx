@@ -1,7 +1,11 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
 import Button from '../Button/Button.tsx'
+import { useNavigate } from 'react-router-dom'
 
 function Footer() {
+  const navigate = useNavigate()
+
   return (
     <footer className='footer p-10 bg-gray-950 text-base-content'>
       <nav className='text-white'>
@@ -13,15 +17,15 @@ function Footer() {
       </nav>
       <nav className='text-white'>
         <h6 className='footer-title'>Legal</h6>
-        <a href='/termos' className='link link-hover'>Termos de uso</a>
-        <a href='/privacidade' className='link link-hover'>Seguraça e privacidade</a>
-        <a href='/politica' className='link link-hover'>Política de Cookie</a>
+        <a onClick={() => navigate('/termos')} className='link link-hover'>Termos de uso</a>
+        <a onClick={() => navigate('/privacidade')} className='link link-hover'>Seguraça e privacidade</a>
+        <a onClick={() => navigate('/politica')} className='link link-hover'>Política de Cookie</a>
       </nav>
       <nav className='text-white'>
         <h6 className='footer-title'>Social</h6>
-        <a href='/#' className='link link-hover'>Instagram</a>
-        <a href='/#' className='link link-hover'>Twitter</a>
-        <a href='/#' className='link link-hover'>Facebook</a>
+        <a onClick={() => navigate('/')} className='link link-hover'>Instagram</a>
+        <a onClick={() => navigate('/')} className='link link-hover'>Twitter</a>
+        <a onClick={() => navigate('/')} className='link link-hover'>Facebook</a>
       </nav>
       <form>
         <h6 className='footer-title'>Newsletter</h6>
@@ -30,7 +34,7 @@ function Footer() {
             <span className='label-text'>Digite seu endereço de email</span>
           </label>
           <div className='join'>
-            <input type='text' placeholder='username@site.com' className='input input-bordered join-item' />
+            <input type='text' placeholder='nome@site.com' className='input input-bordered join-item' />
             <Button content='Inscrever-se' className='btn join-item' />
           </div>
         </fieldset>

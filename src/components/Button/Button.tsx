@@ -3,7 +3,6 @@ import clsx from 'clsx'
 
 export type ButtonProps = {
   content: string | any
-  href?: string,
   className?: string
   color?: 'primary' | 'secondary' | 'black' | 'white'
   onClick?: () => void
@@ -18,28 +17,15 @@ const mapVariantToColor = {
 
 function Button(props: ButtonProps) {
   return (
-    <>
-      {props.href ?
-        <a
-          href={props.href}
-          className={clsx(
-            'btn',
-            props.className,
-            mapVariantToColor[props.color ?? 'primary']
-          )}>
-          {props.content}
-        </a>
-        :
-        <button
-          onClick={props.onClick}
-          className={clsx(
-            'btn',
-            props.className,
-            mapVariantToColor[props.color ?? 'primary']
-          )}>
-          {props.content}
-        </button>}
-    </>
+    <button
+      onClick={props.onClick}
+      className={clsx(
+        'btn',
+        props.className,
+        mapVariantToColor[props.color ?? 'primary']
+      )}>
+      {props.content}
+    </button>
   )
 }
 

@@ -4,6 +4,7 @@ import Button from '../Button/Button.tsx'
 import PersonIcon from '@mui/icons-material/Person'
 import FolderOpenIcon from '@mui/icons-material/FolderOpen'
 import AutoAwesomeIcon from '@mui/icons-material/AutoAwesome'
+import { useNavigate } from 'react-router-dom'
 
 type PriceCardProps = {
   title: string
@@ -23,6 +24,7 @@ function PriceCard(props: PriceCardProps) {
     className,
     isDestaque
   } = props
+  const navigate = useNavigate()
 
   const icons = [
     <PersonIcon fontSize='small' className='text-purple-500' />,
@@ -53,8 +55,8 @@ function PriceCard(props: PriceCardProps) {
       </div>
 
       <div className='card-actions justify-center'>
-        {isDestaque && <Button content='Saiba mais' href='/signup' className='border-none w-[80%] rounded-2xl' />}
-        {!isDestaque && <Button content='Saiba mais' href='/signup' color='white' className='border-2 border-purple-400 text-purple-400 w-[80%] rounded-2xl hover:border-purple-400 hover:bg-purple-100' />}
+        {isDestaque && <Button content='Saiba mais' onClick={() => navigate('/signup')} className='border-none w-[80%] rounded-2xl' />}
+        {!isDestaque && <Button content='Saiba mais' onClick={() => navigate('/signup')} color='white' className='border-2 border-purple-400 text-purple-400 w-[80%] rounded-2xl hover:border-purple-400 hover:bg-purple-100' />}
       </div>
     </div>
   )
