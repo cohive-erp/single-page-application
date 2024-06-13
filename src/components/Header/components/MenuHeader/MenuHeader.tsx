@@ -15,7 +15,7 @@ function MenuHeader(props: MenuHeaderProps) {
 
   const countProducts = totalProducts > 99 ? '99+' : totalProducts
   return (
-    <ul className='menu bg-base-200 lg:menu-horizontal rounded-box'>
+    <ul className='menu bg-slate-200 lg:menu-horizontal rounded-box text-black'>
       <li>
         <a onClick={() => navigate('/dashboard')}>
           <TimelineIcon fontSize='small' />

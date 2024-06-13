@@ -9,7 +9,7 @@ function Search(props: SearchProps) {
   const { className } = props
 
   return (
-    <label className='input input-bordered flex items-center'>
+    <label className='input input-bordered flex items-center bg-white'>
       <input
         placeholder='Buscar produtos'
         className={clsx(

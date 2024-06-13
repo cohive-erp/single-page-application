@@ -1,5 +1,4 @@
-import React from 'react'
-import { TableResult } from '../../lib/types/TableResult.ts'
+import React, { useState } from 'react'
 import Button from '../Button/Button.tsx'
 import Paper from '@mui/material/Paper'
 import Table from '@mui/material/Table'
@@ -12,15 +11,20 @@ import ProductTableHead from './components/ProductTableHead/ProductTableHead.tsx
 import Paragraph from '../Paragraph/Paragraph.tsx'
 import Search from '../Search/Search.tsx'
 import LoadingButton from '../Button/LoadingButton.tsx'
+import { ProdutoResult } from '../../lib/types/ProdutoResult.ts'
 
 type ProductTableProps = {
-  tableResult: TableResult
+  tableResult: ProdutoResult[]
+  handleOpenNovoProduto: () => void
+  handleOpenRelatorio: () => void
+  handleOpenEditarProduto: () => void
+  handleOpenDeletar: () => void
 }
 
 function ProductTable(props: ProductTableProps) {
-  const { tableResult } = props
-  const [page, setPage] = React.useState(0)
-  const [rowsPerPage, setRowsPerPage] = React.useState(10)
+  const { tableResult, handleOpenNovoProduto, handleOpenRelatorio, handleOpenEditarProduto, handleOpenDeletar } = props
+  const [page, setPage] = useState(0)
+  const [rowsPerPage, setRowsPerPage] = useState(10)
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage)
@@ -32,15 +36,15 @@ function ProductTable(props: ProductTableProps) {
   }
 
   return (
-    <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-      <div className='flex justify-between w-full px-4 mb-6'>
+    <Paper sx={{ width: '80%', overflow: 'hidden', borderRadius: '0.75%' }}>
+      <div className='flex justify-between w-full p-4 mb-6'>
         <Paragraph size='h1'>📦 Produtos</Paragraph>
         <div className='flex flex-row gap-4 w-[70%] justify-end'>
-          <Button content='Novo produto' className='w-[35%]' />
+          <Button content='Novo produto' className='w-[35%]' onClick={handleOpenNovoProduto} />
 
-          {tableResult.rows.length > 0 ? (
+          {tableResult.length > 0 ? (
             <>
-              <Button content='Obter dados' className='w-[35%]' />
+              <Button content='Obter dados' className='w-[35%]' onClick={handleOpenRelatorio} />
               <Search className='w-[30%]' />
             </>
           ) : (
@@ -57,13 +61,13 @@ function ProductTable(props: ProductTableProps) {
         <Table stickyHeader>
           <ProductTableHead />
           <TableBody>
-            {tableResult.rows.length > 0 && tableResult.rows.map((row) => (
+            {tableResult.length > 0 && tableResult.map((row) => (
               <TableRow
-                key={row.id}
+                key={row.idProduto}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
               >
                 <TableCell component='th' scope='row' align='right'>
-                  <Paragraph size='h4'>{row.id}.</Paragraph>
+                  <Paragraph size='h4'>{row.idProduto}.</Paragraph>
                 </TableCell>
                 <TableCell component='th' scope='row'>
                   {row.nome.length < 50 ? row.nome : row.nome.slice(0, 49) + '...'}
@@ -72,23 +76,25 @@ function ProductTable(props: ProductTableProps) {
                   {row.categoria}
                 </TableCell>
                 <TableCell align='right'>
-                  {row.valor.toFixed(2).replace('.', ',')}
+                  {row.precoVenda.toFixed(2).replace('.', ',')}
                 </TableCell>
                 <TableCell align='right'>
                   {row.quantidade}
                 </TableCell>
                 <TableCell sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }} align='right'>
-                  <Button content='Apagar' color='secondary' />
-                  <Button content='Editar' />
+                  <Button content='Apagar' color='secondary' onClick={handleOpenDeletar} />
+                  <Button content='Editar' onClick={handleOpenEditarProduto} />
                 </TableCell>
               </TableRow>
             ))}
+
+            {tableResult.length < 5 && <div className='flex justify-center items-center my-32'></div>}
           </TableBody>
         </Table>
         <TablePagination
           rowsPerPageOptions={[5, 10, 25]}
           component='div'
-          count={tableResult.rows.length}
+          count={tableResult.length}
           rowsPerPage={rowsPerPage}
           page={page}
           onPageChange={handleChangePage}

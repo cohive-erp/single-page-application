@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import Button from '../../Button/Button'
-import Paragraph from '../../Paragraph/Paragraph'
-import DatePicker from '../../DatePicker/DatePicker'
+import Button from '../../Button/Button.tsx'
+import Paragraph from '../../Paragraph/Paragraph.tsx'
+import DatePicker from '../../DatePicker/DatePicker.tsx'
 
-function StepFour() {
+function Relatorio() {
 
     return (
         <div className='card w-[60%] h-[80%] bg-base-100 shadow-xl font-poppins'>
@@ -18,4 +18,4 @@ function StepFour() {
     )
 }
 
-export default StepFour
+export default Relatorio

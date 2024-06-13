@@ -1,43 +1,45 @@
 import React from 'react'
 import BarChart from '@tremor/react/dist/components/chart-elements/BarChart/BarChart'
 import Paragraph from '../Paragraph/Paragraph.tsx'
-import NoData from '../NoData/NoData.tsx'
-import BarChartSkeleton from './BarChartSkeleton.tsx'
 import CustomTooltip from '../CustomTooltip/CustomTooltip.tsx'
 
 type BarChartProps = {
-  data: {
+  data?: {
     month: string
     Vendido: number
     'Em estoque': number
   }[]
-  section: string
+  section?: string
 }
 
 function BarChartComponent(props: BarChartProps) {
-  const { data, section } = props
-
-
+  const { data } = props
 
   return (
     <div className='card w-full h-[400px] bg-slate-100 shadow-xl'>
       <div className='card-body'>
-        <Paragraph size='h2'>Relatório de {section}</Paragraph>
-        {data && data.length > 1 &&
-          <BarChart
-            showAnimation
-            showLegend={false}
-            customTooltip={CustomTooltip}
-            barCategoryGap={2}
-            data={data}
-            index='month'
-            categories={['Vendido', 'Em estoque']}
-            colors={['purple', 'violet-300']}
-            yAxisWidth={45}
-            className='mt-6 hidden h-60 sm:block'
-          />}
-        {/* {data.error ?? data.length < 2 && <NoData />} */}
-        {/* {data.loading && <BarChartSkeleton section={section} />} */}
+        <div className='flex justify-between'>
+          <Paragraph size='h2'>📦 Relatório de Produtos</Paragraph>
+          <div className='flex gap-4'>
+            <div className='flex gap-1'>
+              <Paragraph size='content' className='color-purple'>Qtd. Vendido</Paragraph>
+            </div>
+            <div className='flex gap-1'>
+              <Paragraph size='content'>Qtd. Em estoque</Paragraph>
+            </div>
+          </div>
+        </div>
+        <BarChart
+          showAnimation
+          showLegend={false}
+          customTooltip={CustomTooltip}
+          barCategoryGap={2}
+          data={data ?? []}
+          index='month'
+          categories={['Vendido', 'Em estoque']}
+          colors={['purple', 'violet-300']}
+          yAxisWidth={45}
+          className='mt-6 hidden h-60 sm:block' />
       </div>
     </div>
   )
