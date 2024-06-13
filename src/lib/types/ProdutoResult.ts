@@ -1,8 +1,10 @@
 export type ProdutoResult = {
-  id: number
+  idProduto: number
   nome: string
-  desc?: string
+  descricao?: string
+  fabricante: string
   categoria: string
-  valor: number
+  precoVenda: number
+  precoCompra: number
   quantidade: number
 }
