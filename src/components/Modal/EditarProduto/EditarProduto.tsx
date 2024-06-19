@@ -9,7 +9,7 @@ import { UpdateProductCommand } from '../../../lib/types/update-product-command.
 
 type EditarProdutoProps = {
     id: number
-    handleOpenEditarProduto: () => void
+    handleOpenEditarProduto: (id: number) => Promise<void>
 }
 
 function EditarProduto(props: EditarProdutoProps) {
@@ -26,6 +26,7 @@ function EditarProduto(props: EditarProdutoProps) {
     const token = sessionStorage.getItem('sessionToken')
 
     const handleGetProductByID = async () => {
+        console.log(id)
         await getProductById(id, token)
             .then((response) => {
                 setNome(response.nome)
@@ -61,10 +62,10 @@ function EditarProduto(props: EditarProdutoProps) {
             quantidade
         }
 
-        await updateProduct(data, token)
+        await updateProduct(id, data, token)
             .then(() => {
                 sessionStorage.setItem('valores', JSON.stringify(data))
-                handleOpenEditarProduto()
+                handleOpenEditarProduto(id)
                 toast.success('Produto alterado com sucesso!')
             })
             .catch((e) => {
@@ -137,7 +138,7 @@ function EditarProduto(props: EditarProdutoProps) {
 
                 <div className='card-actions justify-between mt-5'>
                     <Button content='Salvar' className='w-[40%] shadow-sm' onClick={handleUpdate} />
-                    <Button content='Cancelar' className='w-[40%] shadow-sm' color='secondary' onClick={handleOpenEditarProduto} />
+                    <Button content='Cancelar' className='w-[40%] shadow-sm' color='secondary' onClick={() => handleOpenEditarProduto(id)} />
                 </div>
             </div>
         </div>

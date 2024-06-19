@@ -22,7 +22,13 @@ function Login() {
     const data: AuthUserCommand = { email, senha }
 
     await authenticateUser(data)
-      .then(() => {
+      .then((res) => {
+        sessionStorage.setItem('userData', JSON.stringify({
+          email: res.email,
+          nome: res.nome,
+          id: res.userId
+        }))
+        sessionStorage.setItem('sessionToken', res.token)
         navigate('/dashboard')
         toast.success('Login realizado com sucesso!')
       })

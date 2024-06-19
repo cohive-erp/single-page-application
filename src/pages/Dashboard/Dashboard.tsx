@@ -1,12 +1,21 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Footer from '../../components/Footer/Footer.tsx'
-import ProductTable from '../../components/Table/ProductTable.tsx'
 import { Helmet } from 'react-helmet'
 import Header from '../../components/Header/Header.tsx'
 import Paragraph from '../../components/Paragraph/Paragraph.tsx'
 import Kpi from '../../components/Kpi/Kpi.tsx'
 import BarChartComponent from '../../components/BarChart/BarChart.tsx'
 import Button from '../../components/Button/Button.tsx'
+import LineChartComponent from '../../components/LineChart/LineChart.tsx'
+import getMostSellerProduct from '../../lib/services/Get/get-most-seller-product.ts'
+import { ProdutoResult } from '../../lib/types/ProdutoResult.ts'
+import { CreateLojaCommand } from '../../lib/types/create-loja-command.ts'
+import createLoja from '../../lib/services/Create/create-loja.ts'
+import CadastrarLoja from '../../components/CadastrarLoja/CadastrarLoja.tsx'
+import getFaturaDiaria from '../../lib/services/Get/get-fatura.ts'
+import getFaturaMensal from '../../lib/services/Get/get-fatura-mensal.ts'
+import getVendas from '../../lib/services/Get/get-sete-dias.ts'
+import Ocorrencias from '../../components/Alerta/Alerta.tsx'
 
 const data = [
   {
@@ -72,48 +81,116 @@ const data = [
 ]
 
 function EstoquePage() {
-  const [loja, setLoja] = useState()
+  const [mostSeller, setMostSeller] = useState<ProdutoResult>()
+  const [openCriar, setOpenCriar] = useState(false)
+  const [faturaDiaria, setFaturaDiaria] = useState(0)
+  const [faturaMensal, setFaturaMensal] = useState(0)
+  const [vendas7dias, setVendas7dias] = useState([])
+
+  const nome = JSON.parse(sessionStorage.getItem('userData') ?? '{}').nome
+  const token = sessionStorage.getItem('sessionToken')
+
+  const nomeProduto = mostSeller?.produto?.nome ?? 'N/A'
+
+  const getMostSeller = async () => {
+    if (!mostSeller) {
+      await getMostSellerProduct(token)
+        .then((response) => {
+          setMostSeller(response)
+        })
+        .catch((error) => {
+          console.log(error)
+        })
+    }
+  }
+
+  useEffect(() => {
+    getMostSeller()
+  }, [mostSeller])
+
+  const handleOpenCriar = () => {
+    setOpenCriar(!openCriar)
+  }
+
+  const getFaturaDoDia = async () => {
+    if (!faturaDiaria) {
+      await getFaturaDiaria(token)
+        .then((res) => {
+          setFaturaDiaria(res)
+        })
+    }
+  }
+
+  useEffect(() => {
+    getFaturaDoDia()
+  }, [faturaDiaria])
+
+  const getFaturaDoMes = async () => {
+    if (!faturaMensal) {
+      await getFaturaMensal(token)
+        .then((res) => {
+          setFaturaMensal(res)
+        })
+    }
+  }
+
+  useEffect(() => {
+    getFaturaDoMes()
+  }, [faturaMensal])
+
+  const getVendas7dias = async () => {
+    if (!vendas7dias.length) {
+      await getVendas(token)
+        .then((res) => {
+          console.log(res)
+          setVendas7dias(res)
+        })
+        .catch((e) => {
+          console.error('Erro ao tentar obter vendas', e)
+        })
+    }
+  }
+
+  useEffect(() => {
+    getVendas7dias()
+  }, [vendas7dias])
+
+
+  const validateFatura = faturaMensal > faturaDiaria ? 'text-red-500' : 'text-purple-500'
 
   return (
-    <div className='bg-slate-200 flex flex-col justify-center items-center'>
-      <Helmet>
-        <title>Painel de Raquel | Sistema ERP: Gestão rápida, prática e útil | Cohive</title>
-      </Helmet>
-      <Header name='Raquel' totalProducts={2} />
-      <div className='w-[90%] h-[80%] flex flex-col gap-4 justify-center items-center pt-[2%] pb-[2%]'>
+    <>
+      <div className='bg-slate-200 flex flex-col justify-center items-center'>
+        <Helmet>
+          <title>Painel de {nome} | Sistema ERP: Gestão rápida, prática e útil | Cohive</title>
+        </Helmet>
+        <Header name={nome} />
+        <div className='w-[90%] h-[80%] flex flex-col gap-4 justify-center items-center py-[2%]'>
           <div className='bg-slate-100 w-full rounded-xl shadow-md h-14 flex justify-center items-center p-4'>
             <Paragraph size='h2'>Visão Geral da Loja</Paragraph>
           </div>
 
-          <div className='flex flex-row gap-4 justify-between w-full'>
-            <div className='flex flex-col gap-4 w-[70%] h-[10%]'>
+          <div className='flex flex-row gap-4 justify-center w-full h-full'>
+            <div className='flex flex-col gap-4 w-full'>
               <div className='w-full flex flex-row gap-4 justify-between items-center'>
-                <Kpi value='teste' title='teste' />
-                <Kpi value='teste' title='teste' />
-                <Kpi value='R$5000' title='teste' />
+                <Kpi value={nomeProduto} title='Produto mais vendido' />
+                <Kpi value={`R$ ${faturaMensal && faturaMensal[0].toFixed(2).replace('.', ',')}` ?? 'R$ 0,00'} title='Fatura mensal' className={validateFatura} />
+                <Kpi value={`R$ ${faturaDiaria && faturaDiaria.toFixed(2).replace('.', ',')}` ?? 'R% 0,00'} title='Fatura diária' className={validateFatura} />
               </div>
-              <div className='flex h-[60%]'>
-              <BarChartComponent data={data} />
-              </div>
+
+              <LineChartComponent lastSevenDaysSales={vendas7dias} />
             </div>
 
-            <div className='card w-full h-full bg-slate-100 shadow-xl'>
-              <div className='card-body h-full'>
-                <Paragraph size='h2'>🚨 Ocorrências</Paragraph>
-
-                <div className='card-actions justify-center'>
-                    <Button content='Gerar relatório' className='w-full shadow-sm' onClick={() => {}} />
-                </div>
-              </div>
-            </div>
+            <Ocorrencias />
           </div>
 
           <div className='w-full'>
             <BarChartComponent data={data} />
           </div>
+        </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+    </>
   )
 }
 

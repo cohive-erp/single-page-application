@@ -31,11 +31,8 @@ function Cadastro() {
             senha
         }
 
-        const token = sessionStorage.getItem('sessionToken')
-
-        await createUser(data, token)
+        await createUser(data)
             .then(() => {
-                sessionStorage.setItem('valores', JSON.stringify(data))
                 navigate('/login')
                 toast.success('Cadastro realizado com sucesso!')
             })

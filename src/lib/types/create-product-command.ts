@@ -6,4 +6,7 @@ export type CreateProductCommand = {
   precoVenda?: number
   precoCompra?: number
   quantidade?: number
+  loja: {
+    idLoja: number
+  }
 }

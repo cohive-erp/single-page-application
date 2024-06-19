@@ -30,11 +30,14 @@ function NovoProduto(props: NovoProdutoProps) {
     const handleCreateProduct = async () => {
         const data: CreateProductCommand = {
             nome,
-            categoria,
             fabricante,
-            descricao,
+            categoria,
             precoVenda,
             precoCompra,
+            descricao,
+            loja: {
+                idLoja: 2
+            },
             quantidade
         }
 

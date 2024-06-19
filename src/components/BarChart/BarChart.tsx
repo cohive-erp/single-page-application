@@ -9,23 +9,22 @@ type BarChartProps = {
     Vendido: number
     'Em estoque': number
   }[]
-  section?: string
 }
 
 function BarChartComponent(props: BarChartProps) {
   const { data } = props
 
   return (
-    <div className='card w-full h-[400px] bg-slate-100 shadow-xl'>
+    <div className='card w-full h-full bg-slate-100 shadow-xl'>
       <div className='card-body'>
         <div className='flex justify-between'>
           <Paragraph size='h2'>📦 Relatório de Produtos</Paragraph>
           <div className='flex gap-4'>
             <div className='flex gap-1'>
-              <Paragraph size='content' className='color-purple'>Qtd. Vendido</Paragraph>
+              <Paragraph size='content' className='border-b-4 border-purple-500'>Qtd. Vendido</Paragraph>
             </div>
             <div className='flex gap-1'>
-              <Paragraph size='content'>Qtd. Em estoque</Paragraph>
+              <Paragraph size='content' className=' border-b-4 border-violet-300'>Qtd. Em estoque</Paragraph>
             </div>
           </div>
         </div>
