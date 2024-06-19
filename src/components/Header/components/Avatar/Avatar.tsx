@@ -35,7 +35,7 @@ function Avatar(props: AvatarProps) {
                     <span className='text-2xl'>{initial.toUpperCase()}</span>
                 </div>
             </div>
-            <ul tabIndex={0} className='dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52'>
+            <ul tabIndex={0} className='dropdown-content z-[1] menu p-2 shadow rounded-box w-52 bg-slate-100 text-black'>
                 <li>
                     <button onClick={handleOpenModal}>
                         <PersonIcon fontSize='small' />

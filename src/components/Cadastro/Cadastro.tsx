@@ -6,11 +6,11 @@ import CallIcon from '@mui/icons-material/Call'
 import PersonIcon from '@mui/icons-material/Person'
 import Paragraph from '../Paragraph/Paragraph.tsx'
 import Button from '../Button/Button.tsx'
-import { CreateUserCommand } from '../../lib/types/CreateUserCommand.ts'
-import createUser from '../../lib/services/createUser.ts'
+import { CreateUserCommand } from '../../lib/types/create-user-command.ts'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import MaskedInput from 'react-text-mask'
+import createUser from '../../lib/services/Create/create-user.ts'
 
 function Cadastro() {
     const navigate = useNavigate()
@@ -33,7 +33,6 @@ function Cadastro() {
 
         await createUser(data)
             .then(() => {
-                sessionStorage.setItem('valores', JSON.stringify(data))
                 navigate('/login')
                 toast.success('Cadastro realizado com sucesso!')
             })
@@ -55,7 +54,7 @@ function Cadastro() {
                 <label className='input bg-white border-black input-bordered text-[#9A9696] flex items-center gap-2'>
                     <CallIcon fontSize='small' />
                     <MaskedInput
-                        mask={['(', /[1-9]/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+                        mask={[/[1-9]/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                         placeholder='Telefone'
                         guide={false}
                         value={telefone}
