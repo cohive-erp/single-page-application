@@ -36,7 +36,7 @@ function NovoProduto(props: NovoProdutoProps) {
             precoCompra,
             descricao,
             loja: {
-                idLoja: 2
+                idLoja: 1
             },
             quantidade
         }
