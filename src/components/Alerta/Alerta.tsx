@@ -36,34 +36,25 @@ function Ocorrencias() {
   }
 
   return (
-    <div className='card w-full bg-slate-100 shadow-xl'>
-      <div className='card-body gap-2 justify-between'>
-        <div className='flex flex-col gap-4'>
-          <Paragraph size='h2'>🚨 Ocorrências</Paragraph>
-          <div className='flex flex-col gap-2'>
-            {produtos?.map((produto, index) => (
-              <>
-                {produto.quantidade > 0 && produto.quantidade < 5 && (
-                  <div key={index} className='flex flex-col w-full'>
-                    <span className='w-full bg-yellow-200 p-4 rounded-md shadow-sm text-black border'>⚠️ O produto <b>{produto.produto.nome}</b> está precisando de reposição.</span>
-                  </div>
-                )}
+    <div className='card w-full bg-slate-100 shadow-xl flex justify-center items-center'>
+      <div className='flex flex-col w-[80%] h-[80%] justify-between'>
+        <Paragraph size='h2'>🚨 Ocorrências</Paragraph>
+        <div className='h-[70%] overflow-auto flex flex-col gap-4'>
+          {produtos?.map((produto, index) => (
+            <>
+              {produto.quantidade > 0 && produto.quantidade < 5 && (
+                <span key={index} className='w-full bg-yellow-200 p-4 rounded-md shadow-sm text-black border'>⚠️ O produto <b>{produto.produto.nome}</b> está precisando de reposição.</span>
+              )}
 
-                {(produto.quantidade < 1 || produto.produto.deleted) && (
-                  <div key={index} className='flex flex-col w-full'>
-                    <span className='w-full bg-red-200 p-4 rounded-md shadow-sm text-black border'>🚨 O produto <b>{produto.produto.nome}</b> está em falta!</span>
-                  </div>
-                )}
-              </>
-            ))}
-          </div>
+              {(produto.quantidade < 1 || produto.produto.deleted) && (
+                <span key={index} className='w-full bg-red-200 p-4 rounded-md shadow-sm text-black border'>🚨 O produto <b>{produto.produto.nome}</b> está em falta!</span>
+              )}
+            </>
+          ))}
         </div>
-
-        <div className='card-actions justify-center'>
-          <Button content='Gerar relatório' className='w-full shadow-sm' onClick={handleOpenRelatorio} />
-        </div>
+        <Button content='Gerar relatório' className='w-full shadow-sm' onClick={() => { }} />
       </div>
-    </div >
+    </div>
   )
 }
 
