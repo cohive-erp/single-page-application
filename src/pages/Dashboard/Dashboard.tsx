@@ -1,89 +1,21 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import Footer from '../../components/Footer/Footer.tsx'
 import { Helmet } from 'react-helmet'
 import Header from '../../components/Header/Header.tsx'
 import Paragraph from '../../components/Paragraph/Paragraph.tsx'
 import Kpi from '../../components/Kpi/Kpi.tsx'
-import BarChartComponent from '../../components/BarChart/BarChart.tsx'
-import Button from '../../components/Button/Button.tsx'
 import LineChartComponent from '../../components/LineChart/LineChart.tsx'
 import getMostSellerProduct from '../../lib/services/Get/get-most-seller-product.ts'
 import { ProdutoResult } from '../../lib/types/ProdutoResult.ts'
-import { CreateLojaCommand } from '../../lib/types/create-loja-command.ts'
-import createLoja from '../../lib/services/Create/create-loja.ts'
-import CadastrarLoja from '../../components/CadastrarLoja/CadastrarLoja.tsx'
 import getFaturaDiaria from '../../lib/services/Get/get-fatura.ts'
 import getFaturaMensal from '../../lib/services/Get/get-fatura-mensal.ts'
 import getVendas from '../../lib/services/Get/get-sete-dias.ts'
 import Ocorrencias from '../../components/Alerta/Alerta.tsx'
 import ActionHistory from '../../components/ActionHistory/ActionHistory.tsx'
 
-const data = [
-  {
-    month: 'Jan',
-    Vendido: 6856,
-    'Em estoque': 2856,
-  },
-  {
-    month: 'Feb',
-    Vendido: 7032,
-    'Em estoque': 3032,
-  },
-  {
-    month: 'Mar',
-    Vendido: 8023,
-    'Em estoque': 7033,
-  },
-  {
-    month: 'Apr',
-    Vendido: 5512,
-    'Em estoque': 4512,
-  },
-  {
-    month: 'May',
-    Vendido: 5600,
-    'Em estoque': 8060,
-  },
-  {
-    month: 'Jun',
-    Vendido: 1000,
-    'Em estoque': 8539,
-  },
-  {
-    month: 'Jul',
-    Vendido: 8590,
-    'Em estoque': 5340,
-  },
-  {
-    month: 'Aug',
-    Vendido: 8010,
-    'Em estoque': 7010,
-  },
-  {
-    month: 'Sep',
-    Vendido: 7590,
-    'Em estoque': 6950,
-  },
-  {
-    month: 'Oct',
-    Vendido: 7180,
-    'Em estoque': 3345,
-  },
-  {
-    month: 'Nov',
-    Vendido: 1210,
-    'Em estoque': 1330,
-  },
-  {
-    month: 'Dec',
-    Vendido: 6013,
-    'Em estoque': 5321,
-  },
-]
-
 function EstoquePage() {
   const [mostSeller, setMostSeller] = useState<ProdutoResult>()
-  const [openCriar, setOpenCriar] = useState(false)
   const [faturaDiaria, setFaturaDiaria] = useState(0)
   const [faturaMensal, setFaturaMensal] = useState(0)
   const [vendas7dias, setVendas7dias] = useState([])
@@ -108,10 +40,6 @@ function EstoquePage() {
   useEffect(() => {
     getMostSeller()
   }, [mostSeller])
-
-  const handleOpenCriar = () => {
-    setOpenCriar(!openCriar)
-  }
 
   const getFaturaDoDia = async () => {
     if (!faturaDiaria) {

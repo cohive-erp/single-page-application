@@ -1,9 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import Paragraph from '../../components/Paragraph/Paragraph.tsx'
 import Button from '../../components/Button/Button.tsx'
 import { ProdutoResult } from '../../lib/types/ProdutoResult.ts'
-import getEstoque from '../../lib/services/Get/get-estoque.ts'
 import getRelatorio from '../../lib/services/Get/get-relatorio.ts'
+import getEstoque from '../../lib/services/Get/get-estoque.ts'
 
 function Ocorrencias() {
   const [produtos, setProdutos] = useState<ProdutoResult[]>()
@@ -37,7 +38,7 @@ function Ocorrencias() {
 
   return (
     <div className='card w-full bg-slate-100 shadow-xl flex justify-center items-center'>
-      <div className='flex flex-col w-[80%] h-[80%] justify-between'>
+      <div className='flex flex-col w-[80%] h-[70%] justify-between'>
         <Paragraph size='h2'>🚨 Ocorrências</Paragraph>
         <div className='h-[70%] overflow-auto flex flex-col gap-4'>
           {produtos?.map((produto, index) => (
@@ -52,7 +53,7 @@ function Ocorrencias() {
             </>
           ))}
         </div>
-        <Button content='Gerar relatório' className='w-full shadow-sm' onClick={() => { }} />
+        <Button content='Gerar relatório' className='w-full shadow-sm' onClick={handleOpenRelatorio} />
       </div>
     </div>
   )
