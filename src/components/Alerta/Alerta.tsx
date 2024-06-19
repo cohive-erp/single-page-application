@@ -25,25 +25,26 @@ function Ocorrencias() {
 
   return (
     <div className='card w-full bg-slate-100 shadow-xl'>
-      <div className='card-body gap-2'>
-        <Paragraph size='h2'>🚨 Ocorrências</Paragraph>
+      <div className='card-body gap-2 justify-between'>
+        <div className='flex flex-col gap-4'>
+          <Paragraph size='h2'>🚨 Ocorrências</Paragraph>
+          <div className='flex flex-col gap-2'>
+            {produtos?.map((produto, index) => (
+              <>
+                {produto.quantidade > 0 && produto.quantidade < 5 && (
+                  <div key={index} className='flex flex-col w-full'>
+                    <span className='w-full bg-yellow-200 p-4 rounded-md shadow-sm text-black border'>⚠️ O produto <b>{produto.produto.nome}</b> está precisando de reposição.</span>
+                  </div>
+                )}
 
-        <div className=''>
-          {produtos?.map((produto, index) => (
-            <>
-              {produto.quantidade < 5 && (
-                <div key={index} className='flex flex-col w-full'>
-                  <span className='w-full bg-yellow-200 p-4 rounded-md shadow-sm text-black border'> O produto {produto.produto.nome} está precisando de reposição</span>
-                </div>
-              )}
-
-              {produto.quantidade < 1 && (
-                <div key={index} className='flex flex-col w-full'>
-                  <span className='w-full bg-red-200 p-4 rounded-md shadow-sm text-black border'> O produto {produto.produto.nome} está em falta!</span>
-                </div>
-              )}
-            </>
-          ))}
+                {(produto.quantidade < 1 || produto.produto.deleted) && (
+                  <div key={index} className='flex flex-col w-full'>
+                    <span className='w-full bg-red-200 p-4 rounded-md shadow-sm text-black border'>🚨 O produto <b>{produto.produto.nome}</b> está em falta!</span>
+                  </div>
+                )}
+              </>
+            ))}
+          </div>
         </div>
 
         <div className='card-actions justify-center'>
