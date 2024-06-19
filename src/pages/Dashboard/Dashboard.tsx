@@ -16,6 +16,7 @@ import getFaturaDiaria from '../../lib/services/Get/get-fatura.ts'
 import getFaturaMensal from '../../lib/services/Get/get-fatura-mensal.ts'
 import getVendas from '../../lib/services/Get/get-sete-dias.ts'
 import Ocorrencias from '../../components/Alerta/Alerta.tsx'
+import ActionHistory from '../../components/ActionHistory/ActionHistory.tsx'
 
 const data = [
   {
@@ -180,13 +181,19 @@ function EstoquePage() {
 
               <LineChartComponent lastSevenDaysSales={vendas7dias} />
             </div>
+          </div>
+
+          <div className='flex flex-row gap-4 justify-center w-full h-full'>
+            <div className='flex flex-col gap-4 w-full'>
+              <ActionHistory />
+            </div>
 
             <Ocorrencias />
           </div>
 
-          <div className='w-full'>
+          {/* <div className='w-full'>
             <BarChartComponent data={data} />
-          </div>
+          </div> */}
         </div>
         <Footer />
       </div>

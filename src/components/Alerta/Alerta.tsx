@@ -3,6 +3,7 @@ import Paragraph from '../../components/Paragraph/Paragraph.tsx'
 import Button from '../../components/Button/Button.tsx'
 import { ProdutoResult } from '../../lib/types/ProdutoResult.ts'
 import getEstoque from '../../lib/services/Get/get-estoque.ts'
+import getRelatorio from '../../lib/services/Get/get-relatorio.ts'
 
 function Ocorrencias() {
   const [produtos, setProdutos] = useState<ProdutoResult[]>()
@@ -22,6 +23,17 @@ function Ocorrencias() {
   useEffect(() => {
     getAllProducts()
   }, [produtos])
+
+  const handleOpenRelatorio = async () => {
+    await getRelatorio(token)
+      .then((response) => {
+        const csvData = response.split('\n').map(line => line.replace(/;\s*/g, ',')).join('\n')
+        downloadCSV(csvData, 'relatorio.csv')
+      })
+      .catch((error) => {
+        console.error('Erro ao tentar obter relatório', error)
+      })
+  }
 
   return (
     <div className='card w-full bg-slate-100 shadow-xl'>
@@ -48,7 +60,7 @@ function Ocorrencias() {
         </div>
 
         <div className='card-actions justify-center'>
-          <Button content='Gerar relatório' className='w-full shadow-sm' onClick={() => { }} />
+          <Button content='Gerar relatório' className='w-full shadow-sm' onClick={handleOpenRelatorio} />
         </div>
       </div>
     </div >
@@ -56,3 +68,13 @@ function Ocorrencias() {
 }
 
 export default Ocorrencias
+
+const downloadCSV = (csvData: string, filename: string) => {
+  const blob = new Blob([csvData], { type: 'text/csv' })
+  const url = window.URL.createObjectURL(blob)
+  const a = document.createElement('a')
+  a.setAttribute('href', url)
+  a.setAttribute('download', filename)
+  a.click()
+  window.URL.revokeObjectURL(url)
+}
