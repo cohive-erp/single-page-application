@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const api = axios.create({
-  baseURL: process.env.BACKEND_URL ?? 'http://localhost:8080',
+  baseURL: 'https://backend-cohive.azurewebsites.net/',
 })
 
 export default api
