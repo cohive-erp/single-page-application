@@ -1,5 +1,5 @@
 import api from '../../../client/client.ts'
-import { CreateProductCommand } from '../../../types/create-product-command.ts'
+import { CreateProductCommand } from '../../../types'
 
 export async function createProduct(
   data: CreateProductCommand,

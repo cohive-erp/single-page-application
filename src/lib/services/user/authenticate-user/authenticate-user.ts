@@ -1,5 +1,5 @@
 import api from '../../../client/client.ts'
-import { AuthUserCommand } from '../../../types/AuthUserCommand.ts'
+import { AuthUserCommand } from '../../../types'
 
 export async function authenticateUser(
   data: AuthUserCommand

@@ -1,5 +1,5 @@
 import api from '../../../client/client.ts'
-import { ProdutoResult } from '../../../types/ProdutoResult.ts'
+import { ProdutoResult } from '../../../types'
 
 export async function getStock(
   token?: string

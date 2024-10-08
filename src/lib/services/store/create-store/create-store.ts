@@ -1,5 +1,5 @@
-import api from '../../client/client.ts'
-import { CreateLojaCommand } from '../../types/create-loja-command.ts'
+import api from '../../../client/client'
+import { CreateLojaCommand } from '../../../types'
 
 export async function createStore(
   data: CreateLojaCommand,

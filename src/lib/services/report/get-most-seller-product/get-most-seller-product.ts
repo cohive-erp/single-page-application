@@ -1,5 +1,5 @@
 import api from '../../../client/client.ts'
-import { ProdutoResult } from '../../../types/ProdutoResult.ts'
+import { ProdutoResult } from '../../../types/product-result.ts'
 
 export async function getMostSellerProduct(
   token?: string

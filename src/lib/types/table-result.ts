@@ -1,4 +1,4 @@
-import { ProdutoResult } from './ProdutoResult'
+import { ProdutoResult } from './product-result'
 
 export type TableResult = {
   rows: ProdutoResult[]

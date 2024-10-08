@@ -1,5 +1,5 @@
-import api from '../../client/client.ts'
-import { ProdutoResult } from '../../types/ProdutoResult.ts'
+import api from '../../../client/client'
+import { ProdutoResult } from '../../../types'
 
 export async function getProductById(
   id: number,

@@ -1,5 +1,5 @@
 import api from '../../../client/client.ts'
-import { UpdateProductCommand } from '../../../types/update-product-command.ts'
+import { UpdateProductCommand } from '../../../types'
 
 export async function updateProductById(
   id: number,

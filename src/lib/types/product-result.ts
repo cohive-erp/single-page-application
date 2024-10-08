@@ -1,10 +1,4 @@
 export type ProdutoResult = {
-  nome(nome: any): unknown
-  precoVenda(precoVenda: any): unknown
-  precoCompra(precoCompra: any): unknown
-  categoria(categoria: any): unknown
-  descricao: string
-  fabricante(fabricante: any): unknown
   dataEntradaInicial: string
   produto: {
     idProduto: number

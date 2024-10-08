@@ -1,5 +1,5 @@
-import api from '../../client/client.ts'
-import { CreateUserCommand } from '../../types/create-user-command.ts'
+import api from '../../../client/client'
+import { CreateUserCommand } from '../../../types'
 
 export async function createUser(
   data: CreateUserCommand
