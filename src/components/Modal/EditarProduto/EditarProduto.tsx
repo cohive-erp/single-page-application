@@ -3,10 +3,9 @@ import React, { useEffect, useState } from 'react'
 import Button from '../../Button/Button.tsx'
 import Paragraph from '../../Paragraph/Paragraph.tsx'
 import clsx from 'clsx'
-import getProductById from '../../../lib/services/Get/get-product-by-id.ts'
-import updateProduct from '../../../lib/services/Update/update-product-by-id.ts'
 import { toast } from 'react-toastify'
 import { UpdateProductCommand } from '../../../lib/types/update-product-command.ts'
+import { getProductById, updateProductById } from '../../../lib/services/index.ts'
 
 type EditarProdutoProps = {
     id: number
@@ -24,7 +23,7 @@ function EditarProduto(props: EditarProdutoProps) {
     const [descricao, setDescricao] = useState<string>('')
     const [fabricante, setFabricante] = useState<string>('')
 
-    const token = sessionStorage.getItem('sessionToken')
+    const token = sessionStorage.getItem('sessionToken') ?? ''
 
     const handleGetProductByID = async () => {
         console.log(id)
@@ -63,7 +62,7 @@ function EditarProduto(props: EditarProdutoProps) {
             quantidade
         }
 
-        await updateProduct(id, data, token)
+        await updateProductById(id, data, token)
             .then(() => {
                 sessionStorage.setItem('valores', JSON.stringify(data))
                 handleOpenEditarProduto(id)

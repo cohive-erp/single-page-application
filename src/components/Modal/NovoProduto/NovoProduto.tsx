@@ -4,7 +4,7 @@ import Paragraph from '../../Paragraph/Paragraph.tsx'
 import clsx from 'clsx'
 import { CreateProductCommand } from '../../../lib/types/create-product-command.ts'
 import { toast } from 'react-toastify'
-import createProduct from '../../../lib/services/Create/create-product.ts'
+import { createProduct } from '../../../lib/services/index.ts'
 
 type NovoProdutoProps = {
     handleOpenNovoProduto: () => void
@@ -21,7 +21,7 @@ function NovoProduto(props: NovoProdutoProps) {
     const [descricao, setDescricao] = useState<string>('')
     const [fabricante, setFabricante] = useState<string>('')
 
-    const token = sessionStorage.getItem('sessionToken')
+    const token = sessionStorage.getItem('sessionToken') ?? ''
 
     const handleInputChange = (event, setStateFunction) => {
         setStateFunction(event.target.value)
