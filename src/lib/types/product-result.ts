@@ -1,3 +1,5 @@
+import { StoreResult } from './store-result'
+
 export type ProdutoResult = {
   dataEntradaInicial: string
   produto: {
@@ -9,25 +11,8 @@ export type ProdutoResult = {
     precoVenda: number
     precoCompra: number
     quantidade: number
-    loja: {
-      idLoja: number
-      rua: string
-      bairro: string
-      cidade: string
-      estado: string
-      numero: number
-      usuario: {
-        id: number
-        nome: string
-        numeroCelular: string
-        email: string
-        senha: string
-        deleted: boolean
-      }
-      cep: string
-      cnpj: string
-    },
+    loja: StoreResult,
     deleted: boolean
   }
-  quantidade: number
+  quantidadeVendida: number
 }
