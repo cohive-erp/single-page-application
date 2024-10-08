@@ -7,7 +7,7 @@ import Button from '../Button/Button.tsx'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { requestPasswordReset, validatePasswordToken, resetPassword } from '../../lib/services/RequestPassword/index.ts'
+import { requestPasswordReset, validateToken } from '../../lib/services/index.ts'
 
 function RedefinirSenha() {
     const navigate = useNavigate()
@@ -34,7 +34,7 @@ function RedefinirSenha() {
     }
 
     const handleValidateToken = async () => {
-        await validatePasswordToken(token)
+        await validateToken(token)
             .then(() => {
                 toast.success('Cadastro realizado com sucesso!')
                 setStep(3)
@@ -45,24 +45,24 @@ function RedefinirSenha() {
             })
     }
 
-    const handleChangePassword = async () => {
+    // const handleChangePassword = async () => {
 
-        if (senha !== confirmarSenha) {
-            toast.error('Senhas não coincidem!')
-            return
-        }
+    //     if (senha !== confirmarSenha) {
+    //         toast.error('Senhas não coincidem!')
+    //         return
+    //     }
 
-        await resetPassword(token, senha)
-            .then(() => {
-                toast.success('Senha alterada com sucesso!')
-                sessionStorage.clear()
-                navigate('/login')
-            })
-            .catch((e) => {
-                toast.error('Não foi possível atualizar sua senha.')
-                console.error('Erro ao alterar senha', e)
-            })
-    }
+    //     await resetPassword(token, senha)
+    //         .then(() => {
+    //             toast.success('Senha alterada com sucesso!')
+    //             sessionStorage.clear()
+    //             navigate('/login')
+    //         })
+    //         .catch((e) => {
+    //             toast.error('Não foi possível atualizar sua senha.')
+    //             console.error('Erro ao alterar senha', e)
+    //         })
+    // }
 
     return (
         <div className='flex flex-col font-poppins justify-between gap-8'>
@@ -110,10 +110,10 @@ function RedefinirSenha() {
                             <input className='grow text-black' placeholder='Confirmar nova senha' onChange={(e) => handleInputChange(e, setConfirmarSenha)} />
                         </label>
                     </div>
-                    <div className='flex flex-col gap-2'>
+                    {/* <div className='flex flex-col gap-2'>
                         <Button content='Alterar senha' className='w-full' onClick={handleChangePassword} />
                         <Button content='Voltar' className='w-full' color='secondary' onClick={() => setStep(2)} />
-                    </div>
+                    </div> */}
                 </>
             }
         </div>

@@ -11,12 +11,11 @@ import ProductTableHead from './components/ProductTableHead/ProductTableHead.tsx
 import Paragraph from '../Paragraph/Paragraph.tsx'
 import Search from '../Search/Search.tsx'
 import LoadingButton from '../Button/LoadingButton.tsx'
-import { ProdutoResult } from '../../lib/types/ProdutoResult.ts'
-import EditarProduto from '../Modal/EditarProduto/EditarProduto.tsx'
-import deleteProduct from '../../lib/services/Delete/delete-product.ts'
 import { toast } from 'react-toastify'
-import getRelatorio from '../../lib/services/Get/get-relatorio.ts'
 import clsx from 'clsx'
+import { ProdutoResult } from '../../lib/types/product-result.ts'
+import { deleteProductById, getReport } from '../../lib/services/index.ts'
+import EditarProduto from '../Modal/EditarProduto/EditarProduto.tsx'
 
 type ProductTableProps = {
   tableResult: ProdutoResult[]
@@ -32,14 +31,14 @@ function ProductTable(props: ProductTableProps) {
   const [openEditarProduto, setOpenEditarProduto] = useState(false)
   const [idProduto, setIdProduto] = useState<number>(0)
 
-  const token = sessionStorage.getItem('sessionToken')
+  const token = sessionStorage.getItem('sessionToken') ?? ''
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage)
   }
 
   const handleDelete = async (id: number) => {
-    await deleteProduct(id, token)
+    await deleteProductById(id, token)
       .then((res) => {
         console.log(res)
         toast.success('Produto deletado com sucesso!')
@@ -51,7 +50,7 @@ function ProductTable(props: ProductTableProps) {
   }
 
   const handleOpenRelatorio = async () => {
-    await getRelatorio(token)
+    await getReport(token)
       .then((response) => {
         const csvData = response.split('\n').map(line => line.replace(/;\s*/g, ',')).join('\n')
         downloadCSV(csvData, 'relatorio.csv')
@@ -120,7 +119,7 @@ function ProductTable(props: ProductTableProps) {
                       {row.produto.precoVenda.toFixed(2).replace('.', ',')}
                     </TableCell>
                     <TableCell align='right'>
-                      {row.produto.deleted ? 0 : row.quantidade}
+                      {row.produto.deleted ? 0 : row.quantidadeVendida}
                     </TableCell>
                     <TableCell sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }} align='right'>
                       <Button content='Apagar' className={clsx(

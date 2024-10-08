@@ -3,8 +3,8 @@ import Button from '../Button/Button.tsx'
 import Paragraph from '../Paragraph/Paragraph.tsx'
 import clsx from 'clsx'
 import { CreateLojaCommand } from '../../lib/types/create-loja-command.ts'
-import createLoja from '../../lib/services/Create/create-loja.ts'
 import { toast } from 'react-toastify'
+import { createStore } from '../../lib/services/index.ts'
 
 type CadastrarLojaProps = {
     handleOpenCriar: () => void
@@ -18,7 +18,7 @@ function CadastrarLoja(props: CadastrarLojaProps) {
     const [cnpj, setCnpj] = useState<string>('')
 
     const id = JSON.parse(sessionStorage.getItem('userData') ?? '{}').id
-    const token = sessionStorage.getItem('sessionToken')
+    const token = sessionStorage.getItem('sessionToken') ?? ''
 
     const handleInputChange = (event, setStateFunction) => {
         setStateFunction(event.target.value)
@@ -34,7 +34,7 @@ function CadastrarLoja(props: CadastrarLojaProps) {
             }
         }
 
-        await createLoja(data, token)
+        await createStore(data, token)
             .then(() => {
                 toast.success('Loja cadastrada com sucesso!')
                 sessionStorage.setItem('lojaData', JSON.stringify(data))

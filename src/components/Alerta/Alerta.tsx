@@ -2,17 +2,16 @@
 import React, { useEffect, useState } from 'react'
 import Paragraph from '../../components/Paragraph/Paragraph.tsx'
 import Button from '../../components/Button/Button.tsx'
-import { ProdutoResult } from '../../lib/types/ProdutoResult.ts'
-import getRelatorio from '../../lib/services/Get/get-relatorio.ts'
-import getEstoque from '../../lib/services/Get/get-estoque.ts'
+import { ProdutoResult } from '../../lib/types/product-result.ts'
+import { getReport, getStock } from '../../lib/services/index.ts'
 
 function Ocorrencias() {
   const [produtos, setProdutos] = useState<ProdutoResult[]>()
 
-  const token = sessionStorage.getItem('sessionToken')
+  const token = sessionStorage.getItem('sessionToken') ?? ''
 
   const getAllProducts = async () => {
-    await getEstoque(token)
+    await getStock(token)
       .then((response) => {
         setProdutos(response)
       })
@@ -26,7 +25,7 @@ function Ocorrencias() {
   }, [produtos])
 
   const handleOpenRelatorio = async () => {
-    await getRelatorio(token)
+    await getReport(token)
       .then((response) => {
         const csvData = response.split('\n').map(line => line.replace(/;\s*/g, ',')).join('\n')
         downloadCSV(csvData, 'relatorio.csv')
@@ -43,11 +42,11 @@ function Ocorrencias() {
         <div className='h-[70%] overflow-auto flex flex-col gap-4'>
           {produtos?.map((produto, index) => (
             <>
-              {produto.quantidade > 0 && produto.quantidade < 5 && (
+              {produto.quantidadeVendida > 0 && produto.quantidadeVendida < 5 && (
                 <span key={index} className='w-full bg-yellow-200 p-4 rounded-md shadow-sm text-black border'>⚠️ O produto <b>{produto.produto.nome}</b> está precisando de reposição.</span>
               )}
 
-              {(produto.quantidade < 1 || produto.produto.deleted) && (
+              {(produto.quantidadeVendida < 1 || produto.produto.deleted) && (
                 <span key={index} className='w-full bg-red-200 p-4 rounded-md shadow-sm text-black border'>🚨 O produto <b>{produto.produto.nome}</b> está em falta!</span>
               )}
             </>
