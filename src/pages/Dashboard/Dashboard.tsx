@@ -6,13 +6,10 @@ import Header from '../../components/Header/Header.tsx'
 import Paragraph from '../../components/Paragraph/Paragraph.tsx'
 import Kpi from '../../components/Kpi/Kpi.tsx'
 import LineChartComponent from '../../components/LineChart/LineChart.tsx'
-import getMostSellerProduct from '../../lib/services/Get/get-most-seller-product.ts'
-import { ProdutoResult } from '../../lib/types/ProdutoResult.ts'
-import getFaturaDiaria from '../../lib/services/Get/get-fatura.ts'
-import getFaturaMensal from '../../lib/services/Get/get-fatura-mensal.ts'
-import getVendas from '../../lib/services/Get/get-sete-dias.ts'
 import Ocorrencias from '../../components/Alerta/Alerta.tsx'
 import ActionHistory from '../../components/ActionHistory/ActionHistory.tsx'
+import { ProdutoResult } from '../../lib/types'
+import { getDailyInvoice, getMonthlyInvoice, getMostSellerProduct, getSalesLastWeek } from '../../lib/services/index.ts'
 
 function EstoquePage() {
   const [mostSeller, setMostSeller] = useState<ProdutoResult>()
@@ -21,7 +18,7 @@ function EstoquePage() {
   const [vendas7dias, setVendas7dias] = useState([])
 
   const nome = JSON.parse(sessionStorage.getItem('userData') ?? '{}').nome
-  const token = sessionStorage.getItem('sessionToken')
+  const token = sessionStorage.getItem('sessionToken') ?? ''
 
   const nomeProduto = mostSeller?.produto?.nome ?? 'N/A'
 
@@ -43,7 +40,7 @@ function EstoquePage() {
 
   const getFaturaDoDia = async () => {
     if (!faturaDiaria) {
-      await getFaturaDiaria(token)
+      await getDailyInvoice(token)
         .then((res) => {
           setFaturaDiaria(res)
         })
@@ -56,7 +53,7 @@ function EstoquePage() {
 
   const getFaturaDoMes = async () => {
     if (!faturaMensal) {
-      await getFaturaMensal(token)
+      await getMonthlyInvoice(token)
         .then((res) => {
           setFaturaMensal(res)
         })
@@ -69,7 +66,7 @@ function EstoquePage() {
 
   const getVendas7dias = async () => {
     if (!vendas7dias.length) {
-      await getVendas(token)
+      await getSalesLastWeek(token)
         .then((res) => {
           console.log(res)
           setVendas7dias(res)
@@ -103,8 +100,8 @@ function EstoquePage() {
             <div className='flex flex-col gap-4 w-full'>
               <div className='w-full flex flex-row gap-4 justify-between items-center'>
                 <Kpi value={nomeProduto} title='Produto mais vendido' />
-                <Kpi value={`R$ ${faturaMensal && faturaMensal[0].toFixed(2).replace('.', ',')}` ?? 'R$ 0,00'} title='Fatura mensal' className={validateFatura} />
-                <Kpi value={`R$ ${faturaDiaria && faturaDiaria.toFixed(2).replace('.', ',')}` ?? 'R% 0,00'} title='Fatura diária' className={validateFatura} />
+                <Kpi value={`R$ ${faturaMensal && faturaMensal[0].toFixed(2).replace('.', ',')}`} title='Fatura mensal' className={validateFatura} />
+                <Kpi value={`R$ ${faturaDiaria && faturaDiaria.toFixed(2).replace('.', ',')}`} title='Fatura diária' className={validateFatura} />
               </div>
 
               <LineChartComponent lastSevenDaysSales={vendas7dias} />

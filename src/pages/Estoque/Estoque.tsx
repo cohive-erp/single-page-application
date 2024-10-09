@@ -5,22 +5,22 @@ import ProductTable from '../../components/Table/ProductTable.tsx'
 import { Helmet } from 'react-helmet'
 import Header from '../../components/Header/Header.tsx'
 import NovoProduto from '../../components/Modal/NovoProduto/NovoProduto.tsx'
-import getEstoque from '../../lib/services/Get/get-estoque.ts'
-import { ProdutoResult } from '../../lib/types/ProdutoResult.ts'
+import { ProdutoResult } from '../../lib/types'
+import { getStock } from '../../lib/services/index.ts'
 
 function EstoquePage() {
   const [openNovoProduto, setOpenNovoProduto] = useState(false)
   const [produtos, setProdutos] = useState<ProdutoResult[]>([])
 
   const nome = JSON.parse(sessionStorage.getItem('userData') ?? '{}').nome
-  const token = sessionStorage.getItem('sessionToken')
+  const token = sessionStorage.getItem('sessionToken') ?? ''
 
   const handleOpenNovoProduto = () => {
     setOpenNovoProduto(!openNovoProduto)
   }
 
   const getAllProducts = async () => {
-    await getEstoque(token)
+    await getStock(token)
       .then((response) => {
         setProdutos(response)
       })
