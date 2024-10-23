@@ -5,7 +5,7 @@ import InventoryIcon from '@mui/icons-material/Inventory'
 import TimelineIcon from '@mui/icons-material/Timeline'
 import { useNavigate } from 'react-router-dom'
 import { ProdutoResult } from '../../../../lib/types'
-import { getStock } from '../../../../lib/services/index'
+import { getStock } from '../../../../lib/services'
 
 function MenuHeader() {
   const navigate = useNavigate()

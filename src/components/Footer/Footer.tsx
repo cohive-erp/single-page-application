@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import Button from '../Button/Button.tsx'
+import Button from '../Button/Button'
 import { useNavigate } from 'react-router-dom'
 
 function Footer() {

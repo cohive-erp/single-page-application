@@ -1,7 +1,7 @@
 import React from 'react'
-import NavBar from '../../components/NavBar/NavBar.tsx'
-import Footer from '../../components/Footer/Footer.tsx'
-import RedefinirSenha from '../../components/RedefinirSenha/RedefinirSenha.tsx'
+import NavBar from '../../components/NavBar/NavBar'
+import Footer from '../../components/Footer/Footer'
+import RedefinirSenha from '../../components/RedefinirSenha/RedefinirSenha'
 import { Helmet } from 'react-helmet'
 
 function MuralAlertaPage() {

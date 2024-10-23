@@ -1,11 +1,11 @@
 import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import Home from '../pages/Home/Home.tsx'
-import LoginPage from '../pages/Login/Login.tsx'
-import SignUp from '../pages/Cadastro/Cadastro.tsx'
-import RedefinirSenhaPage from '../pages/RedefinirSenha/RedefinirSenha.tsx'
-import EstoquePage from '../pages/Estoque/Estoque.tsx'
-import Dashboard from '../pages/Dashboard/Dashboard.tsx'
+import Home from '../pages/Home/Home'
+import LoginPage from '../pages/Login/Login'
+import SignUp from '../pages/Cadastro/Cadastro'
+import RedefinirSenhaPage from '../pages/RedefinirSenha/RedefinirSenha'
+import EstoquePage from '../pages/Estoque/Estoque'
+import Dashboard from '../pages/Dashboard/Dashboard'
 
 function Rotas() {
   return (

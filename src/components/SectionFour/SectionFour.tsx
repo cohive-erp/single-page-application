@@ -1,6 +1,6 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import Paragraph from '../Paragraph/Paragraph.tsx'
+import Paragraph from '../Paragraph/Paragraph'
 import { useNavigate } from 'react-router-dom'
 
 function SectionFour() {

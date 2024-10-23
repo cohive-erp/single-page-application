@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import Button from '../../Button/Button.tsx'
-import Paragraph from '../../Paragraph/Paragraph.tsx'
+import Button from '../../Button/Button'
+import Paragraph from '../../Paragraph/Paragraph'
 import clsx from 'clsx'
-import { CreateProductCommand } from '../../../lib/types/create-product-command.ts'
+import { CreateProductCommand } from '../../../lib/types/create-product-command'
 import { toast } from 'react-toastify'
-import { createProduct } from '../../../lib/services/index.ts'
+import { createProduct } from '../../../lib/services/index'
 
 type NovoProdutoProps = {
     handleOpenNovoProduto: () => void

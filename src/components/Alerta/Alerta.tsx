@@ -1,9 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
-import Paragraph from '../../components/Paragraph/Paragraph.tsx'
-import Button from '../../components/Button/Button.tsx'
-import { ProdutoResult } from '../../lib/types/product-result.ts'
-import { getReport, getStock } from '../../lib/services/index.ts'
+import Paragraph from '../../components/Paragraph/Paragraph'
+import Button from '../../components/Button/Button'
+import { ProdutoResult } from '../../lib/types/product-result'
+import { getReport, getStock } from '../../lib/services/index'
 
 function Ocorrencias() {
   const [produtos, setProdutos] = useState<ProdutoResult[]>()

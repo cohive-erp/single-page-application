@@ -2,12 +2,12 @@
 import React, { useState } from 'react'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
 import KeyIcon from '@mui/icons-material/Key'
-import Paragraph from '../Paragraph/Paragraph.tsx'
-import Button from '../Button/Button.tsx'
+import Paragraph from '../Paragraph/Paragraph'
+import Button from '../Button/Button'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { authenticateUser } from '../../lib/services/index.ts'
-import { AuthUserCommand } from '../../lib/types/auth-user-command.ts'
+import { authenticateUser } from '../../lib/services/index'
+import { AuthUserCommand } from '../../lib/types/auth-user-command'
 
 function Login() {
   const navigate = useNavigate()

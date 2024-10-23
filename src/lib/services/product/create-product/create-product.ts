@@ -1,4 +1,4 @@
-import api from '../../../client/client.ts'
+import api from '../../../client/client'
 import { CreateProductCommand } from '../../../types'
 
 export async function createProduct(

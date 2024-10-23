@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import Button from '../Button/Button.tsx'
-import Paragraph from '../Paragraph/Paragraph.tsx'
+import Button from '../Button/Button'
+import Paragraph from '../Paragraph/Paragraph'
 import clsx from 'clsx'
 
 function ActionHistory() {

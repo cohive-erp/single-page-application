@@ -71,23 +71,23 @@ const data = [
 
 export const Example = () => {
   return (
-    <LineChartComponent data={data} />
+    <LineChartComponent lastSevenDaysSales={data} />
   )
 }
 
 export const NoData = () => {
   return (
-    <LineChartComponent data={[]} />
+    <LineChartComponent lastSevenDaysSales={[]} />
   )
 }
 
 export const MultiCharts = () => {
   return (
     <div className='flex flex-col gap-4'>
-      <LineChartComponent data={data} />
+      <LineChartComponent lastSevenDaysSales={data} />
       <div className='flex flex-row gap-4'>
-        <LineChartComponent data={data} />
-        <LineChartComponent data={data} />
+        <LineChartComponent lastSevenDaysSales={data} />
+        <LineChartComponent lastSevenDaysSales={data} />
       </div>
     </div>
   )

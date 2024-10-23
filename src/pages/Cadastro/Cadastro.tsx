@@ -1,7 +1,7 @@
 import React from 'react'
-import NavBar from '../../components/NavBar/NavBar.tsx'
-import Footer from '../../components/Footer/Footer.tsx'
-import Cadastro from '../../components/Cadastro/Cadastro.tsx'
+import NavBar from '../../components/NavBar/NavBar'
+import Footer from '../../components/Footer/Footer'
+import Cadastro from '../../components/Cadastro/Cadastro'
 import { Helmet } from 'react-helmet'
 
 function SignUp() {

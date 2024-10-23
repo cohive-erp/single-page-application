@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import Button from '../../Button/Button.tsx'
-import Paragraph from '../../Paragraph/Paragraph.tsx'
-import DatePicker from '../../DatePicker/DatePicker.tsx'
+import Button from '../../Button/Button'
+import Paragraph from '../../Paragraph/Paragraph'
+import DatePicker from '../../DatePicker/DatePicker'
 
 function Relatorio() {
 

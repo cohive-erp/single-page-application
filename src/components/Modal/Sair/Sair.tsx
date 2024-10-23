@@ -4,7 +4,7 @@ import Button from '../../Button/Button'
 function SairModal() {
     return (
         <>
-            <button className='btn' onClick={() => document.getElementById('my_modal_1')?.showModal()}>open modal</button>
+            <button className='btn' onClick={() => (document.getElementById('my_modal_1') as any)?.showModal()}>open modal</button>
             <dialog id='my_modal_1' className='modal'>
                 <div className='modal-box w-[30%] h-[25%] flex flex-col justify-center items-center'>
                     <h3 className='font-bold text-lg'>Deseja mesmo sair?</h3>

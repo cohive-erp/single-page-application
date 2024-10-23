@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
-import Footer from '../../components/Footer/Footer.tsx'
-import ProductTable from '../../components/Table/ProductTable.tsx'
+import Footer from '../../components/Footer/Footer'
+import ProductTable from '../../components/Table/ProductTable'
 import { Helmet } from 'react-helmet'
-import Header from '../../components/Header/Header.tsx'
-import NovoProduto from '../../components/Modal/NovoProduto/NovoProduto.tsx'
+import Header from '../../components/Header/Header'
+import NovoProduto from '../../components/Modal/NovoProduto/NovoProduto'
 import { ProdutoResult } from '../../lib/types'
-import { getStock } from '../../lib/services/index.ts'
+import { getStock } from '../../lib/services/index'
 
 function EstoquePage() {
   const [openNovoProduto, setOpenNovoProduto] = useState(false)

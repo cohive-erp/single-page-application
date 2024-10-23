@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import Button from '../Button/Button.tsx'
-import Paragraph from '../Paragraph/Paragraph.tsx'
+import Button from '../Button/Button'
+import Paragraph from '../Paragraph/Paragraph'
 import clsx from 'clsx'
-import { CreateLojaCommand } from '../../lib/types/create-loja-command.ts'
+import { CreateLojaCommand } from '../../lib/types/create-loja-command'
 import { toast } from 'react-toastify'
-import { createStore } from '../../lib/services/index.ts'
+import { createStore } from '../../lib/services/index'
 
 type CadastrarLojaProps = {
     handleOpenCriar: () => void

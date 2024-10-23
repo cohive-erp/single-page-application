@@ -1,1 +1,1 @@
-export * from './NovoProduto'
+export * from './CadastrarLoja'

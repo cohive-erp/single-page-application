@@ -1,6 +1,6 @@
 import './global.css'
 import React from 'react'
-import Rotas from './routes.tsx'
+import Rotas from './routes'
 import { Helmet } from 'react-helmet'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'

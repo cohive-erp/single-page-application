@@ -1,15 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
-import Footer from '../../components/Footer/Footer.tsx'
+import Footer from '../../components/Footer/Footer'
 import { Helmet } from 'react-helmet'
-import Header from '../../components/Header/Header.tsx'
-import Paragraph from '../../components/Paragraph/Paragraph.tsx'
-import Kpi from '../../components/Kpi/Kpi.tsx'
-import LineChartComponent from '../../components/LineChart/LineChart.tsx'
-import Ocorrencias from '../../components/Alerta/Alerta.tsx'
-import ActionHistory from '../../components/ActionHistory/ActionHistory.tsx'
+import Header from '../../components/Header/Header'
+import Paragraph from '../../components/Paragraph/Paragraph'
+import Kpi from '../../components/Kpi/Kpi'
+import LineChartComponent from '../../components/LineChart/LineChart'
+import Ocorrencias from '../../components/Alerta/Alerta'
+import ActionHistory from '../../components/ActionHistory/ActionHistory'
 import { ProdutoResult } from '../../lib/types'
-import { getDailyInvoice, getMonthlyInvoice, getMostSellerProduct, getSalesLastWeek } from '../../lib/services/index.ts'
+import { getDailyInvoice, getMonthlyInvoice, getMostSellerProduct, getSalesLastWeek } from '../../lib/services/index'
 
 function EstoquePage() {
   const [mostSeller, setMostSeller] = useState<ProdutoResult>()

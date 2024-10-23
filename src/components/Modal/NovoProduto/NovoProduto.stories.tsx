@@ -8,6 +8,6 @@ export default {
 
 export const Example = () => {
   return (
-    <NovoProduto />
+    <NovoProduto handleOpenNovoProduto={() => {}} />
   )
 }

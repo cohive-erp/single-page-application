@@ -3,7 +3,6 @@ import PersonIcon from '@mui/icons-material/Person'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import EditarProduto from '../../../Modal/EditarProduto/EditarProduto.tsx'
 
 type AvatarProps = {
     name: string
@@ -51,7 +50,7 @@ function Avatar(props: AvatarProps) {
             </ul>
         </div>
 
-        {open && <EditarProduto />}
+        {/* {open && <EditarProduto />} */}
         </>
     )
 }

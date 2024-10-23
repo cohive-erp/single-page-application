@@ -1,5 +1,5 @@
 import React from 'react'
-import Paragraph from '../Paragraph/Paragraph.tsx'
+import Paragraph from '../Paragraph/Paragraph'
 
 type KpiProps = {
   value: string | number

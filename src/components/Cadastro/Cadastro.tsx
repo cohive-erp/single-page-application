@@ -4,13 +4,13 @@ import KeyIcon from '@mui/icons-material/Key'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
 import CallIcon from '@mui/icons-material/Call'
 import PersonIcon from '@mui/icons-material/Person'
-import Paragraph from '../Paragraph/Paragraph.tsx'
-import Button from '../Button/Button.tsx'
+import Paragraph from '../Paragraph/Paragraph'
+import Button from '../Button/Button'
 import { CreateUserCommand } from '../../lib/types'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import MaskedInput from 'react-text-mask'
-import { createUser } from '../../lib/services/index.ts'
+import { createUser } from '../../lib/services/index'
 
 function Cadastro() {
     const navigate = useNavigate()

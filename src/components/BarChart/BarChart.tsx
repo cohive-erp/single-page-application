@@ -1,7 +1,7 @@
 import React from 'react'
 import BarChart from '@tremor/react/dist/components/chart-elements/BarChart/BarChart'
-import Paragraph from '../Paragraph/Paragraph.tsx'
-import CustomTooltip from '../CustomTooltip/CustomTooltip.tsx'
+import Paragraph from '../Paragraph/Paragraph'
+import CustomTooltip from '../CustomTooltip/CustomTooltip'
 
 type BarChartProps = {
   data?: {

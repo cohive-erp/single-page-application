@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import LogoCohive from '../LogoCohive/LogoCohive.tsx'
-import MenuHeader from './components/MenuHeader/MenuHeader.tsx'
-import Avatar from './components/Avatar/Avatar.tsx'
+import LogoCohive from '../LogoCohive/LogoCohive'
+import MenuHeader from './components/MenuHeader/MenuHeader'
+import Avatar from './components/Avatar/Avatar'
 import { useNavigate } from 'react-router-dom'
 
 type HeaderProps = {

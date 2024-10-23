@@ -74,7 +74,7 @@ export const Example = () => {
   return (
     <BarChartComponent
       data={data}
-      section='Produtos' />
+      />
   )
 }
 
@@ -82,7 +82,7 @@ export const NoData = () => {
   return (
     <BarChartComponent
       data={[]}
-      section='Produtos' />
+      />
   )
 }
 
@@ -95,10 +95,10 @@ export const Loading = () => {
 export const MultiCharts = () => {
   return (
       <div className='flex flex-col gap-4'>
-        <BarChartComponent data={data} section='Produtos' />
+        <BarChartComponent data={data} />
         <div className='flex flex-row gap-4'>
-          <BarChartComponent data={data} section='Produtos' />
-          <BarChartComponent data={data} section='Produtos' />
+          <BarChartComponent data={data} />
+          <BarChartComponent data={data} />
         </div>
       </div>
   )

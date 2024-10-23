@@ -2,12 +2,12 @@ import React from 'react'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
 import LockIcon from '@mui/icons-material/Lock'
 import KeyIcon from '@mui/icons-material/Key'
-import Paragraph from '../Paragraph/Paragraph.tsx'
-import Button from '../Button/Button.tsx'
+import Paragraph from '../Paragraph/Paragraph'
+import Button from '../Button/Button'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { requestPasswordReset, validateToken } from '../../lib/services/index.ts'
+import { requestPasswordReset, validateToken } from '../../lib/services/index'
 
 function RedefinirSenha() {
     const navigate = useNavigate()

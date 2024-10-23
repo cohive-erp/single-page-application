@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import LogoCohive from '../LogoCohive/LogoCohive.tsx'
-import NavBarAnchor from '../NavBarAnchor/NavBarAnchor.tsx'
-import Button from '../Button/Button.tsx'
+import LogoCohive from '../LogoCohive/LogoCohive'
+import NavBarAnchor from '../NavBarAnchor/NavBarAnchor'
+import Button from '../Button/Button'
 import { useNavigate } from 'react-router-dom'
 
 function NavBar() {

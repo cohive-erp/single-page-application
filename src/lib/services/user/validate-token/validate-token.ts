@@ -1,4 +1,4 @@
-import api from '../../../client/client.ts'
+import api from '../../../client/client'
 
 export async function validateToken(
   token?: string

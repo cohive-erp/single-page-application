@@ -1,8 +1,10 @@
 import React from 'react'
-import Paragraph from '../Paragraph/Paragraph.tsx'
-import Button from '../Button/Button.tsx'
+import Paragraph from '../Paragraph/Paragraph'
+import Button from '../Button/Button'
+import { useNavigate } from 'react-router-dom'
 
 function NewHeroSection() {
+  const navigate = useNavigate()
   return (
     <div id='Inicio' className='hero h-[80vh]'>
       <div className='hero-content text-neutral-content'>
@@ -12,7 +14,7 @@ function NewHeroSection() {
           </Paragraph>
 
           <div className='flex flex-col gap-2'>
-            <Button content='Conhecer planos 📝' className='w-[40%] ' href='/#planos' />
+            <Button content='Conhecer planos 📝' className='w-[40%] ' onClick={() => navigate('/#planos')} />
             <Paragraph size='h6-thin' className='text-start'>Download para Android e iOS.</Paragraph>
           </div>
         </div>

@@ -9,10 +9,8 @@ export default {
 export const Example = () => {
   return (
     <div className='inline-flex gap-4'>
-      <NavBarAnchor section='inicio' />
-      <NavBarAnchor section='sobre' />
-      <NavBarAnchor section='funcionalidade' />
-      <NavBarAnchor section='contato' />
+      <NavBarAnchor section='Inicio' />
+      <NavBarAnchor section='Sobre' />
     </div>
   )
 }

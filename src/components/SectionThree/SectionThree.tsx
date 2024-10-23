@@ -1,6 +1,6 @@
 import React from 'react'
-import Paragraph from '../Paragraph/Paragraph.tsx'
-import Button from '../Button/Button.tsx'
+import Paragraph from '../Paragraph/Paragraph'
+import Button from '../Button/Button'
 import { useNavigate } from 'react-router-dom'
 
 function SectionThree() {

@@ -1,7 +1,7 @@
 import React from 'react'
 import LineChart from '@tremor/react/dist/components/chart-elements/LineChart/LineChart'
-import Paragraph from '../Paragraph/Paragraph.tsx'
-import CustomTooltip from '../CustomTooltip/CustomTooltip.tsx'
+import Paragraph from '../Paragraph/Paragraph'
+import CustomTooltip from '../CustomTooltip/CustomTooltip'
 import { format } from 'date-fns'
 import { ptBR } from 'date-fns/locale'
 

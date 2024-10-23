@@ -1,7 +1,7 @@
 import React from 'react'
-import NavBar from '../../components/NavBar/NavBar.tsx'
-import Footer from '../../components/Footer/Footer.tsx'
-import Login from '../../components/Login/Login.tsx'
+import NavBar from '../../components/NavBar/NavBar'
+import Footer from '../../components/Footer/Footer'
+import Login from '../../components/Login/Login'
 import { Helmet } from 'react-helmet'
 
 function LoginPage() {

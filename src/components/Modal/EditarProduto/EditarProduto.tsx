@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
-import Button from '../../Button/Button.tsx'
-import Paragraph from '../../Paragraph/Paragraph.tsx'
+import Button from '../../Button/Button'
+import Paragraph from '../../Paragraph/Paragraph'
 import clsx from 'clsx'
 import { toast } from 'react-toastify'
-import { UpdateProductCommand } from '../../../lib/types/update-product-command.ts'
-import { getProductById, updateProductById } from '../../../lib/services/index.ts'
+import { UpdateProductCommand } from '../../../lib/types/update-product-command'
+import { getProductById, updateProductById } from '../../../lib/services'
 
 type EditarProdutoProps = {
     id: number
