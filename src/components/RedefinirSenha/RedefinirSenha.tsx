@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React from 'react'
 import MailOutlineIcon from '@mui/icons-material/MailOutline'
 import LockIcon from '@mui/icons-material/Lock'
@@ -7,7 +8,7 @@ import Button from '../Button/Button'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { requestPasswordReset, validateToken } from '../../lib/services/index'
+import { requestPasswordReset, validateToken } from '../../lib/services'
 
 function RedefinirSenha() {
     const navigate = useNavigate()
@@ -45,24 +46,24 @@ function RedefinirSenha() {
             })
     }
 
-    // const handleChangePassword = async () => {
+    const handleChangePassword = async () => {
 
-    //     if (senha !== confirmarSenha) {
-    //         toast.error('Senhas não coincidem!')
-    //         return
-    //     }
+        if (senha !== confirmarSenha) {
+            toast.error('Senhas não coincidem!')
+            return
+        }
 
-    //     await resetPassword(token, senha)
-    //         .then(() => {
-    //             toast.success('Senha alterada com sucesso!')
-    //             sessionStorage.clear()
-    //             navigate('/login')
-    //         })
-    //         .catch((e) => {
-    //             toast.error('Não foi possível atualizar sua senha.')
-    //             console.error('Erro ao alterar senha', e)
-    //         })
-    // }
+        await requestPasswordReset(token)
+            .then(() => {
+                toast.success('Senha alterada com sucesso!')
+                sessionStorage.clear()
+                navigate('/login')
+            })
+            .catch((e) => {
+                toast.error('Não foi possível atualizar sua senha.')
+                console.error('Erro ao alterar senha', e)
+            })
+    }
 
     return (
         <div className='flex flex-col font-poppins justify-between gap-8'>
