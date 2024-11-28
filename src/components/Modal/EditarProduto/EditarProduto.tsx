@@ -5,7 +5,6 @@ import Paragraph from '../../Paragraph/Paragraph'
 import clsx from 'clsx'
 import { toast } from 'react-toastify'
 import { UpdateProductCommand } from '../../../lib/types/update-product-command'
-import { getProductById, updateProductById } from '../../../lib/services'
 
 type EditarProdutoProps = {
     id: number
@@ -27,19 +26,19 @@ function EditarProduto(props: EditarProdutoProps) {
 
     const handleGetProductByID = async () => {
         console.log(id)
-        await getProductById(id, token)
-            .then((response) => {
-                setNome(response.produto.nome)
-                setQuantidade(response.quantidadeVendida)
-                setPrecoVenda(response.produto.precoVenda)
-                setPrecoCompra(response.produto.precoCompra)
-                setCategoria(response.produto.categoria)
-                setDescricao(response.produto.descricao ?? '')
-                setFabricante(response.produto.fabricante)
-            })
-            .catch((e) => {
-                console.error('Erro ao tentar se cadastrar', e)
-            })
+        // await getProductById(id, token)
+        //     .then((response) => {
+        //         setNome(response.produto.nome)
+        //         setQuantidade(response.quantidadeVendida)
+        //         setPrecoVenda(response.produto.precoVenda)
+        //         setPrecoCompra(response.produto.precoCompra)
+        //         setCategoria(response.produto.categoria)
+        //         setDescricao(response.produto.descricao ?? '')
+        //         setFabricante(response.produto.fabricante)
+        //     })
+        //     .catch((e) => {
+        //         console.error('Erro ao tentar se cadastrar', e)
+        //     })
     }
 
     useEffect(() => {
@@ -62,16 +61,16 @@ function EditarProduto(props: EditarProdutoProps) {
             quantidade
         }
 
-        await updateProductById(id, data, token)
-            .then(() => {
-                sessionStorage.setItem('valores', JSON.stringify(data))
-                handleOpenEditarProduto(id)
-                toast.success('Produto alterado com sucesso!')
-            })
-            .catch((e) => {
-                toast.error('Erro ao tentar alterar produto!')
-                console.error('Erro ao tentar alterar produto', e)
-            })
+        // await updateProductById(id, data, token)
+        //     .then(() => {
+        //         sessionStorage.setItem('valores', JSON.stringify(data))
+        //         handleOpenEditarProduto(id)
+        //         toast.success('Produto alterado com sucesso!')
+        //     })
+        //     .catch((e) => {
+        //         toast.error('Erro ao tentar alterar produto!')
+        //         console.error('Erro ao tentar alterar produto', e)
+        //     })
     }
 
     const className = 'border-purple-500 shadow-md text-[#9A9696] flex items-center bg-white'

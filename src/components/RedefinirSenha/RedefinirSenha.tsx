@@ -8,7 +8,6 @@ import Button from '../Button/Button'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { requestPasswordReset, validateToken } from '../../lib/services'
 
 function RedefinirSenha() {
     const navigate = useNavigate()
@@ -23,27 +22,27 @@ function RedefinirSenha() {
     }
 
     const handleSendEmail = async () => {
-        await requestPasswordReset(email)
-            .then(() => {
-                toast.success('Cadastro realizado com sucesso!')
-                setStep(2)
-            })
-            .catch((e) => {
-                toast.error('O email é inválido/não existe!')
-                console.error('Erro ao colocar email', e)
-            })
+        // await requestPasswordReset(email)
+        //     .then(() => {
+        //         toast.success('Cadastro realizado com sucesso!')
+        //         setStep(2)
+        //     })
+        //     .catch((e) => {
+        //         toast.error('O email é inválido/não existe!')
+        //         console.error('Erro ao colocar email', e)
+        //     })
     }
 
     const handleValidateToken = async () => {
-        await validateToken(token)
-            .then(() => {
-                toast.success('Cadastro realizado com sucesso!')
-                setStep(3)
-            })
-            .catch((e) => {
-                toast.error('Token inválido!')
-                console.error('Erro ao colocar o token', e)
-            })
+        // await validateToken(token)
+        //     .then(() => {
+        //         toast.success('Cadastro realizado com sucesso!')
+        //         setStep(3)
+        //     })
+        //     .catch((e) => {
+        //         toast.error('Token inválido!')
+        //         console.error('Erro ao colocar o token', e)
+        //     })
     }
 
     const handleChangePassword = async () => {
@@ -53,16 +52,16 @@ function RedefinirSenha() {
             return
         }
 
-        await requestPasswordReset(token)
-            .then(() => {
-                toast.success('Senha alterada com sucesso!')
-                sessionStorage.clear()
-                navigate('/login')
-            })
-            .catch((e) => {
-                toast.error('Não foi possível atualizar sua senha.')
-                console.error('Erro ao alterar senha', e)
-            })
+        // await requestPasswordReset(token)
+        //     .then(() => {
+        //         toast.success('Senha alterada com sucesso!')
+        //         sessionStorage.clear()
+        //         navigate('/login')
+        //     })
+        //     .catch((e) => {
+        //         toast.error('Não foi possível atualizar sua senha.')
+        //         console.error('Erro ao alterar senha', e)
+        //     })
     }
 
     return (

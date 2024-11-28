@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import Footer from '../../components/Footer/Footer'
 import { Helmet } from 'react-helmet'
 import Header from '../../components/Header/Header'
@@ -9,88 +9,38 @@ import LineChartComponent from '../../components/LineChart/LineChart'
 import Ocorrencias from '../../components/Alerta/Alerta'
 import ActionHistory from '../../components/ActionHistory/ActionHistory'
 import { ProdutoResult } from '../../lib/types'
-import { getDailyInvoice, getMonthlyInvoice, getMostSellerProduct, getSalesLastWeek } from '../../lib/services/index'
+import useClient from '../../lib/client/useClient'
+import { AuthContext } from '../../contexts/AuthContext'
 
 function EstoquePage() {
-  const [mostSeller, setMostSeller] = useState<ProdutoResult>()
-  const [faturaDiaria, setFaturaDiaria] = useState(0)
-  const [faturaMensal, setFaturaMensal] = useState(0)
-  const [vendas7dias, setVendas7dias] = useState([])
+  const client = useClient()
+  const auth = useContext(AuthContext)
 
-  const nome = JSON.parse(sessionStorage.getItem('userData') ?? '{}').nome
-  const token = sessionStorage.getItem('sessionToken') ?? ''
-
-  const nomeProduto = mostSeller?.produto?.nome ?? 'N/A'
-
-  const getMostSeller = async () => {
-    if (!mostSeller) {
-      await getMostSellerProduct(token)
-        .then((response) => {
-          setMostSeller(response)
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    }
-  }
+  const [dailyInvoice, setDailyInvoice] = useState(0)
+  const [monthlyInvoice, setMonthlyInvoice] = useState(0)
+  const [salesLastWeek, setSalesLastWeek] = useState([])
+  const [mostSellerProduct, setMostSellerProduct] = useState<ProdutoResult>()
 
   useEffect(() => {
-    getMostSeller()
-  }, [mostSeller])
+    client.getDailyInvoice().then((data) => {
+      console.log(data)
+      setDailyInvoice(data)
+    })
+  }, [])
 
-  const getFaturaDoDia = async () => {
-    if (!faturaDiaria) {
-      await getDailyInvoice(token)
-        .then((res) => {
-          setFaturaDiaria(res)
-        })
-    }
-  }
+  const dailyInvoiceValue = dailyInvoice ? dailyInvoice.toFixed(2).replace('.', ',') : '0,00'
+  const monthlyInvoiceValue = monthlyInvoice ? monthlyInvoice.toFixed(2).replace('.', ',') : '0,00'
+  const invoiceValidate = dailyInvoice > monthlyInvoice ? 'text-red-500' : 'text-purple-500'
 
-  useEffect(() => {
-    getFaturaDoDia()
-  }, [faturaDiaria])
-
-  const getFaturaDoMes = async () => {
-    if (!faturaMensal) {
-      await getMonthlyInvoice(token)
-        .then((res) => {
-          setFaturaMensal(res)
-        })
-    }
-  }
-
-  useEffect(() => {
-    getFaturaDoMes()
-  }, [faturaMensal])
-
-  const getVendas7dias = async () => {
-    if (!vendas7dias.length) {
-      await getSalesLastWeek(token)
-        .then((res) => {
-          console.log(res)
-          setVendas7dias(res)
-        })
-        .catch((e) => {
-          console.error('Erro ao tentar obter vendas', e)
-        })
-    }
-  }
-
-  useEffect(() => {
-    getVendas7dias()
-  }, [vendas7dias])
-
-
-  const validateFatura = faturaMensal > faturaDiaria ? 'text-red-500' : 'text-purple-500'
+  const nomeProduto = mostSellerProduct?.produto?.nome ?? 'N/A'
 
   return (
     <>
       <div className='bg-slate-200 flex flex-col justify-center items-center'>
         <Helmet>
-          <title>Painel de {nome} | Sistema ERP: Gestão rápida, prática e útil | Cohive</title>
+          <title>Painel de {auth.nome} | Cohive</title>
         </Helmet>
-        <Header name={nome} />
+        <Header name={auth.nome} />
         <div className='w-[90%] h-[80%] flex flex-col gap-4 justify-center items-center py-[2%]'>
           <div className='bg-slate-100 w-full rounded-xl shadow-md h-14 flex justify-center items-center p-4'>
             <Paragraph size='h2'>Visão Geral da Loja</Paragraph>
@@ -100,11 +50,11 @@ function EstoquePage() {
             <div className='flex flex-col gap-4 w-full'>
               <div className='w-full flex flex-row gap-4 justify-between items-center'>
                 <Kpi value={nomeProduto} title='Produto mais vendido' />
-                <Kpi value={`R$ ${faturaMensal && faturaMensal[0].toFixed(2).replace('.', ',')}`} title='Fatura mensal' className={validateFatura} />
-                <Kpi value={`R$ ${faturaDiaria && faturaDiaria.toFixed(2).replace('.', ',')}`} title='Fatura diária' className={validateFatura} />
+                <Kpi value={`R$ ${monthlyInvoiceValue}`} title='Fatura mensal' className={invoiceValidate} />
+                <Kpi value={`R$ ${dailyInvoiceValue}`} title='Fatura diária' className={invoiceValidate} />
               </div>
 
-              <LineChartComponent lastSevenDaysSales={vendas7dias} />
+              <LineChartComponent lastSevenDaysSales={salesLastWeek} />
             </div>
           </div>
 

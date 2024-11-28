@@ -10,32 +10,38 @@ import { CreateUserCommand } from '../../lib/types'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import MaskedInput from 'react-text-mask'
-import { createUser } from '../../lib/services/index'
+import useClient from '../../lib/client/useClient'
 
 function Cadastro() {
+    const client = useClient()
     const navigate = useNavigate()
-    const [nome, setNome] = useState<string>('')
-    const [telefone, setTelefone] = useState<string>('')
+
+    const [name, setName] = useState<string>('')
+    const [phoneNumber, setPhoneNumber] = useState<string>('')
     const [email, setEmail] = useState<string>('')
-    const [senha, setSenha] = useState<string>('')
+    const [password, setPassword] = useState<string>('')
 
     const handleInputChange = (event, setStateFunction) => {
         setStateFunction(event.target.value)
     }
 
-    const handleCreate = async () => {
-        const data: CreateUserCommand = {
-            nome,
-            numeroCelular: telefone,
-            email,
-            senha
+    const handleSignUp = async () => {
+        if (!email || !name || !password || !phoneNumber) {
+            toast.error('Há campos obrigatórios não preenchidos!')
+            return
         }
 
-        await createUser(data)
-            .then(() => {
-                navigate('/login')
-                toast.success('Cadastro realizado com sucesso!')
-            })
+        const data: CreateUserCommand = {
+            email,
+            nome: name,
+            numeroCelular: phoneNumber,
+            senha: password
+        }
+
+        await client.createUser(data).then((_res) => {
+            navigate('/login')
+            toast.success('Cadastro realizado com sucesso!')
+        })
             .catch((e) => {
                 toast.error('Erro ao tentar se cadastrar!')
                 console.error('Erro ao tentar se cadastrar', e)
@@ -48,7 +54,7 @@ function Cadastro() {
             <form className='flex flex-col gap-6'>
                 <label className='input bg-white border-black input-bordered text-[#9A9696] flex items-center gap-2'>
                     <PersonIcon fontSize='small' />
-                    <input type='text' value={nome} onChange={(e) => handleInputChange(e, setNome)} className='grow text-black' placeholder='Nome completo' />
+                    <input type='text' value={name} onChange={(e) => handleInputChange(e, setName)} className='grow text-black' placeholder='Nome completo' />
                 </label>
 
                 <label className='input bg-white border-black input-bordered text-[#9A9696] flex items-center gap-2'>
@@ -57,8 +63,8 @@ function Cadastro() {
                         mask={[/[1-9]/, /\d/, ' ', /\d/, /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
                         placeholder='Telefone'
                         guide={false}
-                        value={telefone}
-                        onChange={(e) => handleInputChange(e, setTelefone)}
+                        value={phoneNumber}
+                        onChange={(e) => handleInputChange(e, setPhoneNumber)}
                         className='grow text-black'
                         render={(ref, props) => <input ref={ref} {...props} />}
                     />
@@ -71,7 +77,7 @@ function Cadastro() {
 
                 <label className='input bg-white border-black input-bordered text-[#9A9696] flex items-center gap-2'>
                     <KeyIcon fontSize='small' />
-                    <input type='password' value={senha} onChange={(e) => handleInputChange(e, setSenha)} className='grow text-black' placeholder='Senha' />
+                    <input type='password' value={password} onChange={(e) => handleInputChange(e, setPassword)} className='grow text-black' placeholder='password' />
                 </label>
             </form>
 
@@ -81,7 +87,7 @@ function Cadastro() {
             </label>
 
             <div className='flex flex-col items-center'>
-                <Button content='Cadastrar' className='w-full' onClick={handleCreate} />
+                <Button content='Cadastrar' className='w-full' onClick={handleSignUp} />
             </div>
         </div>
     )

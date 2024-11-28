@@ -4,7 +4,6 @@ import Paragraph from '../Paragraph/Paragraph'
 import clsx from 'clsx'
 import { CreateLojaCommand } from '../../lib/types/create-loja-command'
 import { toast } from 'react-toastify'
-import { createStore } from '../../lib/services/index'
 
 type CadastrarLojaProps = {
     handleOpenCriar: () => void
@@ -34,16 +33,16 @@ function CadastrarLoja(props: CadastrarLojaProps) {
             }
         }
 
-        await createStore(data, token)
-            .then(() => {
-                toast.success('Loja cadastrada com sucesso!')
-                sessionStorage.setItem('lojaData', JSON.stringify(data))
-                handleOpenCriar()
-            })
-            .catch((e) => {
-                toast.error('Erro ao cadastrar loja!')
-                console.log(e)
-            })
+        // await createStore(data, token)
+        //     .then(() => {
+        //         toast.success('Loja cadastrada com sucesso!')
+        //         sessionStorage.setItem('lojaData', JSON.stringify(data))
+        //         handleOpenCriar()
+        //     })
+        //     .catch((e) => {
+        //         toast.error('Erro ao cadastrar loja!')
+        //         console.log(e)
+        //     })
     }
 
     const className = 'border-purple-500 shadow-md text-[#9A9696] flex items-center bg-white'
