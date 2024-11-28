@@ -3,36 +3,35 @@ import React, { useEffect, useState } from 'react'
 import Paragraph from '../../components/Paragraph/Paragraph'
 import Button from '../../components/Button/Button'
 import { ProdutoResult } from '../../lib/types/product-result'
-import { getReport, getStock } from '../../lib/services/index'
 
 function Ocorrencias() {
   const [produtos, setProdutos] = useState<ProdutoResult[]>()
 
   const token = sessionStorage.getItem('sessionToken') ?? ''
 
-  const getAllProducts = async () => {
-    await getStock(token)
-      .then((response) => {
-        setProdutos(response)
-      })
-      .catch((e) => {
-        console.error('Erro ao tentar obter produtos', e)
-      })
-  }
+  // const getAllProducts = async () => {
+  //   await getStock(token)
+  //     .then((response) => {
+  //       setProdutos(response)
+  //     })
+  //     .catch((e) => {
+  //       console.error('Erro ao tentar obter produtos', e)
+  //     })
+  // }
 
-  useEffect(() => {
-    getAllProducts()
-  }, [produtos])
+  // useEffect(() => {
+  //   getAllProducts()
+  // }, [produtos])
 
   const handleOpenRelatorio = async () => {
-    await getReport(token)
-      .then((response) => {
-        const csvData = response.split('\n').map(line => line.replace(/;\s*/g, ',')).join('\n')
-        downloadCSV(csvData, 'relatorio.csv')
-      })
-      .catch((error) => {
-        console.error('Erro ao tentar obter relatório', error)
-      })
+    // await getReport(token)
+    //   .then((response) => {
+    //     const csvData = response.split('\n').map(line => line.replace(/;\s*/g, ',')).join('\n')
+    //     downloadCSV(csvData, 'relatorio.csv')
+    //   })
+    //   .catch((error) => {
+    //     console.error('Erro ao tentar obter relatório', error)
+    //   })
   }
 
   return (

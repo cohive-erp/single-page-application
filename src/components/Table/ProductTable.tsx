@@ -14,18 +14,22 @@ import LoadingButton from '../Button/LoadingButton'
 import { toast } from 'react-toastify'
 import clsx from 'clsx'
 import { ProdutoResult } from '../../lib/types/product-result'
-import { deleteProductById, getReport } from '../../lib/services/index'
 import EditarProduto from '../Modal/EditarProduto/EditarProduto'
+import useClient from '../../lib/client/useClient'
+import { useTranslation } from 'react-i18next'
 
 type ProductTableProps = {
   tableResult: ProdutoResult[]
-  handleOpenNovoProduto: () => void
+  handleOpenNewProduct: () => void
   // handleOpenRelatorio: () => void
   // handleOpenDeletar: () => void
 }
 
 function ProductTable(props: ProductTableProps) {
-  const { tableResult, handleOpenNovoProduto } = props
+  const client = useClient()
+  const { t } = useTranslation()
+
+  const { tableResult, handleOpenNewProduct } = props
   const [page, setPage] = useState(0)
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [openEditarProduto, setOpenEditarProduto] = useState(false)
@@ -38,26 +42,26 @@ function ProductTable(props: ProductTableProps) {
   }
 
   const handleDelete = async (id: number) => {
-    await deleteProductById(id, token)
-      .then((res) => {
-        console.log(res)
-        toast.success('Produto deletado com sucesso!')
-      })
-      .catch((e) => {
-        toast.error('Erro ao tentar deletar produto!')
-        console.error('Erro ao tentar deletar produto:', e)
-      })
+    // await deleteProductById(id, token)
+    //   .then((res) => {
+    //     console.log(res)
+    //     toast.success('Produto deletado com sucesso!')
+    //   })
+    //   .catch((e) => {
+    //     toast.error('Erro ao tentar deletar produto!')
+    //     console.error('Erro ao tentar deletar produto:', e)
+    //   })
   }
 
   const handleOpenRelatorio = async () => {
-    await getReport(token)
-      .then((response) => {
-        const csvData = response.split('\n').map(line => line.replace(/;\s*/g, ',')).join('\n')
-        downloadCSV(csvData, 'relatorio.csv')
-      })
-      .catch((error) => {
-        console.error('Erro ao tentar obter relatório', error)
-      })
+    // await getReport(token)
+    //   .then((response) => {
+    //     const csvData = response.split('\n').map(line => line.replace(/;\s*/g, ',')).join('\n')
+    //     downloadCSV(csvData, 'relatorio.csv')
+    //   })
+    //   .catch((error) => {
+    //     console.error('Erro ao tentar obter relatório', error)
+    //   })
   }
 
   const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,18 +78,18 @@ function ProductTable(props: ProductTableProps) {
     <>
       <Paper sx={{ width: '80%', overflow: 'hidden', borderRadius: '0.75%' }}>
         <div className='flex justify-between w-full p-4 mb-6'>
-          <Paragraph size='h1'>📦 Produtos</Paragraph>
+          <Paragraph size='h1'>📦 {t('Products')}</Paragraph>
           <div className='flex flex-row gap-4 w-[70%] justify-end'>
-            <Button content='Novo produto' className='w-[35%]' onClick={handleOpenNovoProduto} />
+            <Button content={t('NewProduct')} className='w-[35%]' onClick={handleOpenNewProduct} />
 
             {tableResult.length > 0 ? (
               <>
-                <Button content='Obter dados' className='w-[35%]' onClick={handleOpenRelatorio} />
+                <Button content={t('GetData')} className='w-[35%]' onClick={handleOpenRelatorio} />
                 <Search className='w-[30%]' />
               </>
             ) : (
               <>
-                <Button content='Obter dados' className='w-[35%] btn-disabled' />
+                <Button content={t('GetData')} className='w-[35%] btn-disabled' />
                 <Search className='w-[30%] input-disabled' />
               </>
             )}
@@ -97,7 +101,9 @@ function ProductTable(props: ProductTableProps) {
           <Table stickyHeader>
             <ProductTableHead />
             <TableBody>
-              {tableResult.length > 0 && tableResult.map((row) => (
+              {tableResult.length > 0 && tableResult
+              .filter((row) => row.produto.nome)
+              .map((row) => (
                 <>
                   <TableRow
                     key={row.produto.idProduto}

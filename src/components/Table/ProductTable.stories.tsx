@@ -8,12 +8,12 @@ export default {
 
 export const Example = () => {
   return (
-    <ProductTable tableResult={[]} handleOpenNovoProduto={() => {}} />
+    <ProductTable tableResult={[]} handleOpenNewProduct={() => {}} />
   )
 }
 
 export const NoDataExample = () => {
   return (
-    <ProductTable tableResult={[]} handleOpenNovoProduto={() => {}} />
+    <ProductTable tableResult={[]} handleOpenNewProduct={() => {}} />
   )
 }

@@ -5,7 +5,6 @@ import InventoryIcon from '@mui/icons-material/Inventory'
 import TimelineIcon from '@mui/icons-material/Timeline'
 import { useNavigate } from 'react-router-dom'
 import { ProdutoResult } from '../../../../lib/types'
-import { getStock } from '../../../../lib/services'
 
 function MenuHeader() {
   const navigate = useNavigate()
@@ -15,13 +14,13 @@ function MenuHeader() {
   const token = sessionStorage.getItem('sessionToken') ?? ''
 
   const getAllProducts = async () => {
-    await getStock(token)
-      .then((response) => {
-        setProdutos(response)
-      })
-      .catch((e) => {
-        console.error('Erro ao tentar obter produtos', e)
-      })
+    // await getStock(token)
+    //   .then((response) => {
+    //     setProdutos(response)
+    //   })
+    //   .catch((e) => {
+    //     console.error('Erro ao tentar obter produtos', e)
+    //   })
   }
 
   useEffect(() => {

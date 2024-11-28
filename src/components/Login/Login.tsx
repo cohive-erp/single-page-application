@@ -6,32 +6,35 @@ import Paragraph from '../Paragraph/Paragraph'
 import Button from '../Button/Button'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-import { authenticateUser } from '../../lib/services/index'
 import { AuthUserCommand } from '../../lib/types/auth-user-command'
+import useClient from '../../lib/client/useClient'
 
 function Login() {
+  const client = useClient()
   const navigate = useNavigate()
+
   const [email, setEmail] = useState<string>('')
-  const [senha, setSenha] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
 
   const handleInputChange = (event, setStateFunction) => {
     setStateFunction(event.target.value)
   }
 
   const handleAuthenticate = async () => {
-    const data: AuthUserCommand = { email, senha }
+    if (!email || !password) {
+      toast.error('Há campos obrigatórios não preenchidos!')
+      return
+    }
 
-    await authenticateUser(data)
-      .then((res) => {
-        sessionStorage.setItem('userData', JSON.stringify({
-          email: res.email,
-          nome: res.nome,
-          id: res.userId
-        }))
-        sessionStorage.setItem('sessionToken', res.token)
-        navigate('/dashboard')
-        toast.success('Login realizado com sucesso!')
-      })
+    const data: AuthUserCommand = { email, senha: password }
+
+    await client.authenticateUser(data).then((res) => {
+      console.log(res)
+      console.log(res.token)
+      sessionStorage.setItem('token', res.token)
+      toast.success('Login realizado com sucesso!')
+      navigate('/dashboard')
+    })
       .catch((e) => {
         toast.error('Erro ao tentar se logar!')
         console.error('Erro ao tentar se logar', e)
@@ -46,11 +49,23 @@ function Login() {
       </div>
       <label className='input bg-white border-black input-bordered text-[#9A9696] flex items-center gap-2'>
         <MailOutlineIcon fontSize='small' />
-        <input type='email' value={email} onChange={(e) => handleInputChange(e, setEmail)} className='grow text-black' placeholder='Email' />
+        <input
+          type='email'
+          value={email}
+          onChange={(e) => handleInputChange(e, setEmail)}
+          className='grow text-black'
+          placeholder='Email'
+        />
       </label>
       <label className='input bg-white border-black input-bordered text-[#9A9696] flex items-center gap-2'>
         <KeyIcon fontSize='small' />
-        <input type='password' value={senha} onChange={(e) => handleInputChange(e, setSenha)} className='grow text-black' placeholder='Senha' />
+        <input
+          type='password'
+          value={password}
+          onChange={(e) => handleInputChange(e, setPassword)}
+          className='grow text-black'
+          placeholder='Senha'
+        />
       </label>
       <div className='flex flex-col gap-2'>
         <div className='flex flex-col items-center'>
@@ -58,8 +73,22 @@ function Login() {
         </div>
 
         <div className='flex flex-row justify-between'>
-          <Paragraph size='h6'><a className='text-purple-400 hover:text-purple-500 underline' onClick={() => navigate('/signup')}>Ainda não tenho conta</a></Paragraph>
-          <Paragraph size='h6'><a className='text-purple-400 hover:text-purple-500 underline' onClick={() => navigate('/redefinir-senha')}>Esqueci minha senha</a></Paragraph>
+          <Paragraph size='h6'>
+            <a
+              className='text-purple-400 hover:text-purple-500 underline'
+              onClick={() => navigate('/signup')}
+            >
+              Ainda não tenho conta
+            </a>
+          </Paragraph>
+          <Paragraph size='h6'>
+            <a
+              className='text-purple-400 hover:text-purple-500 underline'
+              onClick={() => navigate('/redefinir-senha')}
+            >
+              Esqueci minha senha
+            </a>
+          </Paragraph>
         </div>
       </div>
     </div>

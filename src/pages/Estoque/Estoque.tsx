@@ -1,59 +1,52 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Helmet } from 'react-helmet'
 import Footer from '../../components/Footer/Footer'
 import ProductTable from '../../components/Table/ProductTable'
-import { Helmet } from 'react-helmet'
 import Header from '../../components/Header/Header'
 import NovoProduto from '../../components/Modal/NovoProduto/NovoProduto'
 import { ProdutoResult } from '../../lib/types'
-import { getStock } from '../../lib/services/index'
+import useClient from '../../lib/client/useClient'
+import { AuthContext } from '../../contexts/AuthContext'
 
 function EstoquePage() {
-  const [openNovoProduto, setOpenNovoProduto] = useState(false)
-  const [produtos, setProdutos] = useState<ProdutoResult[]>([])
+  const client = useClient()
+  const auth = useContext(AuthContext)
+  const { t } = useTranslation()
 
-  const nome = JSON.parse(sessionStorage.getItem('userData') ?? '{}').nome
-  const token = sessionStorage.getItem('sessionToken') ?? ''
-
-  const handleOpenNovoProduto = () => {
-    setOpenNovoProduto(!openNovoProduto)
-  }
-
-  const getAllProducts = async () => {
-    await getStock(token)
-      .then((response) => {
-        setProdutos(response)
-      })
-      .catch((e) => {
-        console.error('Erro ao tentar obter produtos', e)
-      })
-  }
+  const [products, setProducts] = useState<ProdutoResult[]>([])
+  const [openNewProduct, setOpenNewProduct] = useState(false)
 
   useEffect(() => {
-    getAllProducts()
-  }, [produtos])
+    client.getStock().then(data => {
+      setProducts(data)
+    })
+  }, [client])
+
+  const handleOpenNewProduct = () => {
+    setOpenNewProduct(!openNewProduct)
+  }
 
   return (
     <>
       <div className='bg-slate-200 flex flex-col justify-center items-center'>
         <Helmet>
-          <title>Estoque | Sistema ERP: Gestão rápida, prática e útil | Cohive</title>
+          <title>{t('StockPage')}</title>
         </Helmet>
-        <Header name={nome} />
+        <Header name={auth.nome} />
         <div className='w-full h-[80%] flex justify-center items-center pt-[2%] pb-[2%]'>
           <ProductTable
-            tableResult={produtos}
-            handleOpenNovoProduto={handleOpenNovoProduto}
-          // handleOpenDeletar={handleOpenDeletar}
+            tableResult={products}
+            handleOpenNewProduct={handleOpenNewProduct}
           />
         </div>
         <Footer />
       </div>
 
-      {openNovoProduto && (
+      {openNewProduct && (
         <div className='fixed w-full h-full top-[50%] left-[50%] z-50 bg-black bg-opacity-20' style={{ transform: 'translate(-50%, -50%)' }}>
           <div className='fixed top-[50%] left-[50%]' style={{ transform: 'translate(-50%, -50%)' }}>
-            <NovoProduto handleOpenNovoProduto={handleOpenNovoProduto} />
+            <NovoProduto handleOpenNewProduct={handleOpenNewProduct} />
           </div>
         </div>
       )}
