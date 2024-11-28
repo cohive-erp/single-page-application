@@ -13,13 +13,32 @@ const resources = {
       'NewProduct': 'Novo Produto',
       'NameProduct': 'Nome do Produto',
       'SellingPrice': 'Preço Venda',
+      'ProductSummary': 'Resumo do produto',
       'PurchasePrice': 'Preço Compra',
       'UnitPrice': 'Preço Unitário',
       'Quantity': 'Quantidade',
       'Description': 'Descrição',
       'Category': 'Categoria',
+      'Supplier': 'Fornecedor',
+      'SupplierName': 'Nome do Fornecedor',
 
       'GetData': 'Obter dados',
+
+      'ProductNameExample': 'Ex: Tapete',
+      'CategoryExample': 'Ex: Cama',
+      'SupplierExample': 'Ex: Amazon',
+      'ProductSummaryExample': 'Ex: Cama para crianças',
+      'QuantityExample': 'Min 0, Max: 1000',
+
+      'QuantityAcronym': 'Qtd.',
+      'BRLCurrency': 'R$',
+
+      'Add': 'Adicionar',
+      'Cancel': 'Cancelar',
+      'Edit': 'Editar',
+
+      'CreateProductSuccess': 'Produto adicionado com sucesso',
+      'CreateProductError': 'Erro ao tentar adicionar produto',
     }
   },
   en: {
@@ -38,8 +57,25 @@ const resources = {
       'Quantity': 'Quantity',
       'Description': 'Description',
       'Category': 'Category',
+      'Supplier': 'Supplier',
 
       'GetData': 'Get Data',
+
+      'ProductNameExample': 'e.g. Carpet',
+      'CategoryExample': 'e.g. Bed',
+      'SupplierExample': 'e.g. Amazon',
+      'ProductSummaryExample': 'e.g. Bed for children',
+      'QuantityExample': 'Min: 0, max: 1000',
+
+      'QuantityAcronym': 'Qty.',
+      'BRLCurrency': 'BRL',
+
+      'Add': 'Add',
+      'Cancel': 'Cancel',
+      'Edit': 'Edit',
+
+      'CreateProductSuccess': 'Product added successfully',
+      'CreateProductError': 'Error trying to add product',
     }
   }
 }
