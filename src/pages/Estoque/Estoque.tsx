@@ -21,7 +21,7 @@ function EstoquePage() {
     client.getStock().then(data => {
       setProducts(data)
     })
-  }, [client])
+  }, [])
 
   const handleOpenNewProduct = () => {
     setOpenNewProduct(!openNewProduct)

@@ -36,9 +36,15 @@ const resources = {
       'Add': 'Adicionar',
       'Cancel': 'Cancelar',
       'Edit': 'Editar',
+      'Delete': 'Apagar',
+      'Search': 'Buscar',
 
       'CreateProductSuccess': 'Produto adicionado com sucesso',
       'CreateProductError': 'Erro ao tentar adicionar produto',
+      'CreateReportSuccess': 'Relatório gerado com sucesso',
+      'CreateReportError': 'Erro ao tentar gerar relatório',
+
+      'Generating': 'Gerando...',
     }
   },
   en: {
@@ -73,9 +79,15 @@ const resources = {
       'Add': 'Add',
       'Cancel': 'Cancel',
       'Edit': 'Edit',
+      'Delete': 'Delete',
+      'Search': 'Search',
 
       'CreateProductSuccess': 'Product added successfully',
       'CreateProductError': 'Error trying to add product',
+      'CreateReportSuccess': 'Report generated successfully',
+      'CreateReportError': 'Error trying to generate report',
+
+      'Generating': 'Generating...',
     }
   }
 }
