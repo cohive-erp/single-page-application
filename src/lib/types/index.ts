@@ -1,4 +1,4 @@
-import * from './ProdutoResult'
+export * from './ProdutoResult'
 export * from './auth-user-command'
 export * from './auth-user-result'
 export * from './create-loja-command'
