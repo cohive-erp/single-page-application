@@ -3,13 +3,14 @@ import PersonIcon from '@mui/icons-material/Person'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
-
+import { useTranslation } from 'react-i18next'
 type AvatarProps = {
     name: string
 }
 
 function Avatar(props: AvatarProps) {
     const { name } = props
+    const { t } = useTranslation()
     const navigate = useNavigate()
 
     const [open, setOpen] = useState(false)
@@ -23,7 +24,7 @@ function Avatar(props: AvatarProps) {
     const handleLogout = async () => {
         sessionStorage.clear()
         navigate('/login')
-        toast.success('Desconectado com sucesso!')
+        toast.success(t('LogoutSuccess'))
     }
 
     return (
@@ -38,13 +39,13 @@ function Avatar(props: AvatarProps) {
                 <li>
                     <button onClick={handleOpenModal}>
                         <PersonIcon fontSize='small' />
-                        Abrir Perfil
+                        {t('OpenProfile')}
                     </button>
                 </li>
                 <li>
                     <button onClick={handleLogout}>
                         <LogoutIcon fontSize='small' />
-                        Logout
+                        {t('Logout')}
                     </button>
                 </li>
             </ul>
