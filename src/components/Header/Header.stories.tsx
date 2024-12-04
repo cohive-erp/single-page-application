@@ -8,6 +8,6 @@ export default {
 
 export const Example = () => {
   return (
-    <Header name='Raquel' />
+    <Header name='Raquel' totalProducts={2} />
   )
 }

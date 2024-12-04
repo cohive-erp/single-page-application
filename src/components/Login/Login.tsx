@@ -20,7 +20,7 @@ function Login() {
     setStateFunction(event.target.value)
   }
 
-  const handleAuthenticate = async () => {
+  const handleAuthenticate = () => {
     if (!email || !password) {
       toast.error('Há campos obrigatórios não preenchidos!')
       return
@@ -28,10 +28,9 @@ function Login() {
 
     const data: AuthUserCommand = { email, senha: password }
 
-    await client.authenticateUser(data).then((res) => {
-      console.log(res)
-      console.log(res.token)
+    client.authenticateUser(data).then((res) => {
       sessionStorage.setItem('token', res.token)
+      sessionStorage.setItem('userData', JSON.stringify(res))
       toast.success('Login realizado com sucesso!')
       navigate('/dashboard')
     })

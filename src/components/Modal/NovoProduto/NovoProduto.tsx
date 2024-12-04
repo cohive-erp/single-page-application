@@ -36,7 +36,8 @@ function NovoProduto(props: NovoProdutoProps) {
             precoVenda: sellingPrice,
             precoCompra: purchasePrice,
             descricao: description,
-            quantidade: quantity
+            quantidade: quantity,
+            loja: JSON.parse(sessionStorage.getItem('userData') ?? '').loja
         }
 
         client.createProduct(data).then(() => {

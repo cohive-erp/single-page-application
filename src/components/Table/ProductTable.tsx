@@ -35,10 +35,9 @@ function ProductTable(props: ProductTableProps) {
 
   const handleChangePage = (_event: unknown, newPage: number) => { setPage(newPage) }
 
-  const handleDelete = async (id: number) => {
+  const handleDeleteProduct = async (id: number) => {
     try {
       await client.deleteProductById(id)
-
       toast.success(t('CreateProductSuccess'))
     } catch (e) {
       toast.error(t('CreateProductError'))
@@ -49,7 +48,7 @@ function ProductTable(props: ProductTableProps) {
   const handleOpenReport = async () => {
     try {
       const response = await client.getReport()
-      const csv = response.split('\n').map(line => line.replace(/;\s*/g, ',')).join('\n')
+      const csv = response.split('\n').map((line: string) => line.replace(/;\s*/g, ',')).join('\n')
       downloadCSV(csv, `relatorio-${new Date().toDateString()}.csv`)
       toast.success(t('CreateReportSuccess'))
     } catch (e) {
@@ -63,7 +62,7 @@ function ProductTable(props: ProductTableProps) {
     setPage(0)
   }
 
-  const handleOpenEditarProduto = async (id: number) => {
+  const handleOpenEditProduct = async (id: number) => {
     setOpenEditProduct(!openEditProduct)
     setProductId(id)
   }
@@ -121,13 +120,13 @@ function ProductTable(props: ProductTableProps) {
                         {row.produto.precoVenda.toFixed(2).replace('.', ',')}
                       </TableCell>
                       <TableCell align='right'>
-                        {row.produto.deleted ? 0 : row.quantidadeVendida}
+                        {row.produto.deleted ? 0 : row.quantidade}
                       </TableCell>
                       <TableCell sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }} align='right'>
                         <Button content={t('Delete')} className={clsx(
                           row.produto.deleted ? 'btn-disable' : ''
-                        )} color='secondary' onClick={() => handleDelete(row.produto.idProduto)} />
-                        <Button content={t('Edit')} onClick={() => handleOpenEditarProduto(row.produto.idProduto)} />
+                        )} color='secondary' onClick={() => handleDeleteProduct(row.produto.idProduto)} />
+                        <Button content={t('Edit')} onClick={() => handleOpenEditProduct(row.produto.idProduto)} />
                       </TableCell>
                     </TableRow>
                   </>
@@ -151,7 +150,7 @@ function ProductTable(props: ProductTableProps) {
       {openEditProduct && (
         <div className='fixed w-full h-full top-[50%] left-[50%] z-50 bg-black bg-opacity-20' style={{ transform: 'translate(-50%, -50%)' }}>
           <div className='fixed top-[50%] left-[50%]' style={{ transform: 'translate(-50%, -50%)' }}>
-            <EditarProduto id={productId} handleOpenEditarProduto={handleOpenEditarProduto} />
+            <EditarProduto id={productId} handleOpenEditProduct={handleOpenEditProduct} />
           </div>
         </div>
       )}

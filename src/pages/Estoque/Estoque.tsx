@@ -17,8 +17,10 @@ function EstoquePage() {
   const [products, setProducts] = useState<ProdutoResult[]>([])
   const [openNewProduct, setOpenNewProduct] = useState(false)
 
+  const userData = JSON.parse(sessionStorage.getItem('userData') ?? '')
+
   useEffect(() => {
-    client.getStock().then(data => {
+    client.getStock(userData.loja.idLoja).then(data => {
       setProducts(data)
     })
   }, [])
@@ -33,7 +35,7 @@ function EstoquePage() {
         <Helmet>
           <title>{t('StockPage')}</title>
         </Helmet>
-        <Header name={auth.nome} />
+        <Header name={userData.nome} totalProducts={products.length} />
         <div className='w-full h-[80%] flex justify-center items-center pt-[2%] pb-[2%]'>
           <ProductTable
             tableResult={products}

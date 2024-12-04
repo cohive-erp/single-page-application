@@ -1,48 +1,14 @@
 import React, { useState } from 'react'
-import Button from '../Button/Button'
 import Paragraph from '../Paragraph/Paragraph'
 import clsx from 'clsx'
-import { CreateLojaCommand } from '../../lib/types/create-loja-command'
-import { toast } from 'react-toastify'
 
-type CadastrarLojaProps = {
-    handleOpenCriar: () => void
-}
-
-function CadastrarLoja(props: CadastrarLojaProps) {
-    const { handleOpenCriar } = props
-
+function CadastrarLoja() {
     const [numero, setNumero] = useState<number>()
     const [cep, setCep] = useState<string>('')
     const [cnpj, setCnpj] = useState<string>('')
 
-    const id = JSON.parse(sessionStorage.getItem('userData') ?? '{}').id
-    const token = sessionStorage.getItem('sessionToken') ?? ''
-
     const handleInputChange = (event, setStateFunction) => {
         setStateFunction(event.target.value)
-    }
-
-    const handleCreateLoja = async () => {
-        const data: CreateLojaCommand = {
-            numero,
-            cep,
-            cnpj,
-            usuario: {
-                id
-            }
-        }
-
-        // await createStore(data, token)
-        //     .then(() => {
-        //         toast.success('Loja cadastrada com sucesso!')
-        //         sessionStorage.setItem('lojaData', JSON.stringify(data))
-        //         handleOpenCriar()
-        //     })
-        //     .catch((e) => {
-        //         toast.error('Erro ao cadastrar loja!')
-        //         console.log(e)
-        //     })
     }
 
     const className = 'border-purple-500 shadow-md text-[#9A9696] flex items-center bg-white'
@@ -69,12 +35,7 @@ function CadastrarLoja(props: CadastrarLojaProps) {
                 <div className='flex flex-col gap-2'>
                     <Paragraph size='h3-regular'>CNPJ*</Paragraph>
                     <label className={clsx('input input-bordered', className)}>
-                        <input type='text' className='grow text-black' placeholder='00.000.000/0001-00' value={cnpj} onChange={(e) => handleInputChange(e, setCnpj)} />
                     </label>
-                </div>
-
-                <div className='card-actions justify-between'>
-                    <Button content='Criar' className='w-full shadow-sm' onClick={handleCreateLoja} />
                 </div>
             </div>
         </div>

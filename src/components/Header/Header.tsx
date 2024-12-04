@@ -7,11 +7,12 @@ import { useNavigate } from 'react-router-dom'
 
 type HeaderProps = {
   name: string
+  totalProducts: number
 }
 
 function Header(props: HeaderProps) {
   const navigate = useNavigate()
-  const { name } = props
+  const { name, totalProducts } = props
 
   return (
     <div className='navbar w-full items-center inline-flex gap-4 px-8 shadow-sm'>
@@ -22,7 +23,7 @@ function Header(props: HeaderProps) {
       </div>
 
       <div className='navbar-center hidden lg:flex'>
-        <MenuHeader />
+        <MenuHeader totalProducts={totalProducts} />
       </div>
 
       <div className='navbar-end gap-4'>

@@ -5,6 +5,7 @@ import {
   CreateLojaCommand,
   CreateProductCommand,
   CreateUserCommand,
+  ProductResult,
   ProdutoResult,
   StoreResult,
   UpdateProductCommand
@@ -106,18 +107,14 @@ export default class Client {
     return (await client.post('/api/lojas', data)).data
   }
 
-  async getStoreByCEP(CEP: string): Promise<StoreResult> {
+  async getStore(userId: number): Promise<StoreResult> {
     const client = this.createAuthClient()
-    return (
-      await client.get('/api/lojas/porCEP', {
-        params: CEP
-      })
-    ).data
+    return (await client.get(`/api/lojas/consulta/${userId}`)).data
   }
 
-  async getStock(): Promise<ProdutoResult[]> {
+  async getStock(idLoja: number): Promise<ProdutoResult[]> {
     const client = this.createAuthClient()
-    return (await client.get('/api/estoque')).data
+    return (await client.get(`/api/estoque/trazer-estoque/${idLoja}`)).data
   }
 
   async createProduct(data: CreateProductCommand) {
@@ -130,7 +127,7 @@ export default class Client {
     return (await client.delete(`/api/estoque/${id}`)).data
   }
 
-  async getProductById(id: number): Promise<ProdutoResult> {
+  async getProductById(id: number): Promise<ProductResult> {
     const client = this.createAuthClient()
     return (await client.get(`/api/estoque/${id}`)).data
   }

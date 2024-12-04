@@ -41,11 +41,11 @@ function Ocorrencias() {
         <div className='h-[70%] overflow-auto flex flex-col gap-4'>
           {produtos?.map((produto, index) => (
             <>
-              {produto.quantidadeVendida > 0 && produto.quantidadeVendida < 5 && (
+              {produto.quantidade > 0 && produto.quantidade < 5 && (
                 <span key={index} className='w-full bg-yellow-200 p-4 rounded-md shadow-sm text-black border'>⚠️ O produto <b>{produto.produto.nome}</b> está precisando de reposição.</span>
               )}
 
-              {(produto.quantidadeVendida < 1 || produto.produto.deleted) && (
+              {(produto.quantidade < 1 || produto.produto.deleted) && (
                 <span key={index} className='w-full bg-red-200 p-4 rounded-md shadow-sm text-black border'>🚨 O produto <b>{produto.produto.nome}</b> está em falta!</span>
               )}
             </>
