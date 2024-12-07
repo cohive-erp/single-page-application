@@ -4,73 +4,64 @@ import Button from '../../Button/Button'
 import Paragraph from '../../Paragraph/Paragraph'
 import clsx from 'clsx'
 import { toast } from 'react-toastify'
+import useClient from '../../../lib/client/useClient'
 import { UpdateProductCommand } from '../../../lib/types/update-product-command'
+import { useTranslation } from 'react-i18next'
 
 type EditarProdutoProps = {
     id: number
-    handleOpenEditarProduto: (id: number) => Promise<void>
+    handleOpenEditProduct: (id: number) => Promise<void>
 }
 
 function EditarProduto(props: EditarProdutoProps) {
-    const { id, handleOpenEditarProduto } = props
+    const { id, handleOpenEditProduct } = props
 
-    const [nome, setNome] = useState<string>('')
-    const [quantidade, setQuantidade] = useState<number>()
-    const [precoVenda, setPrecoVenda] = useState<number>()
-    const [precoCompra, setPrecoCompra] = useState<number>()
-    const [categoria, setCategoria] = useState<string>('')
-    const [descricao, setDescricao] = useState<string>('')
-    const [fabricante, setFabricante] = useState<string>('')
+    const client = useClient()
+    const { t } = useTranslation()
 
-    const token = sessionStorage.getItem('sessionToken') ?? ''
-
-    const handleGetProductByID = async () => {
-        console.log(id)
-        // await getProductById(id, token)
-        //     .then((response) => {
-        //         setNome(response.produto.nome)
-        //         setQuantidade(response.quantidadeVendida)
-        //         setPrecoVenda(response.produto.precoVenda)
-        //         setPrecoCompra(response.produto.precoCompra)
-        //         setCategoria(response.produto.categoria)
-        //         setDescricao(response.produto.descricao ?? '')
-        //         setFabricante(response.produto.fabricante)
-        //     })
-        //     .catch((e) => {
-        //         console.error('Erro ao tentar se cadastrar', e)
-        //     })
-    }
+    const [name, setName] = useState<string>('')
+    const [quantity, setQuantity] = useState<number>()
+    const [purchasePrice, setPurchasePrice] = useState<number>()
+    const [sellingPrice, setSellingPrice] = useState<number>()
+    const [category, setCategory] = useState<string>('')
+    const [description, setDescription] = useState<string>('')
+    const [supplier, setSupplier] = useState<string>('')
 
     useEffect(() => {
-        handleGetProductByID()
+        client.getProductById(id).then((data) => {
+            setName(data.nome)
+            setQuantity(data.quantidade ?? 0)
+            setPurchasePrice(data.precoCompra)
+            setSellingPrice(data.precoVenda)
+            setCategory(data.categoria)
+            setDescription(data.descricao ?? '')
+            setSupplier(data.fabricante)
+        })
     }, [])
 
     const handleInputChange = (event, setStateFunction) => {
         setStateFunction(event.target.value)
     }
 
-    const handleUpdate = async () => {
+    const handleUpdateProduct = async () => {
         const data: UpdateProductCommand = {
             id,
-            nome,
-            categoria,
-            fabricante,
-            descricao,
-            precoVenda,
-            precoCompra,
-            quantidade
+            nome: name,
+            fabricante: supplier,
+            categoria: category,
+            precoVenda: sellingPrice,
+            precoCompra: purchasePrice,
+            descricao: description,
+            quantidade: quantity
         }
 
-        // await updateProductById(id, data, token)
-        //     .then(() => {
-        //         sessionStorage.setItem('valores', JSON.stringify(data))
-        //         handleOpenEditarProduto(id)
-        //         toast.success('Produto alterado com sucesso!')
-        //     })
-        //     .catch((e) => {
-        //         toast.error('Erro ao tentar alterar produto!')
-        //         console.error('Erro ao tentar alterar produto', e)
-        //     })
+        client.updateProductById(id, data).then(() => {
+            toast.success(t('CreateProductSuccess'))
+            handleOpenEditProduct(id)
+        }).catch(e => {
+            toast.error(t('CreateProductError'))
+            console.error(t('CreateProductError'), e)
+        })
     }
 
     const className = 'border-purple-500 shadow-md text-[#9A9696] flex items-center bg-white'
@@ -83,7 +74,7 @@ function EditarProduto(props: EditarProdutoProps) {
                 <div className='flex flex-col gap-2'>
                     <Paragraph size='h3-regular'>Nome*</Paragraph>
                     <label className={clsx('input input-bordered', className)}>
-                        <input type='text' className='grow text-black' placeholder='Ex: Tapete' value={nome} onChange={(e) => handleInputChange(e, setNome)} />
+                        <input type='text' className='grow text-black' placeholder='Ex: Tapete' value={name} onChange={(e) => handleInputChange(e, setName)} />
                     </label>
                 </div>
 
@@ -94,11 +85,11 @@ function EditarProduto(props: EditarProdutoProps) {
                     </div>
                     <div className='flex flex-row w-full justify-between'>
                         <label className={clsx('input input-bordered gap-2 w-[49%]', className)}>
-                            <input type='text' className='grow text-black' placeholder='Preço unitário' value={precoVenda} onChange={(e) => handleInputChange(e, setPrecoVenda)} />
+                            <input type='text' className='grow text-black' placeholder='Preço unitário' value={sellingPrice} onChange={(e) => handleInputChange(e, setSellingPrice)} />
                             R$
                         </label>
                         <label className={clsx('input input-bordered gap-2 w-[49%]', className)}>
-                            <input type='text' className='grow text-black' placeholder='Preço da compra' value={precoCompra} onChange={(e) => handleInputChange(e, setPrecoCompra)} />
+                            <input type='text' className='grow text-black' placeholder='Preço da compra' value={purchasePrice} onChange={(e) => handleInputChange(e, setPurchasePrice)} />
                             R$
                         </label>
                     </div>
@@ -111,11 +102,11 @@ function EditarProduto(props: EditarProdutoProps) {
                     </div>
                     <div className='flex flex-row w-full justify-between'>
                         <label className={clsx('input input-bordered gap-2 w-[49%]', className)}>
-                            <input type='text' className='grow text-black' placeholder='Quantidade do produto' value={quantidade} onChange={(e) => handleInputChange(e, setQuantidade)} />
+                            <input type='text' className='grow text-black' placeholder='Quantidade do produto' value={quantity} onChange={(e) => handleInputChange(e, setQuantity)} />
                             Qtd.
                         </label>
                         <label className={clsx('input input-bordered gap-2 w-[49%]', className)}>
-                            <input type='text' className='grow text-black' placeholder='Ex: Cama' value={categoria} onChange={(e) => handleInputChange(e, setCategoria)} />
+                            <input type='text' className='grow text-black' placeholder='Ex: Cama' value={category} onChange={(e) => handleInputChange(e, setCategory)} />
                         </label>
                     </div>
                 </div>
@@ -127,17 +118,17 @@ function EditarProduto(props: EditarProdutoProps) {
                     </div>
                     <div className='flex flex-row w-full justify-between'>
                         <label className={clsx('input input-bordered gap-2 w-[49%]', className)}>
-                            <input type='text' className='grow text-black' placeholder='Nome do Fornecedor' value={fabricante} onChange={(e) => handleInputChange(e, setFabricante)} />
+                            <input type='text' className='grow text-black' placeholder='Nome do Fornecedor' value={supplier} onChange={(e) => handleInputChange(e, setSupplier)} />
                         </label>
                         <label className={clsx('input input-bordered gap-2 w-[49%]', className)}>
-                            <input type='text' className='grow text-black' placeholder='Resumo do produto' value={descricao} onChange={(e) => handleInputChange(e, setDescricao)} />
+                            <input type='text' className='grow text-black' placeholder='Resumo do produto' value={description} onChange={(e) => handleInputChange(e, setDescription)} />
                         </label>
                     </div>
                 </div>
 
                 <div className='card-actions justify-between mt-5'>
-                    <Button content='Salvar' className='w-[40%] shadow-sm' onClick={handleUpdate} />
-                    <Button content='Cancelar' className='w-[40%] shadow-sm' color='secondary' onClick={() => handleOpenEditarProduto(id)} />
+                    <Button content='Salvar' className='w-[40%] shadow-sm' onClick={handleUpdateProduct} />
+                    <Button content='Cancelar' className='w-[40%] shadow-sm' color='secondary' onClick={() => handleOpenEditProduct(id)} />
                 </div>
             </div>
         </div>

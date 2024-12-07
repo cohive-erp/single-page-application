@@ -20,6 +20,8 @@ function Cadastro() {
     const [phoneNumber, setPhoneNumber] = useState<string>('')
     const [email, setEmail] = useState<string>('')
     const [password, setPassword] = useState<string>('')
+    const [confirmPassword, setConfirmPassword] = useState<string>('')
+    const [acceptTerms, setAcceptTerms] = useState<boolean>(false)
 
     const handleInputChange = (event, setStateFunction) => {
         setStateFunction(event.target.value)
@@ -29,23 +31,28 @@ function Cadastro() {
         if (!email || !name || !password || !phoneNumber) {
             toast.error('Há campos obrigatórios não preenchidos!')
             return
+        } else if (password !== confirmPassword) {
+            toast.error('As senhas não conferem!')
+            return
         }
 
-        const data: CreateUserCommand = {
-            email,
-            nome: name,
-            numeroCelular: phoneNumber,
-            senha: password
-        }
+        try {
+            const data: CreateUserCommand = {
+                email,
+                nome: name,
+                numeroCelular: phoneNumber,
+                senha: password
+            }
 
-        await client.createUser(data).then((_res) => {
-            navigate('/login')
-            toast.success('Cadastro realizado com sucesso!')
-        })
-            .catch((e) => {
-                toast.error('Erro ao tentar se cadastrar!')
-                console.error('Erro ao tentar se cadastrar', e)
-            })
+            if (acceptTerms) {
+                await client.createUser(data)
+                navigate('/login')
+                toast.success('Cadastro realizado com sucesso!')
+            }
+        } catch (e) {
+            toast.error('Erro ao tentar se cadastrar!')
+            console.error('Erro ao tentar se cadastrar', e)
+        }
     }
 
     return (
@@ -66,7 +73,7 @@ function Cadastro() {
                         value={phoneNumber}
                         onChange={(e) => handleInputChange(e, setPhoneNumber)}
                         className='grow text-black'
-                        render={(ref, props) => <input ref={ref} {...props} />}
+                        render={(ref: any, props) => <input ref={ref} {...props} />}
                     />
                 </label>
 
@@ -77,12 +84,22 @@ function Cadastro() {
 
                 <label className='input bg-white border-black input-bordered text-[#9A9696] flex items-center gap-2'>
                     <KeyIcon fontSize='small' />
-                    <input type='password' value={password} onChange={(e) => handleInputChange(e, setPassword)} className='grow text-black' placeholder='password' />
+                    <input type='password' value={password} onChange={(e) => handleInputChange(e, setPassword)} className='grow text-black' placeholder='Senha' />
+                </label>
+
+                <label className='input bg-white border-black input-bordered text-[#9A9696] flex items-center gap-2'>
+                    <KeyIcon fontSize='small' />
+                    <input type='password' value={confirmPassword} onChange={(e) => handleInputChange(e, setConfirmPassword)} className='grow text-black' placeholder='Confirmar senha' />
                 </label>
             </form>
 
             <label className='cursor-pointer flex items-center gap-2'>
-                <input type='checkbox' defaultChecked={false} className='checkbox checkbox-sm bg-white checked:bg-black border-black' />
+                <input
+                    type='checkbox'
+                    defaultChecked={acceptTerms}
+                    onChange={(e) => handleInputChange(e, setAcceptTerms)}
+                    className='checkbox checkbox-sm bg-white checked:bg-black border-black'
+                />
                 <Paragraph size='h6-regular'>Declaro ter lido e aceito os <a onClick={() => navigate('/termos')} className='font-bold underline'>termos de uso</a> e as <a onClick={() => navigate('/privacidade')} className='font-bold underline'>políticas</a>.</Paragraph>
             </label>
 

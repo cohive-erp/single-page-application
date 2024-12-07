@@ -1,4 +1,6 @@
-export type CreateProductCommand = {
+import { StoreResult } from './store-result'
+
+export interface CreateProductCommand {
   nome: string
   categoria: string
   fabricante?: string
@@ -6,7 +8,5 @@ export type CreateProductCommand = {
   precoVenda?: number
   precoCompra?: number
   quantidade?: number
-  loja: {
-    idLoja: number
-  }
+  loja: StoreResult
 }

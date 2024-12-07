@@ -19,8 +19,6 @@ function LineChartComponent(props: LineChartProps) {
     }
   })
 
-  console.log(newData)
-
   return (
     <div className='card w-full h-[80%] bg-slate-100 shadow-xl'>
       <div className='card-body'>

@@ -1,13 +1,27 @@
 {
   "compilerOptions": {
-    "moduleResolution": "node",  // Use a resolução de módulos estilo Node.js
-    "esModuleInterop": true,      // Permitir importações de módulos CommonJS
-    "resolveJsonModule": true,    // Permite importar arquivos JSON
-    "jsx": "react",               // Para projetos React (se necessário)
-    "skipLibCheck": true,         // Ignora checagem de tipagem de bibliotecas
-    "baseUrl": "./",              // Define o diretório base para resolução de caminhos
-    "paths": {
-      "*": ["node_modules/*", "src/types/*"]  // Para resolver tipos e outros módulos
-    }
-  }
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "jsx": "react",
+    "skipLibCheck": true,
+    "baseUrl": "./",
+    "target": "es5",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "forceConsistentCasingInFileNames": true,
+    "module": "esnext",
+    "isolatedModules": true,
+    "noEmit": true
+  },
+  "include": [
+    "src"
+  ]
 }

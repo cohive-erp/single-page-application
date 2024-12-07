@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import Button from '../../Button/Button'
-import Paragraph from '../../Paragraph/Paragraph'
-import clsx from 'clsx'
-import { CreateProductCommand } from '../../../lib/types/create-product-command'
 import useClient from '../../../lib/client/useClient'
+import clsx from 'clsx'
 import { useTranslation } from 'react-i18next'
 import { toast } from 'react-toastify'
+import Button from '../../Button/Button'
+import Paragraph from '../../Paragraph/Paragraph'
+import { type CreateProductCommand } from '../../../lib/types/create-product-command'
 
 type NovoProdutoProps = {
     handleOpenNewProduct: () => void
@@ -16,13 +16,13 @@ function NovoProduto(props: NovoProdutoProps) {
     const client = useClient()
     const { t } = useTranslation()
 
-    const [nome, setNome] = useState<string>('')
-    const [quantidade, setQuantidade] = useState<number>()
-    const [precoCompra, setPrecoCompra] = useState<number>()
-    const [precoVenda, setPrecoVenda] = useState<number>()
-    const [categoria, setCategoria] = useState<string>('')
-    const [descricao, setDescricao] = useState<string>('')
-    const [fabricante, setFabricante] = useState<string>('')
+    const [name, setName] = useState<string>('')
+    const [quantity, setQuantity] = useState<number>()
+    const [purchasePrice, setPurchasePrice] = useState<number>()
+    const [sellingPrice, setSellingPrice] = useState<number>()
+    const [category, setCategory] = useState<string>('')
+    const [description, setDescription] = useState<string>('')
+    const [supplier, setSupplier] = useState<string>('')
 
     const handleInputChange = (event, setStateFunction) => {
         setStateFunction(event.target.value)
@@ -30,27 +30,23 @@ function NovoProduto(props: NovoProdutoProps) {
 
     const handleCreateProduct = async () => {
         const data: CreateProductCommand = {
-            nome,
-            fabricante,
-            categoria,
-            precoVenda,
-            precoCompra,
-            descricao,
-            loja: {
-                idLoja: 1
-            },
-            quantidade
+            nome: name,
+            fabricante: supplier,
+            categoria: category,
+            precoVenda: sellingPrice,
+            precoCompra: purchasePrice,
+            descricao: description,
+            quantidade: quantity,
+            loja: JSON.parse(sessionStorage.getItem('userData') ?? '').loja
         }
 
-        // await createProduct(data, token)
-            // .then(() => {
-            //     toast.success('Produto adicionado com sucesso!')
-            //     handleOpenNovoProduto()
-            // })
-            // .catch((e) => {
-            //     toast.error('Erro ao tentar adicionar produto!')
-            //     console.error('Erro ao tentar adicionar produto', e)
-            // })
+        client.createProduct(data).then(() => {
+            toast.success(t('CreateProductSuccess'))
+            handleOpenNewProduct()
+        }).catch(e => {
+            toast.error(t('CreateProductError'))
+            console.error(t('CreateProductError'), e)
+        })
     }
 
     const className = 'border-purple-500 shadow-md text-[#9A9696] flex items-center bg-white'
@@ -62,15 +58,14 @@ function NovoProduto(props: NovoProdutoProps) {
 
                 <div className='flex flex-col gap-2'>
                     <Paragraph size='h3-regular'>
-                        {t('placeholder')}*
+                        {t('NameProduct')}*
                     </Paragraph>
                     <label className={clsx('input input-bordered', className)}>
                         <input
-                            type='text'
                             className='grow text-black'
-                            placeholder='Ex: Tapete'
-                            value={nome}
-                            onChange={(e) => handleInputChange(e, setNome)}
+                            placeholder={t('ProductNameExample')}
+                            value={name}
+                            onChange={(e) => handleInputChange(e, setName)}
                         />
                     </label>
                 </div>
@@ -87,23 +82,23 @@ function NovoProduto(props: NovoProdutoProps) {
                     <div className='flex flex-row w-full justify-between'>
                         <label className={clsx('input input-bordered gap-2 w-[49%]', className)}>
                             <input
-                                type='text'
+                                type='number'
                                 className='grow text-black'
                                 placeholder={t('UnitPrice')}
-                                value={precoVenda}
-                                onChange={(e) => handleInputChange(e, setPrecoVenda)}
+                                value={sellingPrice}
+                                onChange={(e) => handleInputChange(e, setSellingPrice)}
                             />
-                            R$
+                            {t('BRLCurrency')}
                         </label>
                         <label className={clsx('input input-bordered gap-2 w-[49%]', className)}>
                             <input
-                                type='text'
+                                type='number'
                                 className='grow text-black'
                                 placeholder={t('PurchasePrice')}
-                                value={precoCompra}
-                                onChange={(e) => handleInputChange(e, setPrecoCompra)}
+                                value={purchasePrice}
+                                onChange={(e) => handleInputChange(e, setPurchasePrice)}
                             />
-                            R$
+                            {t('BRLCurrency')}
                         </label>
                     </div>
                 </div>
@@ -120,21 +115,20 @@ function NovoProduto(props: NovoProdutoProps) {
                     <div className='flex flex-row w-full justify-between'>
                         <label className={clsx('input input-bordered gap-2 w-[49%]', className)}>
                             <input
-                                type='text'
+                                type='number'
                                 className='grow text-black'
-                                placeholder='Quantidade do produto'
-                                value={quantidade}
-                                onChange={(e) => handleInputChange(e, setQuantidade)}
+                                placeholder={t('QuantityExample')}
+                                value={quantity}
+                                onChange={(e) => handleInputChange(e, setQuantity)}
                             />
-                            Qtd.
+                            {t('QuantityAcronym')}
                         </label>
                         <label className={clsx('input input-bordered gap-2 w-[49%]', className)}>
                             <input
-                                type='text'
                                 className='grow text-black'
-                                placeholder='Ex: Cama'
-                                value={categoria}
-                                onChange={(e) => handleInputChange(e, setCategoria)}
+                                placeholder={t('CategoryExample')}
+                                value={category}
+                                onChange={(e) => handleInputChange(e, setCategory)}
                             />
                         </label>
                     </div>
@@ -142,22 +136,36 @@ function NovoProduto(props: NovoProdutoProps) {
 
                 <div className='flex flex-col gap-2'>
                     <div className='flex flex-row w-full justify-start'>
-                        <Paragraph size='h3-regular'>Fabricante</Paragraph>
-                        <Paragraph size='h3-regular'>Descrição</Paragraph>
+                        <Paragraph size='h3-regular'>
+                            {t('Supplier')}
+                        </Paragraph>
+                        <Paragraph size='h3-regular'>
+                            {t('Description')}
+                        </Paragraph>
                     </div>
                     <div className='flex flex-row w-full justify-between'>
                         <label className={clsx('input input-bordered gap-2 w-[49%]', className)}>
-                            <input type='text' className='grow text-black' placeholder='Nome do Fornecedor' value={fabricante} onChange={(e) => handleInputChange(e, setFabricante)} />
+                            <input
+                                className='grow text-black'
+                                placeholder={t('SupplierExample')}
+                                value={supplier}
+                                onChange={(e) => handleInputChange(e, setSupplier)}
+                            />
                         </label>
                         <label className={clsx('input input-bordered gap-2 w-[49%]', className)}>
-                            <input type='text' className='grow text-black' placeholder='Resumo do produto' value={descricao} onChange={(e) => handleInputChange(e, setDescricao)} />
+                            <input
+                                className='grow text-black'
+                                placeholder={t('ProductSummaryExample')}
+                                value={description}
+                                onChange={(e) => handleInputChange(e, setDescription)}
+                            />
                         </label>
                     </div>
                 </div>
 
                 <div className='card-actions justify-between mt-5'>
-                    <Button content='Adicionar' className='w-[40%] shadow-sm' onClick={handleCreateProduct} />
-                    <Button content='Cancelar' className='w-[40%] shadow-sm' color='secondary' onClick={handleOpenNewProduct} />
+                    <Button content={t('Add')} className='w-[40%] shadow-sm' onClick={handleCreateProduct} />
+                    <Button content={t('Cancel')} className='w-[40%] shadow-sm' color='secondary' onClick={handleOpenNewProduct} />
                 </div>
             </div>
         </div>

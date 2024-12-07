@@ -4,5 +4,4 @@ export type UserResult = {
   numeroCelular: string
   email: string
   senha: string
-  deleted: boolean
 }

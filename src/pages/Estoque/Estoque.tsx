@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet'
 import Footer from '../../components/Footer/Footer'
@@ -7,21 +7,21 @@ import Header from '../../components/Header/Header'
 import NovoProduto from '../../components/Modal/NovoProduto/NovoProduto'
 import { ProdutoResult } from '../../lib/types'
 import useClient from '../../lib/client/useClient'
-import { AuthContext } from '../../contexts/AuthContext'
 
 function EstoquePage() {
   const client = useClient()
-  const auth = useContext(AuthContext)
   const { t } = useTranslation()
 
   const [products, setProducts] = useState<ProdutoResult[]>([])
   const [openNewProduct, setOpenNewProduct] = useState(false)
 
+  const userData = JSON.parse(sessionStorage.getItem('userData') ?? '')
+
   useEffect(() => {
-    client.getStock().then(data => {
+    client.getStock(userData.loja.idLoja).then(data => {
       setProducts(data)
     })
-  }, [client])
+  }, [client, userData.loja.idLoja])
 
   const handleOpenNewProduct = () => {
     setOpenNewProduct(!openNewProduct)
@@ -33,7 +33,7 @@ function EstoquePage() {
         <Helmet>
           <title>{t('StockPage')}</title>
         </Helmet>
-        <Header name={auth.nome} />
+        <Header name={userData.nome} totalProducts={products.length} />
         <div className='w-full h-[80%] flex justify-center items-center pt-[2%] pb-[2%]'>
           <ProductTable
             tableResult={products}

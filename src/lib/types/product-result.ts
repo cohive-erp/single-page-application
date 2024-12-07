@@ -10,9 +10,10 @@ export type ProdutoResult = {
     categoria: string
     precoVenda: number
     precoCompra: number
-    quantidade: number
-    loja: StoreResult,
+    quantidade: number | null
+    loja: StoreResult
     deleted: boolean
   }
-  quantidadeVendida: number
+  loja: StoreResult
+  quantidade: number
 }
