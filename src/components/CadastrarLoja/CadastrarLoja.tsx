@@ -17,24 +17,38 @@ function CadastrarLoja() {
         <div className='card w-[570px] h-[450px] bg-white shadow-xl'>
             <div className='card-body justify-between gap-4'>
                 <Paragraph size='h2'>Criar loja</Paragraph>
-
                 <div className='flex flex-col gap-2'>
                     <Paragraph size='h3-regular'>CEP*</Paragraph>
                     <label className={clsx('input input-bordered', className)}>
-                        <input type='text' className='grow text-black' placeholder='01234-567' value={cep} onChange={(e) => handleInputChange(e, setCep)} />
+                        <input
+                            className='grow text-black'
+                            placeholder='01234-567'
+                            value={cep}
+                            onChange={(e) => handleInputChange(e, setCep)}
+                        />
                     </label>
                 </div>
-
                 <div className='flex flex-col gap-2'>
                     <Paragraph size='h3-regular'>Número*</Paragraph>
                     <label className={clsx('input input-bordered', className)}>
-                        <input type='text' className='grow text-black' placeholder='Ex: 300' value={numero} onChange={(e) => handleInputChange(e, setNumero)} />
+                        <input
+                            className='grow text-black'
+                            placeholder='Ex: 300'
+                            value={numero}
+                            onChange={(e) => handleInputChange(e, setNumero)}
+                        />
                     </label>
                 </div>
-
                 <div className='flex flex-col gap-2'>
                     <Paragraph size='h3-regular'>CNPJ*</Paragraph>
                     <label className={clsx('input input-bordered', className)}>
+                        <input
+                            className='grow text-black'
+                            placeholder='Ex: 00.000.000/0000-00'
+                            value={cnpj}
+                            onChange={(e) =>
+                                handleInputChange(e, setCnpj)}
+                        />
                     </label>
                 </div>
             </div>
