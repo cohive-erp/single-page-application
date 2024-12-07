@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Helmet } from 'react-helmet'
 import Footer from '../../components/Footer/Footer'
@@ -7,11 +7,9 @@ import Header from '../../components/Header/Header'
 import NovoProduto from '../../components/Modal/NovoProduto/NovoProduto'
 import { ProdutoResult } from '../../lib/types'
 import useClient from '../../lib/client/useClient'
-import { AuthContext } from '../../contexts/AuthContext'
 
 function EstoquePage() {
   const client = useClient()
-  const auth = useContext(AuthContext)
   const { t } = useTranslation()
 
   const [products, setProducts] = useState<ProdutoResult[]>([])
@@ -23,7 +21,7 @@ function EstoquePage() {
     client.getStock(userData.loja.idLoja).then(data => {
       setProducts(data)
     })
-  }, [])
+  }, [client, userData.loja.idLoja])
 
   const handleOpenNewProduct = () => {
     setOpenNewProduct(!openNewProduct)

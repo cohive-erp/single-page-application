@@ -3,25 +3,20 @@ import React, { useEffect, useState } from 'react'
 import Paragraph from '../../components/Paragraph/Paragraph'
 import Button from '../../components/Button/Button'
 import { ProdutoResult } from '../../lib/types/product-result'
+import useClient from 'src/lib/client/useClient'
 
 function Ocorrencias() {
-  const [produtos, setProdutos] = useState<ProdutoResult[]>()
+  const client = useClient()
 
-  const token = sessionStorage.getItem('sessionToken') ?? ''
+  const [products, setProducts] = useState<ProdutoResult[]>([])
 
-  // const getAllProducts = async () => {
-  //   await getStock(token)
-  //     .then((response) => {
-  //       setProdutos(response)
-  //     })
-  //     .catch((e) => {
-  //       console.error('Erro ao tentar obter produtos', e)
-  //     })
-  // }
+  const userData = JSON.parse(sessionStorage.getItem('userData') ?? '')
 
-  // useEffect(() => {
-  //   getAllProducts()
-  // }, [produtos])
+  useEffect(() => {
+    client.getStock(userData.loja.idLoja).then((response) => {
+      setProducts(response)
+    })
+  }, [products])
 
   const handleOpenRelatorio = async () => {
     // await getReport(token)
@@ -39,7 +34,7 @@ function Ocorrencias() {
       <div className='flex flex-col w-[80%] h-[70%] justify-between'>
         <Paragraph size='h2'>🚨 Ocorrências</Paragraph>
         <div className='h-[70%] overflow-auto flex flex-col gap-4'>
-          {produtos?.map((produto, index) => (
+          {products?.map((produto, index) => (
             <>
               {produto.quantidade > 0 && produto.quantidade < 5 && (
                 <span key={index} className='w-full bg-yellow-200 p-4 rounded-md shadow-sm text-black border'>⚠️ O produto <b>{produto.produto.nome}</b> está precisando de reposição.</span>
@@ -58,13 +53,3 @@ function Ocorrencias() {
 }
 
 export default Ocorrencias
-
-const downloadCSV = (csvData: string, filename: string) => {
-  const blob = new Blob([csvData], { type: 'text/csv' })
-  const url = window.URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.setAttribute('href', url)
-  a.setAttribute('download', filename)
-  a.click()
-  window.URL.revokeObjectURL(url)
-}
