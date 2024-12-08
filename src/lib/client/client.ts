@@ -5,7 +5,6 @@ import {
   CreateLojaCommand,
   CreateProductCommand,
   CreateUserCommand,
-  ProductResult,
   ProdutoResult,
   StoreResult,
   UpdateProductCommand
@@ -59,19 +58,19 @@ export default class Client {
     return (await client.post(`/api/usuarios/request-password-reset?email=${email}`)).data
   }
 
-  async getDailyInvoice() {
+  async getDailyInvoice(idLoja: number) {
     const client = this.createAuthClient()
-    return (await client.get('/api/relatorios/fatura-diaria')).data
+    return (await client.get(`/api/relatorios/fatura-diaria/${idLoja}`)).data
   }
 
-  async getMonthlyInvoice() {
+  async getMonthlyInvoice(idLoja: number) {
     const client = this.createAuthClient()
-    return (await client.get('/api/relatorios/faturas-mensais')).data
+    return (await client.get(`/api/relatorios/faturas-mensais/${idLoja}`)).data
   }
 
-  async getMostSellerProduct() {
+  async getMostSellerProduct(idLoja: number) {
     const client = this.createAuthClient()
-    return (await client.get('/api/relatorios/produto-mais-vendido')).data
+    return (await client.get(`/api/relatorios/produto-mais-vendido/${idLoja}`)).data
   }
 
   async getReport() {
@@ -88,9 +87,9 @@ export default class Client {
     ).data
   }
 
-  async getSalesLastWeek() {
+  async getSalesLastWeek(idLoja: number) {
     const client = this.createAuthClient()
-    return (await client.get('/api/relatorios/valor-vendas-ultimos-sete-dias')).data
+    return (await client.get(`/api/relatorios/valor-vendas-ultimos-sete-dias/${idLoja}`)).data
   }
 
   async getTransactions() {
@@ -127,7 +126,7 @@ export default class Client {
     return (await client.delete(`/api/estoque/${id}`)).data
   }
 
-  async getProductById(id: number): Promise<ProductResult> {
+  async getProductById(id: number): Promise<ProdutoResult> {
     const client = this.createAuthClient()
     return (await client.get(`/api/estoque/${id}`)).data
   }

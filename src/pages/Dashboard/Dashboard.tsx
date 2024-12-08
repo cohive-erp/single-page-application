@@ -1,5 +1,4 @@
-/* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Footer from '../../components/Footer/Footer'
 import { Helmet } from 'react-helmet'
 import Header from '../../components/Header/Header'
@@ -8,47 +7,54 @@ import Kpi from '../../components/Kpi/Kpi'
 import LineChartComponent from '../../components/LineChart/LineChart'
 import Ocorrencias from '../../components/Alerta/Alerta'
 import ActionHistory from '../../components/ActionHistory/ActionHistory'
-import { ProdutoResult } from '../../lib/types'
 import useClient from '../../lib/client/useClient'
 import { useTranslation } from 'react-i18next'
-import CadastrarLoja from '../../../src/components/CadastrarLoja/CadastrarLoja'
+import { useQuery } from '@tanstack/react-query'
 
 function EstoquePage() {
   const client = useClient()
   const { t } = useTranslation()
 
-  const [dailyInvoice, setDailyInvoice] = useState(0)
-  const [totalProducts, setTotalProducts] = useState(0)
-  const [monthlyInvoice, setMonthlyInvoice] = useState(0)
-  const [salesLastWeek, setSalesLastWeek] = useState([])
-  const [mostSellerProduct, setMostSellerProduct] = useState<ProdutoResult>()
-  const [hasStore, setHasStore] = useState(false)
-
   const userData = JSON.parse(sessionStorage.getItem('userData') ?? '')
+  const idLoja = userData.loja.idLoja
 
-  useEffect(() => {
-    client.getDailyInvoice().then((data) => {
-      setDailyInvoice(data)
-    })
+  const { data: products, isLoading } = useQuery({
+    queryKey: ['products', idLoja],
+    queryFn: () => client.getStock(idLoja),
+    enabled: !!userData.loja,
+    staleTime: 1000 * 60 * 5
+  })
 
-    client.getMonthlyInvoice().then((data) => {
-      const total = data.reduce((sum: number, item: any) => typeof item === 'number' ? sum + item : sum, 0)
-      setMonthlyInvoice(total)
-    })
+  const { data: dailyInvoice } = useQuery({
+    queryKey: ['daily_invoice', idLoja],
+    queryFn: () => client.getDailyInvoice(idLoja),
+    enabled: !!userData.loja,
+    staleTime: 1000 * 60 * 5
+  })
 
-    client.getMostSellerProduct().then((data) => {
-      setMostSellerProduct(data)
-    })
+  const { data: monthlyInvoice } = useQuery({
+    queryKey: ['monthly_invoice', idLoja],
+    queryFn: async () => {
+      const monthlyInvoice = await client.getMonthlyInvoice(idLoja)
+      return monthlyInvoice.reduce((sum: number, item: any) => typeof item === 'number' ? sum + item : sum, 0)
+    },
+    enabled: !!userData.loja,
+    staleTime: 1000 * 60 * 5
+  })
 
-    client.getSalesLastWeek().then((data) => {
-      setSalesLastWeek(data)
-    })
+  const { data: salesLastWeek } = useQuery({
+    queryKey: ['sales_last_week', idLoja],
+    queryFn: () => client.getSalesLastWeek(idLoja),
+    enabled: !!userData.loja,
+    staleTime: 1000 * 60 * 5
+  })
 
-    client.getStock(userData.loja.idLoja).then((data) => {
-      setTotalProducts(data.length)
-      setHasStore(true)
-    })
-  }, [])
+  const { data: mostSellerProduct } = useQuery({
+    queryKey: ['most_seller_product', idLoja],
+    queryFn: () => client.getMostSellerProduct(idLoja),
+    enabled: !!userData.loja,
+    staleTime: 1000 * 60 * 5
+  })
 
   const dailyInvoiceValue = dailyInvoice ? dailyInvoice.toFixed(2).replace('.', ',') : '0,00'
   const monthlyInvoiceValue = monthlyInvoice ? monthlyInvoice.toFixed(2).replace('.', ',') : '0,00'
@@ -58,12 +64,13 @@ function EstoquePage() {
 
   return (
     <>
-      {hasStore && (
+      {isLoading && <div>Loading...</div>}
+      {!isLoading && (
         <div className='bg-slate-200 flex flex-col justify-center items-center'>
           <Helmet>
             <title>Painel de {userData.nome} | Cohive</title>
           </Helmet>
-          <Header name={userData.nome} totalProducts={totalProducts} />
+          <Header name={userData.nome} totalProducts={products?.length ?? 0} />
           <div className='w-[90%] h-[80%] flex flex-col gap-4 justify-center items-center py-[2%]'>
             <div className='bg-slate-100 w-full rounded-xl shadow-md h-14 flex justify-center items-center p-4'>
               <Paragraph size='h2'>{t('StoreOverview')}</Paragraph>
@@ -86,25 +93,12 @@ function EstoquePage() {
                 <ActionHistory />
               </div>
 
-              <Ocorrencias />
+              <Ocorrencias products={products ?? []} />
             </div>
 
             {/* <div className='w-full'>
             <BarChartComponent data={data} />
             </div> */}
-          </div>
-          <Footer />
-        </div>
-      )}
-
-      {!hasStore && (
-        <div className='bg-slate-200 flex flex-col justify-center items-center'>
-          <Helmet>
-            <title>{t('StoreOverview')} | Cohive</title>
-          </Helmet>
-          <Header name={userData.nome} totalProducts={totalProducts} />
-          <div className='w-[50%] h-full flex justify-center items-center pt-8 pb-16 p-32'>
-            <CadastrarLoja />
           </div>
           <Footer />
         </div>
