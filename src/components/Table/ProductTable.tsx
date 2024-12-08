@@ -92,28 +92,25 @@ function ProductTable(props: ProductTableProps) {
             {false && <LoadingButton content={t('Generating')} className='w-[35%]' />}
           </div>
         </div>
-        <TableContainer>
+        <TableContainer className='px-2'>
           <Table stickyHeader>
             <ProductTableHead />
             <TableBody>
               {tableResult.length > 0 && tableResult
                 .filter((row) => row.produto.nome)
-                .map((row) => (
+                .map((row, index) => (
                   <>
                     <TableRow
-                      key={row.produto.idProduto}
+                      key={index}
                       sx={{
                         '&:last-child td, &:last-child th': { border: 0 },
                         background: row.produto.deleted ? '#f0f0f0' : ''
                       }}
                     >
-                      <TableCell component='th' scope='row' align='right'>
-                        <Paragraph size='h4'>{row.produto.idProduto}.</Paragraph>
-                      </TableCell>
                       <TableCell component='th' scope='row'>
                         {row.produto.nome.length < 50 ? row.produto.nome : row.produto.nome.slice(0, 49) + '...'}
                       </TableCell>
-                      <TableCell align='right'>
+                      <TableCell align='left'>
                         {row.produto.categoria}
                       </TableCell>
                       <TableCell align='right'>
