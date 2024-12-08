@@ -31,17 +31,25 @@ function LineChartComponent(props: LineChartProps) {
           </div>
         </div>
 
-        <LineChart
-          showAnimation
-          showLegend={false}
-          customTooltip={CustomTooltip}
-          data={newData}
-          index='day'
-          categories={['Valor']}
-          colors={['purple']}
-          yAxisWidth={45}
-          className='mt-6 hidden h-60 sm:block'
-        />
+        {newData.length > 0 && (
+          <LineChart
+            showAnimation
+            showLegend={false}
+            customTooltip={CustomTooltip}
+            data={newData}
+            index='day'
+            categories={['Valor']}
+            colors={['purple']}
+            yAxisWidth={45}
+            className='mt-6 hidden h-60 sm:block'
+          />
+        )}
+
+        {!newData.length && (
+          <div className='w-full mt-6 hidden h-60 sm:block bg-gray-200 p-4 rounded-md shadow-sm text-center'>
+            <span className='text-black'>Não há dados disponíveis!</span>
+          </div>
+        )}
       </div>
     </div>
   )
