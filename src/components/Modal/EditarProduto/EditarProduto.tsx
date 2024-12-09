@@ -10,11 +10,12 @@ import { useTranslation } from 'react-i18next'
 
 type EditarProdutoProps = {
     id: number
-    handleOpenEditProduct: (id: number) => Promise<void>
+    quantidade: number
+    handleOpenEditProduct: (id: number, quantidade: number) => Promise<void>
 }
 
 function EditarProduto(props: EditarProdutoProps) {
-    const { id, handleOpenEditProduct } = props
+    const { id, quantidade, handleOpenEditProduct } = props
 
     const client = useClient()
     const { t } = useTranslation()
@@ -30,7 +31,7 @@ function EditarProduto(props: EditarProdutoProps) {
     useEffect(() => {
         client.getProductById(id).then((data) => {
             setName(data.nome)
-            setQuantity(data.quantidade ?? 0)
+            setQuantity(quantidade ?? 0)
             setPurchasePrice(data.precoCompra)
             setSellingPrice(data.precoVenda)
             setCategory(data.categoria)
@@ -57,7 +58,7 @@ function EditarProduto(props: EditarProdutoProps) {
 
         client.updateProductById(id, data).then(() => {
             toast.success(t('CreateProductSuccess'))
-            handleOpenEditProduct(id)
+            handleOpenEditProduct(id, quantidade)
         }).catch(e => {
             toast.error(t('CreateProductError'))
             console.error(t('CreateProductError'), e)
@@ -128,7 +129,7 @@ function EditarProduto(props: EditarProdutoProps) {
 
                 <div className='card-actions justify-between mt-5'>
                     <Button content='Salvar' className='w-[40%] shadow-sm' onClick={handleUpdateProduct} />
-                    <Button content='Cancelar' className='w-[40%] shadow-sm' color='secondary' onClick={() => handleOpenEditProduct(id)} />
+                    <Button content='Cancelar' className='w-[40%] shadow-sm' color='secondary' onClick={() => handleOpenEditProduct(id, quantidade)} />
                 </div>
             </div>
         </div>

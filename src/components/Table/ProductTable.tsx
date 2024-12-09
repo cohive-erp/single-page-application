@@ -33,6 +33,7 @@ function ProductTable(props: ProductTableProps) {
   const [rowsPerPage, setRowsPerPage] = useState(10)
   const [openEditProduct, setOpenEditProduct] = useState(false)
   const [productId, setProductId] = useState<number>(0)
+  const [productQuantity, setProductQuantity] = useState<number>(0)
 
   const handleChangePage = (_event: unknown, newPage: number) => { setPage(newPage) }
 
@@ -51,9 +52,10 @@ function ProductTable(props: ProductTableProps) {
     setPage(0)
   }
 
-  const handleOpenEditProduct = async (id: number) => {
+  const handleOpenEditProduct = async (id: number, quantidade: number) => {
     setOpenEditProduct(!openEditProduct)
     setProductId(id)
+    setProductQuantity(quantidade)
   }
 
   return (
@@ -93,7 +95,7 @@ function ProductTable(props: ProductTableProps) {
                       key={index}
                       sx={{
                         '&:last-child td, &:last-child th': { border: 0 },
-                        background: row.produto.deleted ? '#f0f0f0' : ''
+                        background: row.quantidade === 0 ? '#f0f0f0' : ''
                       }}
                     >
                       <TableCell component='th' scope='row'>
@@ -118,12 +120,13 @@ function ProductTable(props: ProductTableProps) {
                         {row.produto.precoVenda.toFixed(2).replace('.', ',')}
                       </TableCell>
                       <TableCell align='right'>
-                        {row.produto.deleted ? 0 : row.quantidade}
+                        {row.quantidade}
                       </TableCell>
                       <TableCell sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }} align='right'>
                         <SeeMore
                           id={row.produto.idProduto}
-                          handleEdit={() => handleOpenEditProduct(row.produto.idProduto)}
+                          dataEntradaInicial={row.dataEntradaInicial}
+                          handleEdit={() => handleOpenEditProduct(row.produto.idProduto, row.quantidade)}
                         />
                       </TableCell>
                     </TableRow>
@@ -148,7 +151,7 @@ function ProductTable(props: ProductTableProps) {
       {openEditProduct && (
         <div className='fixed w-full h-full top-[50%] left-[50%] z-50 bg-black bg-opacity-20' style={{ transform: 'translate(-50%, -50%)' }}>
           <div className='fixed top-[50%] left-[50%]' style={{ transform: 'translate(-50%, -50%)' }}>
-            <EditarProduto id={productId} handleOpenEditProduct={handleOpenEditProduct} />
+            <EditarProduto id={productId} quantidade={productQuantity} handleOpenEditProduct={handleOpenEditProduct} />
           </div>
         </div>
       )}

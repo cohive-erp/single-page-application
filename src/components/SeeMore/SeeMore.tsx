@@ -9,11 +9,12 @@ import useClient from 'src/lib/client/useClient'
 
 type SeeMoreProps = {
   id: number
+  dataEntradaInicial: string
   handleEdit: (id: number) => Promise<void>
 }
 
 function SeeMore(props: SeeMoreProps) {
-  const { id, handleEdit } = props
+  const { id, dataEntradaInicial, handleEdit } = props
 
   const client = useClient()
   const { t } = useTranslation()
@@ -22,17 +23,25 @@ function SeeMore(props: SeeMoreProps) {
     try {
       const produto = await client.getProductById(id)
       const userData = JSON.parse(sessionStorage.getItem('userData') ?? '')
+
       const data = {
-        dataEntradaInicial: new Date(),
-        produto,
+        dataEntradaInicial,
+        produto: {
+          idProduto: produto.id,
+          nome: produto.nome,
+          precoVenda: produto.precoVenda,
+          precoCompra: produto.precoCompra,
+          fabrcante: produto.fabricante,
+          categoria: produto.categoria
+        },
         loja: userData.loja,
         quantidade: 1
       }
 
       await client.toIncrease(data)
-      toast.success(t('ToIncreaseSuccess'))
+      toast.success(`Entrada do produto ${produto.nome} bem sucedida!`)
     } catch (e) {
-      toast.error(t('ToIncreaseError'))
+      toast.error('Erro ao dar entrada no produto!')
       console.error(t('ToIncreaseError'), e)
     }
   }
@@ -42,16 +51,23 @@ function SeeMore(props: SeeMoreProps) {
       const produto = await client.getProductById(id)
       const userData = JSON.parse(sessionStorage.getItem('userData') ?? '')
       const data = {
-        dataEntradaInicial: new Date(),
-        produto,
+        dataEntradaInicial,
+        produto: {
+          idProduto: produto.id,
+          nome: produto.nome,
+          precoVenda: produto.precoVenda,
+          precoCompra: produto.precoCompra,
+          fabrcante: produto.fabricante,
+          categoria: produto.categoria
+        },
         loja: userData.loja,
         quantidade: 1
       }
 
       await client.toDecrease(data)
-      toast.success(t('ToIncreaseSuccess'))
+      toast.success(`Baixa do produto ${produto.nome} bem sucedida!`)
     } catch (e) {
-      toast.error(t('ToIncreaseError'))
+      toast.error('Erro ao dar baixa no produto!')
       console.error(t('ToIncreaseError'), e)
     }
   }
