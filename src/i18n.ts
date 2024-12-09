@@ -8,7 +8,7 @@ const resources = {
       'SignUpPage': 'Cadastrar | Sistema ERP: Gestão rápida, prática e útil | Cohive',
       'ResetPasswordPage': 'Esqueceu sua senha? | Sistema ERP: Gestão rápida, prática e útil | Cohive',
       'StockPage': 'Estoque | Sistema ERP: Gestão rápida, prática e útil | Cohive',
-
+      'Action': 'Ação',
       'Products': 'Produtos',
       'NewProduct': 'Novo Produto',
       'NameProduct': 'Nome do Produto',
@@ -67,7 +67,7 @@ const resources = {
       'SignUpPage': 'Sign Up | ERP System: Fast, practical and useful management | Cohive',
       'ResetPasswordPage': 'Forgot your password?? | ERP System: Fast, practical and useful management | Cohive',
       'StockPage': 'Stock | ERP System: Fast, practical and useful management | Cohive',
-
+      'Action': 'Action',
       'Products': 'Products',
       'NewProduct': 'New Product',
       'NameProduct': 'Product Name',
@@ -124,7 +124,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'pt',
+    lng: 'en',
     interpolation: {
       escapeValue: false
     }
