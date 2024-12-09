@@ -28,7 +28,6 @@ function Avatar(props: AvatarProps) {
     }
 
     return (
-        <>
         <div className='dropdown dropdown-bottom dropdown-end'>
             <div className='avatar placeholder' tabIndex={0} role='button'>
                 <div className='bg-neutral text-neutral-content rounded-full w-16'>
@@ -50,9 +49,6 @@ function Avatar(props: AvatarProps) {
                 </li>
             </ul>
         </div>
-
-        {/* {open && <EditarProduto />} */}
-        </>
     )
 }
 

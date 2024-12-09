@@ -4,10 +4,12 @@ import Rotas from './routes'
 import { Helmet } from 'react-helmet'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+const queryClient = new QueryClient()
 
 function App() {
   return (
-    <>
+    <QueryClientProvider client={queryClient}>
       <Helmet>
         <link rel='icon' type='image/png' href='./favicon.svg' sizes='16x16' />
         <meta property='og:image' content='./open_graph_image.png' />
@@ -21,7 +23,7 @@ function App() {
       </Helmet>
       <Rotas />
       <ToastContainer />
-    </>
+    </QueryClientProvider>
   )
 }
 

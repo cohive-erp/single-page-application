@@ -13,7 +13,7 @@ function SignUp() {
         <title>{t('SignUpPage')}</title>
       </Helmet>
       <NavBar />
-      <div className='w-[50%] h-full flex justify-center items-center pt-8 pb-16 p-32'>
+      <div className='w-[70%] h-full flex justify-center items-center pt-8 pb-16 p-32'>
         <Cadastro />
       </div>
       <Footer />

@@ -5,6 +5,7 @@ import Table from '@mui/material/Table'
 import TableBody from '@mui/material/TableBody'
 import TableCell from '@mui/material/TableCell'
 import TableContainer from '@mui/material/TableContainer'
+import Tooltip from '@mui/material/Tooltip'
 import TableRow from '@mui/material/TableRow'
 import TablePagination from '@mui/material/TablePagination'
 import ProductTableHead from './components/ProductTableHead/ProductTableHead'
@@ -12,11 +13,11 @@ import Paragraph from '../Paragraph/Paragraph'
 import Search from '../Search/Search'
 import LoadingButton from '../Button/LoadingButton'
 import { toast } from 'react-toastify'
-import clsx from 'clsx'
 import { ProdutoResult } from '../../lib/types/product-result'
 import EditarProduto from '../Modal/EditarProduto/EditarProduto'
 import useClient from '../../lib/client/useClient'
 import { useTranslation } from 'react-i18next'
+import SeeMore from '../SeeMore/SeeMore'
 
 type ProductTableProps = {
   tableResult: ProdutoResult[]
@@ -35,21 +36,9 @@ function ProductTable(props: ProductTableProps) {
 
   const handleChangePage = (_event: unknown, newPage: number) => { setPage(newPage) }
 
-  const handleDeleteProduct = async (id: number) => {
-    try {
-      await client.deleteProductById(id)
-      toast.success(t('CreateProductSuccess'))
-    } catch (e) {
-      toast.error(t('CreateProductError'))
-      console.error(t('CreateProductError'), e)
-    }
-  }
-
   const handleOpenReport = async () => {
     try {
-      const response = await client.getReport()
-      const csv = response.split('\n').map((line: string) => line.replace(/;\s*/g, ',')).join('\n')
-      downloadCSV(csv, `relatorio-${new Date().toDateString()}.csv`)
+      await client.getReport()
       toast.success(t('CreateReportSuccess'))
     } catch (e) {
       toast.error(t('CreateReportError'))
@@ -92,29 +81,38 @@ function ProductTable(props: ProductTableProps) {
             {false && <LoadingButton content={t('Generating')} className='w-[35%]' />}
           </div>
         </div>
-        <TableContainer>
+        <TableContainer className='px-2'>
           <Table stickyHeader>
             <ProductTableHead />
             <TableBody>
               {tableResult.length > 0 && tableResult
                 .filter((row) => row.produto.nome)
-                .map((row) => (
+                .map((row, index) => (
                   <>
                     <TableRow
-                      key={row.produto.idProduto}
+                      key={index}
                       sx={{
                         '&:last-child td, &:last-child th': { border: 0 },
                         background: row.produto.deleted ? '#f0f0f0' : ''
                       }}
                     >
-                      <TableCell component='th' scope='row' align='right'>
-                        <Paragraph size='h4'>{row.produto.idProduto}.</Paragraph>
-                      </TableCell>
                       <TableCell component='th' scope='row'>
-                        {row.produto.nome.length < 50 ? row.produto.nome : row.produto.nome.slice(0, 49) + '...'}
+                      {row.produto.nome.length < 20 ? row.produto.nome : (
+                          <Tooltip title={row.produto.nome} placement='top-start'>
+                            <div>
+                              {row.produto.nome.slice(0, 19) + '...'}
+                            </div>
+                          </Tooltip>
+                        )}
                       </TableCell>
-                      <TableCell align='right'>
-                        {row.produto.categoria}
+                      <TableCell align='left'>
+                        {row.produto.categoria.length < 60 ? row.produto.categoria : (
+                          <Tooltip title={row.produto.categoria} placement='top-start'>
+                            <div>
+                              {row.produto.categoria.slice(0, 59) + '...'}
+                            </div>
+                          </Tooltip>
+                        )}
                       </TableCell>
                       <TableCell align='right'>
                         {row.produto.precoVenda.toFixed(2).replace('.', ',')}
@@ -123,10 +121,10 @@ function ProductTable(props: ProductTableProps) {
                         {row.produto.deleted ? 0 : row.quantidade}
                       </TableCell>
                       <TableCell sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '8px' }} align='right'>
-                        <Button content={t('Delete')} className={clsx(
-                          row.produto.deleted ? 'btn-disable' : ''
-                        )} color='secondary' onClick={() => handleDeleteProduct(row.produto.idProduto)} />
-                        <Button content={t('Edit')} onClick={() => handleOpenEditProduct(row.produto.idProduto)} />
+                        <SeeMore
+                          id={row.produto.idProduto}
+                          handleEdit={() => handleOpenEditProduct(row.produto.idProduto)}
+                        />
                       </TableCell>
                     </TableRow>
                   </>
@@ -159,13 +157,3 @@ function ProductTable(props: ProductTableProps) {
 }
 
 export default ProductTable
-
-const downloadCSV = (csvData: string, filename: string) => {
-  const blob = new Blob([csvData], { type: 'text/csv' })
-  const url = window.URL.createObjectURL(blob)
-  const a = document.createElement('a')
-  a.setAttribute('href', url)
-  a.setAttribute('download', filename)
-  a.click()
-  window.URL.revokeObjectURL(url)
-}

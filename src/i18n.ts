@@ -8,7 +8,7 @@ const resources = {
       'SignUpPage': 'Cadastrar | Sistema ERP: Gestão rápida, prática e útil | Cohive',
       'ResetPasswordPage': 'Esqueceu sua senha? | Sistema ERP: Gestão rápida, prática e útil | Cohive',
       'StockPage': 'Estoque | Sistema ERP: Gestão rápida, prática e útil | Cohive',
-
+      'Action': 'Ação',
       'Products': 'Produtos',
       'NewProduct': 'Novo Produto',
       'NameProduct': 'Nome do Produto',
@@ -47,7 +47,9 @@ const resources = {
       'CreateReportError': 'Erro ao tentar gerar relatório',
 
       'Generating': 'Gerando...',
-
+      'SellAll': 'Vender Todos',
+      'ToDecrease': 'Dar Baixa',
+      'ToIncrease': 'Dar Entrada',
       'Dashboard': 'Painel',
       'Stock': 'Estoque',
       'StoreOverview': 'Visão Geral da Loja',
@@ -67,7 +69,7 @@ const resources = {
       'SignUpPage': 'Sign Up | ERP System: Fast, practical and useful management | Cohive',
       'ResetPasswordPage': 'Forgot your password?? | ERP System: Fast, practical and useful management | Cohive',
       'StockPage': 'Stock | ERP System: Fast, practical and useful management | Cohive',
-
+      'Action': 'Action',
       'Products': 'Products',
       'NewProduct': 'New Product',
       'NameProduct': 'Product Name',
@@ -86,7 +88,8 @@ const resources = {
       'SupplierExample': 'e.g. Amazon',
       'ProductSummaryExample': 'e.g. Bed for children',
       'QuantityExample': 'Min: 0, max: 1000',
-
+      'ToDecrease': 'To Decrease',
+      'ToIncrease': 'To Increase',
       'QuantityAcronym': 'Qty.',
       'BRLCurrency': 'BRL',
 
@@ -95,7 +98,7 @@ const resources = {
       'Edit': 'Edit',
       'Delete': 'Delete',
       'Search': 'Search',
-
+      'SellAll': 'Sell All',
       'LogoutSuccess': 'Logged out successfully',
       'CreateProductSuccess': 'Product added successfully',
       'CreateProductError': 'Error trying to add product',

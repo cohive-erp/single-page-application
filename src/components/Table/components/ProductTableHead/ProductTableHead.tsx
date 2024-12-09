@@ -9,11 +9,10 @@ function ProductTableHead() {
   const { t } = useTranslation()
   return (
     <TableHead>
-      <TableRow>
-        <TableCell align='right'><Paragraph size='h4'>ID</Paragraph></TableCell>
-        <TableCell align='left'><Paragraph size='h4'>{t('NameProduct')}</Paragraph></TableCell>
-        <TableCell align='right'><Paragraph size='h4'>{t('Category')}</Paragraph></TableCell>
-        <TableCell align='right'><Paragraph size='h4'>{t('UnitPrice')} (R$)</Paragraph></TableCell>
+      <TableRow className='w-full'>
+        <TableCell className='w-[20%]' align='left'><Paragraph size='h4'>{t('NameProduct')}</Paragraph></TableCell>
+        <TableCell align='left'><Paragraph size='h4'>{t('Category')}</Paragraph></TableCell>
+        <TableCell className='w-[20%]' align='right'><Paragraph size='h4'>{t('UnitPrice')} (R$)</Paragraph></TableCell>
         <TableCell align='right'><Paragraph size='h4'>{t('Quantity')}</Paragraph></TableCell>
         <TableCell align='center'><Paragraph size='h4'>{t('Action')}</Paragraph></TableCell>
       </TableRow>
