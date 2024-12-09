@@ -5,11 +5,13 @@ import Header from '../../components/Header/Header'
 import Paragraph from '../../components/Paragraph/Paragraph'
 import Kpi from '../../components/Kpi/Kpi'
 import LineChartComponent from '../../components/LineChart/LineChart'
-import Ocorrencias from '../../components/Alerta/Alerta'
-import ActionHistory from '../../components/ActionHistory/ActionHistory'
+import Ocorrencias from '../../components/Ocorrencias/Ocorrencias'
 import useClient from '../../lib/client/useClient'
 import { useTranslation } from 'react-i18next'
 import { useQuery } from '@tanstack/react-query'
+import UltimosEstoques from 'src/components/UltimosEstoques/UltimosEstoques'
+import DonutChartComponent from '../../components/DonutChartComponent/DonutChartComponent'
+import Loading from 'src/components/Loading/Loading'
 
 function EstoquePage() {
   const client = useClient()
@@ -64,7 +66,7 @@ function EstoquePage() {
 
   return (
     <>
-      {isLoading && <div>Loading...</div>}
+      {isLoading && <Loading />}
       {!isLoading && (
         <div className='bg-slate-200 flex flex-col justify-center items-center'>
           <Helmet>
@@ -89,16 +91,12 @@ function EstoquePage() {
             </div>
 
             <div className='flex flex-row gap-4 justify-center w-full h-full'>
-              <div className='flex flex-col gap-4 w-full'>
-                <ActionHistory />
+              <div className='flex gap-4 w-full h-full justify-between'>
+                <DonutChartComponent products={products ?? []} />
+                <UltimosEstoques products={products ?? []} />
+                <Ocorrencias products={products ?? []} />
               </div>
-
-              <Ocorrencias products={products ?? []} />
             </div>
-
-            {/* <div className='w-full'>
-            <BarChartComponent data={data} />
-            </div> */}
           </div>
           <Footer />
         </div>
