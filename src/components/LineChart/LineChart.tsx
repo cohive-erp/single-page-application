@@ -31,7 +31,7 @@ function LineChartComponent(props: LineChartProps) {
           </div>
         </div>
 
-        {newData.length > 0 && (
+        {newData && newData.length > 0 && (
           <LineChart
             showAnimation
             showLegend={false}
@@ -45,7 +45,7 @@ function LineChartComponent(props: LineChartProps) {
           />
         )}
 
-        {newData.length < 1 && (
+        {newData && newData.length < 1 && (
           <div className='w-full mt-6 hidden h-60 sm:block bg-gray-200 p-4 rounded-md shadow-sm text-center'>
             <span className='text-black'>Não há dados disponíveis!</span>
           </div>
