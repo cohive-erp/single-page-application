@@ -2,12 +2,10 @@ import React from 'react'
 import NavBar from '../../components/NavBar/NavBar'
 import Footer from '../../components/Footer/Footer'
 import { Helmet } from 'react-helmet'
-import { useTranslation } from 'react-i18next'
 import Paragraph from 'src/components/Paragraph/Paragraph'
 import Divider from '@mui/material/Divider/Divider'
 
 function TermosPage() {
-  const { t } = useTranslation()
   return (
     <div className='bg-slate-200 flex flex-col justify-center items-center'>
       <Helmet>
@@ -15,17 +13,17 @@ function TermosPage() {
       </Helmet>
       <NavBar />
       <div className='w-[70%] h-full flex flex-col gap-4 justify-center text-start pt-12 p-32'>
-      <Paragraph size='h1'>📃 Termos de Uso e Privacidade</Paragraph>
+        <Paragraph size='h1'>📃 Termos de Uso e Privacidade</Paragraph>
 
         <div className='flex flex-col gap-2'>
-        <Paragraph size='h6'>Última atualização: 09/12/2024</Paragraph>
+          <Paragraph size='h6'>Última atualização: 09/12/2024</Paragraph>
 
-        <img
-          src='./bannercohive.png'
-          alt='Banner da Cohive'
-          loading='lazy'
-          className='mx-auto w-full rounded-2xl shadow-xl mb-6'
-        />
+          <img
+            src='./bannercohive.png'
+            alt='Banner da Cohive'
+            loading='lazy'
+            className='mx-auto w-full rounded-2xl shadow-xl mb-6'
+          />
         </div>
 
         <Paragraph size='h6-regular'>

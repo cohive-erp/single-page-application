@@ -18,8 +18,8 @@ function Footer() {
       <nav className='text-white'>
         <h6 className='footer-title'>Legal</h6>
         <a onClick={() => navigate('/termos')} className='link link-hover'>Termos de uso</a>
-        <a onClick={() => navigate('/privacidade')} className='link link-hover'>Seguraça e privacidade</a>
-        <a onClick={() => navigate('/politica')} className='link link-hover'>Política de Cookie</a>
+        <a onClick={() => navigate('/termos')} className='link link-hover'>Seguraça e privacidade</a>
+        <a onClick={() => navigate('/termos')} className='link link-hover'>Política de Cookie</a>
       </nav>
       <nav className='text-white'>
         <h6 className='footer-title'>Social</h6>

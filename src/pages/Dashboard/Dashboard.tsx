@@ -11,7 +11,7 @@ import { useTranslation } from 'react-i18next'
 import { useQuery } from '@tanstack/react-query'
 import UltimosEstoques from 'src/components/UltimosEstoques/UltimosEstoques'
 import DonutChartComponent from '../../components/DonutChartComponent/DonutChartComponent'
-import Loading from 'src/components/Loading/Loading'
+import Loading from '../Loading/Loading'
 
 function EstoquePage() {
   const client = useClient()
