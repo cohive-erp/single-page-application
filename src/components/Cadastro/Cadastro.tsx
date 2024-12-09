@@ -7,7 +7,6 @@ import PersonIcon from '@mui/icons-material/Person'
 import StoreIcon from '@mui/icons-material/Store'
 import NumbersIcon from '@mui/icons-material/Numbers'
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter'
-import SignpostIcon from '@mui/icons-material/Signpost'
 import CardGiftcardIcon from '@mui/icons-material/CardGiftcard'
 import Paragraph from '../Paragraph/Paragraph'
 import Button from '../Button/Button'
@@ -127,16 +126,6 @@ function Cadastro() {
                                 placeholder='CEP'
                                 value={cep}
                                 onChange={(e) => handleInputChange(e, setCep)}
-                            />
-                        </label>
-                        <label className='input input-bordered input-disabled border-gray-500 gap-2 shadow-md text-[#9A9696] flex items-center bg-white'>
-                            <SignpostIcon fontSize='small' />
-                            <input
-                                disabled
-                                className='grow text-black'
-                                placeholder='Endereço'
-                                value={numero}
-                                onChange={(e) => handleInputChange(e, setNumero)}
                             />
                         </label>
                         <label className={clsx('input input-bordered', className)}>
