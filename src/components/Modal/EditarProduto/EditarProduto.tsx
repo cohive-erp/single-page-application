@@ -29,13 +29,13 @@ function EditarProduto(props: EditarProdutoProps) {
 
     useEffect(() => {
         client.getProductById(id).then((data) => {
-            setName(data.produto.nome)
+            setName(data.nome)
             setQuantity(data.quantidade ?? 0)
-            setPurchasePrice(data.produto.precoCompra)
-            setSellingPrice(data.produto.precoVenda)
-            setCategory(data.produto.categoria)
-            setDescription(data.produto.descricao ?? '')
-            setSupplier(data.produto.fabricante)
+            setPurchasePrice(data.precoCompra)
+            setSellingPrice(data.precoVenda)
+            setCategory(data.categoria)
+            setDescription(data.descricao ?? '')
+            setSupplier(data.fabricante)
         })
     }, [])
 

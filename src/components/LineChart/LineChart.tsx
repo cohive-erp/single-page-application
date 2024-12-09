@@ -12,7 +12,7 @@ type LineChartProps = {
 function LineChartComponent(props: LineChartProps) {
   const { lastSevenDaysSales } = props
 
-  const newData = lastSevenDaysSales.map((sale) => {
+  const newData = lastSevenDaysSales && lastSevenDaysSales.map((sale) => {
     return {
       day: format(new Date(sale[0]), 'eee', { locale: ptBR }),
       Valor: sale[1]
@@ -45,7 +45,7 @@ function LineChartComponent(props: LineChartProps) {
           />
         )}
 
-        {!newData.length && (
+        {newData.length < 1 && (
           <div className='w-full mt-6 hidden h-60 sm:block bg-gray-200 p-4 rounded-md shadow-sm text-center'>
             <span className='text-black'>Não há dados disponíveis!</span>
           </div>

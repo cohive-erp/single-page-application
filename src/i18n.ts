@@ -47,7 +47,9 @@ const resources = {
       'CreateReportError': 'Erro ao tentar gerar relatório',
 
       'Generating': 'Gerando...',
-
+      'SellAll': 'Vender Todos',
+      'ToDecrease': 'Dar Baixa',
+      'ToIncrease': 'Dar Entrada',
       'Dashboard': 'Painel',
       'Stock': 'Estoque',
       'StoreOverview': 'Visão Geral da Loja',
@@ -86,7 +88,8 @@ const resources = {
       'SupplierExample': 'e.g. Amazon',
       'ProductSummaryExample': 'e.g. Bed for children',
       'QuantityExample': 'Min: 0, max: 1000',
-
+      'ToDecrease': 'To Decrease',
+      'ToIncrease': 'To Increase',
       'QuantityAcronym': 'Qty.',
       'BRLCurrency': 'BRL',
 
@@ -95,7 +98,7 @@ const resources = {
       'Edit': 'Edit',
       'Delete': 'Delete',
       'Search': 'Search',
-
+      'SellAll': 'Sell All',
       'LogoutSuccess': 'Logged out successfully',
       'CreateProductSuccess': 'Product added successfully',
       'CreateProductError': 'Error trying to add product',
@@ -124,7 +127,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: 'en',
+    lng: 'pt',
     interpolation: {
       escapeValue: false
     }

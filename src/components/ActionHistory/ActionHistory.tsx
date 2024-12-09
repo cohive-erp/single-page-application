@@ -36,7 +36,7 @@ function ActionHistory() {
   const className = 'border-purple-500 shadow-md text-[#9A9696] flex items-center bg-white'
 
   return (
-    <div className='card w-[570px] h-[582px] bg-slate-100 shadow-xl'>
+    <div className='card w-full h-full bg-slate-100 shadow-xl'>
       <div className='card-body justify-between gap-4'>
         <div className='flex flex-col gap-2'>
           <Paragraph size='h2'>📁 Gestão de produtos para reposição</Paragraph>
