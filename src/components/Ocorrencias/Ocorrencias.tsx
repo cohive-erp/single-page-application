@@ -11,8 +11,10 @@ function Ocorrencias(props: OcorrenciasProps) {
 
   return (
     <div className='card w-[33%] bg-slate-100 shadow-xl'>
-      <div className='card-body'>
-        <Paragraph size='h2'>🚨 Ocorrências</Paragraph>
+      <div className='card-body items-start'>
+        <div>
+          <Paragraph size='h2'>🚨 Últimas ocorrências</Paragraph>
+        </div>
 
         {products && products.map((produto, index) => (
           <>
