@@ -5,6 +5,7 @@ import {
   CreateLojaCommand,
   CreateProductCommand,
   CreateUserCommand,
+  ProductResult,
   ProdutoResult,
   StoreResult,
   UpdateProductCommand
@@ -75,15 +76,17 @@ export default class Client {
 
   async getReport() {
     const client = this.createAuthClient()
-    return (await client.get('/api/relatorios/get-relatorio-csv?nomeArquivo=relatorioMensal.csv')).data
+    const nomeArquivo = `relatorio-cohive-${new Date().getTime().toString()}`
+    return (await client.post(`/api/relatorios/relatorio-transacoes?nomeArquivo=${nomeArquivo}`)).data
   }
 
-  async getReportByMonth(month: number, year: number) {
+  async getReportByMonth(lojaId: number) {
     const client = this.createAuthClient()
+    const mes = new Date().getUTCMonth() + 1
+    const ano = new Date().getUTCFullYear()
+    const nomeArquivo = `relatorio-mensal-${mes}-${ano}.csv`
     return (
-      await client.get('/api/relatorios/get-relatorio-csv', {
-        params: { nomeArquivo: 'relatorioCohive.csv', month, year },
-      })
+      await client.post(`/api/relatorios/relatorio-mensal/${lojaId}?nomeArquivo=${nomeArquivo}&mes=${mes}&ano=${ano}`)
     ).data
   }
 
@@ -126,7 +129,7 @@ export default class Client {
     return (await client.delete(`/api/estoque/${id}`)).data
   }
 
-  async getProductById(id: number): Promise<ProdutoResult> {
+  async getProductById(id: number): Promise<ProductResult> {
     const client = this.createAuthClient()
     return (await client.get(`/api/estoque/${id}`)).data
   }
@@ -134,5 +137,15 @@ export default class Client {
   async updateProductById(id: number, data: UpdateProductCommand) {
     const client = this.createAuthClient()
     return (await client.put(`/api/estoque/atualizar-produto/${id}`, data)).data
+  }
+
+  async toIncrease(data: any) {
+    const client = this.createAuthClient()
+    return (await client.put('/api/estoque/entrada-estoque', data)).data
+  }
+
+  async toDecrease(data: any) {
+    const client = this.createAuthClient()
+    return (await client.put('/api/estoque/baixa-estoque', data)).data
   }
 }
